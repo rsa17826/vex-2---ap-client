@@ -592,6 +592,7 @@ class ArchipelagoClient {
       return
     }
     var alreadyReceivedItemsList = []
+    log(packet.items, "packet.items", window.lastReceivedItem)
     packet.items.forEach((item, offset) => {
       this.itemCount += 1
       // item.player is the slot number that SENT this item (the source

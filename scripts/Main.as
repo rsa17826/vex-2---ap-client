@@ -2514,10 +2514,10 @@ package
       _loc3_.icon.x = 110;
       _loc3_.icon.y = 45;
       _loc3_.addChild(_loc3_.icon);
-      if (achievementsLog["achievement" + param1][0] != "Microwave")
-      {
-        this.unlockNewgroundsMedal(achievementsLog["achievement" + param1][0]);
-      }
+      // if (achievementsLog["achievement" + param1][0] != "Microwave")
+      // {
+      //   this.unlockNewgroundsMedal(achievementsLog["achievement" + param1][0]);
+      // }
     }
 
     private function unlockNewgroundsMedal(param1:String):void
