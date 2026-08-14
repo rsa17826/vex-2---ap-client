@@ -1,0 +1,290 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <div id="apChatLogContainer">
+      <div id="apChatLogHeader" onclick="toggleCollapse()">
+        <span>Archipelago Log</span>
+        <span id="apChatLogToggle">▾</span>
+      </div>
+      <div id="apChatLog"></div>
+      <div id="apChatSayRow">
+        <input
+          type="text"
+          id="apChatSayInput"
+          placeholder="Say something..."
+          maxlength="300"
+        />
+        <button id="apChatSaySend">Send</button>
+      </div>
+    </div>
+    <link rel="stylesheet" href="main.css" />
+    <script src="ruffle/ruffle.js"></script>
+    <script src="apClient.js"></script>
+    <script src="hintTracker.js"></script>
+    <script src="aplog.js"></script>
+    <script src="indexeddbProxy.js"></script>
+    <div id="game" style="width: 800px; height: 600px"></div>
+    <script>
+      Object.assign(window, console)
+      owo = (e) => e
+      const itemList = {
+        "level:stage0": () => {
+          player.setActLocked_0?.(false)
+          unlockedActs.add(0)
+        },
+        "level:stage1": () => {
+          player.setActLocked_1?.(false)
+          unlockedActs.add(1)
+        },
+        "level:stage2": () => {
+          player.setActLocked_2?.(false)
+          unlockedActs.add(2)
+        },
+        "level:stage3": () => {
+          player.setActLocked_3?.(false)
+          unlockedActs.add(3)
+        },
+        "level:stage4": () => {
+          player.setActLocked_4?.(false)
+          unlockedActs.add(4)
+        },
+        "level:stage5": () => {
+          player.setActLocked_5?.(false)
+          unlockedActs.add(5)
+        },
+        "level:stage6": () => {
+          player.setActLocked_6?.(false)
+          unlockedActs.add(6)
+        },
+        "level:stage7": () => {
+          player.setActLocked_7?.(false)
+          unlockedActs.add(7)
+        },
+        "level:stage8": () => {
+          player.setActLocked_8?.(false)
+          unlockedActs.add(8)
+        },
+        "level:stage9": () => {
+          player.setActLocked_9?.(false)
+          unlockedActs.add(9)
+        },
+        "level:stage10": () => {
+          player.setActLocked_10?.(false)
+          unlockedActs.add(10)
+        },
+      }
+      window.apErrors = []
+      window.onPlayerLoaded = []
+      function markPlayerLoaded() {
+        window.playerLoaded = true
+        onPlayerLoaded.forEach((e) => e())
+        newItem("hub - level:stage0")
+      }
+      HTMLElement.prototype.getElementById = function (a) {
+        return this.querySelector("#" + a)
+      }
+      HTMLElement.prototype.attachShadow = function (init) {
+        // Create a fragment to act as the "shadow root" content holder
+        const root = document.createDocumentFragment()
+
+        // Give it shadow-root-like APIs so library code doesn't choke
+        root.host = this
+        root.getElementById = function (id) {
+          return this.querySelector("#" + id)
+        }
+
+        // Defer moving content into light DOM until after the custom element
+        // constructor has returned (microtask = safely post-construction)
+        queueMicrotask(() => {
+          while (root.firstChild) {
+            this.appendChild(root.firstChild)
+          }
+          // From now on, anything appended to `root` should go straight to `this`
+          root.appendChild = (node) => this.appendChild(node)
+          root.insertBefore = (node, ref) =>
+            this.insertBefore(node, ref)
+        })
+
+        return root
+      }
+      const ruffle = window.RufflePlayer.newest()
+      const player = ruffle.createPlayer()
+      document.getElementById("game").appendChild(player)
+      // Function called by Flash when a star, achievement, or level completion occurs
+      window.onApConnect = []
+      window.onApConnect.push(() => {
+        ap.sendLocationScouts(
+          Object.values(ap.slotData.AP_LOCATION_IDS),
+          0,
+        )
+      })
+      const defaultSaveData = {
+        achievements: {
+          achievement1: 0,
+          achievement2: 0,
+          achievement3: 0,
+          achievement4: 0,
+          achievement5: 0,
+          achievement6: 0,
+          achievement7: 0,
+          achievement8: 0,
+          achievement9: 0,
+          achievement10: 0,
+          achievement11: 0,
+          achievement12: 0,
+          achievement13: 0,
+          achievement14: 0,
+          achievement15: 0,
+          achievement16: 0,
+          achievement17: 0,
+          achievement18: 0,
+          achievement19: 0,
+          achievement20: 0,
+          achievement21: 0,
+          achievement22: 0,
+          achievement23: 0,
+          achievement24: 0,
+          achievement25: 0,
+          achievement26: 2,
+          achievement27: 0,
+          achievement28: 0,
+          achievement29: 0,
+          achievement30: 0,
+        },
+        actDeaths: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        actTimes: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        itemPackages: [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+        ],
+        stageNames: [],
+        stages: [],
+        stars: {
+          act0: [false],
+          act1: [false, false, false],
+          act2: [false, false, false],
+          act3: [false, false],
+          act4: [false, false],
+          act5: [false],
+          act6: [false, false],
+          act7: [false, false, false],
+          act8: [false],
+          act9: [false, false],
+          act10: [false, false, false],
+          act11: [false, false, false, false, false, false],
+        },
+        stats: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      }
+      ;(async () => {
+        window.saveData = await createDB()
+        apTryConnect()
+      })()
+      function createNewSave() {
+        return getSaveData()
+      }
+      function getSaveData() {
+        return (saveData[getSaveFileId()] ??= defaultSaveData)
+      }
+      function getSaveFileId() {
+        return window.seed ?
+            window.seed + "|" + window?.ap?.playerName
+          : "nonAP"
+      }
+      function saveGame(data) {
+        saveData[getSaveFileId()] = data
+      }
+      player.load({
+        url: "vex2-modded.swf",
+        allowScriptAccess: true,
+      })
+      window.checksInFlight = []
+      function newItem(name) {
+        console.log("New Item Received:", name)
+        if (!window.ap?.slotData) {
+          apError("newItem: failed to check", name)
+          return
+        }
+        const apLocationId = ap.slotData.AP_LOCATION_IDS[name]
+
+        if (ap.checkedLocations.includes(apLocationId)) {
+          apWarn(
+            `@blue![Archipelago]@! @red!Ignored location check@! @blue!(@!@orange!location already checked@!@blue!): "@!@green!${name}@!@blue!"@!`,
+          )
+          return
+        }
+        if (apLocationId === undefined) {
+          apError(
+            `@blue![Archipelago]@! @red!Ignored location check@! @blue!(@!@orange!No ID mapped@!@blue!): "@!@green!${name}@!@blue!"@!`,
+          )
+          return
+        }
+
+        // 4. Ship payload packet to server
+        if (window.ap && window.ap.isAuthenticated) {
+          console.log(
+            `[Archipelago] Check registered: ${name} (ID: ${apLocationId})`,
+          )
+          // window.onItemSent.forEach((e) => e())
+          window.checksInFlight.push(apLocationId)
+          window.ap.sendLocationChecks([apLocationId])
+        } else {
+          apWarn(
+            "@blue![Archipelago]@! @red!failed to send@!@blue! - @!@red!Client not authenticated.@!",
+          )
+        }
+      }
+      if (useDarkMode())
+        setTimeout(() => {
+          const playButton = document.querySelector("#play-button")
+          const canvas = document.querySelector("canvas")
+
+          // Function to check visibility and toggle canvas
+          function updateCanvasVisibility() {
+            if (
+              window.getComputedStyle(playButton).display === "block"
+            ) {
+              canvas.style.display = "none"
+            } else {
+              setTimeout(() => {
+                canvas.style.display = "block"
+              }, 500)
+              observer.disconnect()
+            }
+          }
+
+          // Watch for style attribute changes on the play button
+          const observer = new MutationObserver(
+            updateCanvasVisibility,
+          )
+          observer.observe(playButton, {
+            attributes: true,
+            attributeFilter: ["style"],
+          })
+
+          updateCanvasVisibility()
+        }, 1000)
+      window.unlockedActs = new Set([])
+      function isActUnlocked(actType) {
+        log(actType, "asdasdaskdhkasdkjhasd")
+        return window.unlockedActs.has(actType)
+      }
+      function useDarkMode() {
+        return true
+      }
+    </script>
+  </body>
+</html>

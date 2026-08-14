@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Config
+PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPTS_DIR="$PROJECT_DIR/scripts"
+BASE_SWF="$PROJECT_DIR/vex2.swf"
+OUT_SWF="$PROJECT_DIR/vex2-modded.swf"
+TRACKED_FILE="$PROJECT_DIR/.modded_files"
+IMPORT_DIR="$PROJECT_DIR/.import_staging"
+
+# Ensure tracked-files list exists
+touch "$TRACKED_FILE"
+
+# Add any files passed as arguments to the tracked list (if not already present)
+for f in "$@"; do
+  # Normalize: allow passing either "starGraphic.as" or "scripts/starGraphic.as"
+  rel="${f#"$SCRIPTS_DIR"/}"
+  rel="${rel#scripts/}"
+
+  if [[ ! -f "$SCRIPTS_DIR/$rel" ]]; then
+    echo "Error: $SCRIPTS_DIR/$rel does not exist" >&2
+    exit 1
+  fi
+
+  if ! grep -qxF "$rel" "$TRACKED_FILE"; then
+    echo "Adding $rel to tracked mod files"
+    echo "$rel" >>"$TRACKED_FILE"
+    echo "!$rel" >>".gitignore"
+  fi
+done
+
+if [[ ! -s "$TRACKED_FILE" ]]; then
+  echo "No tracked files yet. Usage: ./compile <file.as> [more files...]" >&2
+  exit 1
+fi
+
+# Stage only the tracked files, preserving their relative package paths
+rm -rf "$IMPORT_DIR"
+mkdir -p "$IMPORT_DIR"
+
+echo "Staging tracked files:"
+while IFS= read -r rel; do
+  [[ -z "$rel" ]] && continue
+  echo "  - $rel"
+  mkdir -p "$IMPORT_DIR/$(dirname "$rel")"
+  cp "$SCRIPTS_DIR/$rel" "$IMPORT_DIR/$rel"
+done <"$TRACKED_FILE"
+
+# Always import into the ORIGINAL base swf, so unrelated bulk-recompiles
+# never leak in (matches the working single-file-import approach)
+echo "Running ffdec importScript..."
+ffdec -importScript "$BASE_SWF" "$OUT_SWF" "$IMPORT_DIR"
+# python patchbgcolor.py vex2-modded.swf temp.swf
+# mv temp.swf vex2-modded.swf
+echo ""
+echo "Done. Output: $OUT_SWF"
+echo "Tracked files ($(wc -l <"$TRACKED_FILE" | tr -d ' ')):"
+cat "$TRACKED_FILE"

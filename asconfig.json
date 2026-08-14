@@ -1,0 +1,9 @@
+{
+  "config": "flex",
+  "compilerOptions": {
+    "source-path": ["scripts"],
+    "library-path": [],
+    "output": "vex2-modded.swf"
+  },
+  "mainClass": "Main"
+}
