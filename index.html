@@ -271,16 +271,25 @@
           const canvas = document.querySelector("canvas")
 
           // Function to check visibility and toggle canvas
+          var tt
           function updateCanvasVisibility() {
             if (
               window.getComputedStyle(playButton).display === "block"
             ) {
+              if (tt) clearTimeout(tt)
+              tt = 0
               canvas.style.display = "none"
             } else {
-              setTimeout(() => {
-                canvas.style.display = "block"
+              tt = setTimeout(() => {
+                if (
+                  window.getComputedStyle(playButton).display !==
+                  "block"
+                ) {
+                  canvas.style.display = "block"
+                  observer.disconnect()
+                }
               }, 500)
-              observer.disconnect()
+              //
             }
           }
 
