@@ -29,6 +29,9 @@
     <div id="game" style="width: 800px; height: 600px"></div>
     <script>
       Object.assign(window, console)
+      function debugModeEnabled() {
+        return localStorage.debug == "true"
+      }
       owo = (e) => e
       function pmax() {
         for (var i in new Array(11).fill(1)) {
