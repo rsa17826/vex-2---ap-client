@@ -3,8 +3,6 @@ package
    import flash.display.MovieClip;
    import flash.events.Event;
    import flash.events.MouseEvent;
-   import flash.net.URLRequest;
-   import flash.net.navigateToURL;
    import flash.utils.getDefinitionByName;
    import flash.utils.getQualifiedClassName;
 

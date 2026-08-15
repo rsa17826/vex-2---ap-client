@@ -11,3 +11,4 @@ com/newgrounds/components/APIConnector.as
 darkOverlay.as
 additionalMaths.as
 gameTransition.as
+achievementButton.as
