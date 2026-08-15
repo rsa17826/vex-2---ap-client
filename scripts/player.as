@@ -1573,6 +1573,10 @@ package
     {
       var _loc1_:Array = null;
       var _loc2_:int = 0;
+      if (!ExternalInterface.call("canUseMove", "cannon"))
+      {
+        return;
+      }
       if (!this.hanging)
       {
         if (!this.scaling)
@@ -1613,6 +1617,10 @@ package
     {
       var _loc1_:Array = null;
       var _loc2_:int = 0;
+      if (!ExternalInterface.call("canUseMove", "polejump"))
+      {
+        return;
+      }
       if (this.poleTimer >= 10)
       {
         _loc1_ = this.main.obstacles;
@@ -1665,7 +1673,7 @@ package
       var _loc2_:int = 0;
       if (this.ySpeed < 0)
       {
-        if (this.currentPulley == null)
+        if (this.currentPulley == null && ExternalInterface.call("canUseMove", "pulley"))
         {
           _loc1_ = this.main.obstacles;
           _loc2_ = 0;
@@ -2095,7 +2103,7 @@ package
                     {
                       if (this.ySpeed > -4)
                       {
-                        if (this.scaleHistory != _loc1_[_loc3_].leftBound)
+                        if (this.scaleHistory != _loc1_[_loc3_].leftBound && ExternalInterface.call("canUseMove", "walljump"))
                         {
                           this.main.playSound("Connect", false, false, true);
                           if (this.ySpeed > 10)
@@ -2212,7 +2220,7 @@ package
                     {
                       if (this.ySpeed > -4)
                       {
-                        if (this.scaleHistory != _loc1_[_loc3_].rightBound)
+                        if (this.scaleHistory != _loc1_[_loc3_].rightBound && ExternalInterface.call("canUseMove", "walljump"))
                         {
                           this.main.playSound("Connect", false, false, true);
                           if (this.ySpeed > 10)
@@ -2539,6 +2547,10 @@ package
     protected function checkLeverCollisions():void
     {
       this.currentLever = null;
+      if (!ExternalInterface.call("canUseMove", "lever"))
+      {
+        return;
+      }
       var _loc1_:Array = this.main.obstacles;
       var _loc2_:int = 0;
       while (_loc2_ < _loc1_.length)
@@ -2607,7 +2619,7 @@ package
                   {
                     if (this.ySpeed > -4)
                     {
-                      if (this.scaleHistory != _loc1_[_loc2_].wall)
+                      if (this.scaleHistory != _loc1_[_loc2_].wall && ExternalInterface.call("canUseMove", "walljump"))
                       {
                         this.scaleHistory = _loc1_[_loc2_].wall;
                         this.scaling = true;
@@ -2659,7 +2671,7 @@ package
                   {
                     if (this.ySpeed > -4)
                     {
-                      if (this.scaleHistory != _loc1_[_loc2_].wall)
+                      if (this.scaleHistory != _loc1_[_loc2_].wall && ExternalInterface.call("canUseMove", "walljump"))
                       {
                         this.scaleHistory = _loc1_[_loc2_].wall;
                         this.scaling = true;
@@ -2763,7 +2775,7 @@ package
                     if (y >= _loc1_[_loc2_].y + _loc1_[_loc2_].height - _loc1_[_loc2_].height * _loc9_)
                     {
                       _loc10_ = _loc1_[_loc2_].height / _loc1_[_loc2_].width;
-                      if (this.ySpeed > -5 - _loc10_)
+                      if (this.ySpeed > -5 - _loc10_ && ExternalInterface.call("canUseMove", "slide"))
                       {
                         if (this.ySpeed >= 20)
                         {
@@ -2800,7 +2812,7 @@ package
                     if (y >= _loc1_[_loc2_].y + _loc1_[_loc2_].height - _loc1_[_loc2_].height * _loc9_)
                     {
                       _loc10_ = _loc1_[_loc2_].height / _loc1_[_loc2_].width;
-                      if (this.ySpeed > -5 - _loc10_)
+                      if (this.ySpeed > -5 - _loc10_ && ExternalInterface.call("canUseMove", "slide"))
                       {
                         if (this.ySpeed >= 20)
                         {
@@ -2852,7 +2864,7 @@ package
         if (this.body.hitTestObject(_loc1_[_loc3_]))
         {
           _loc2_ = true;
-          if (currentFrame != 10)
+          if (currentFrame != 10 && ExternalInterface.call("canUseMove", "swim"))
           {
             if (this.ySpeed >= 0)
             {

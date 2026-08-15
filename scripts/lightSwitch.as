@@ -6,6 +6,7 @@ package
   import flash.filters.DropShadowFilter;
   import flash.ui.Keyboard;
   import flash.events.KeyboardEvent;
+    import flash.external.ExternalInterface;
 
   [Embed(source="/_assets/assets.swf", symbol="symbol378")]
   public class lightSwitch extends MovieClip

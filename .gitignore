@@ -26,3 +26,7 @@ vex2-modded.swf
 !gameTransition.as
 !achievementButton.as
 !checkpoint.as
+!lever.as
+!teleporter.as
+!bounceBlock.as
+!act0Block.as
