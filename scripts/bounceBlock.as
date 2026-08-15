@@ -3,7 +3,6 @@ package
    import flash.display.MovieClip;
    import flash.display.Sprite;
    import flash.events.Event;
-   import flash.external.ExternalInterface;
 
    [Embed(source="/_assets/assets.swf", symbol="symbol1604")]
    public class bounceBlock extends block
@@ -106,9 +105,10 @@ package
 
       override public function landed() : void
       {
-         if(ExternalInterface.call("canUseMove","bounce"))
-         {
-            this.bouncing = true;
+        if (ExternalInterface.call("canUseMove","bounce")){
+         this.bouncing = true;
+         }else{
+MovieClip(root).level.player.kill(9);
          }
       }
 
@@ -124,7 +124,7 @@ package
          player.gotoAndStop(2);
          player.falling = true;
          this.bouncing = false;
-         var _loc1_:Number = Number(Math.random());
+         var _loc1_:Number = Math.random();
          if(_loc1_ < 0.33)
          {
             main.playSound("Bounce",false);

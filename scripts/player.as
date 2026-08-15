@@ -1884,7 +1884,7 @@ package
             {
               if (this.ySpeed >= _loc1_[_loc3_].ySpeed)
               {
-                if (this.hangTime >= this.maxHangCoolDown)
+                if (this.hangTime >= this.maxHangCoolDown && ExternalInterface.call("canUseMove", "walljump"))
                 {
                   if (this.falling || this.hanging)
                   {
@@ -1959,7 +1959,7 @@ package
             {
               if (this.ySpeed >= _loc1_[_loc3_].ySpeed)
               {
-                if (this.hangTime >= this.maxHangCoolDown)
+                if (this.hangTime >= this.maxHangCoolDown && ExternalInterface.call("canUseMove", "walljump"))
                 {
                   if (this.falling || this.hanging)
                   {

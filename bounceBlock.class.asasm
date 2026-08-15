@@ -1,0 +1,548 @@
+class
+ refid "bounceBlock"
+ instance QName(PackageNamespace(""), "bounceBlock")
+  extends QName(PackageNamespace(""), "block")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("bounceBlock")
+  iinit
+   refid "bounceBlock/instance/init"
+   body
+    maxstack 1
+    localcount 1
+    initscopedepth 11
+    maxscopedepth 12
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PrivateNamespace(null, "bounceBlock/instance#0"), "animation") type QName(PackageNamespace("flash.display"), "MovieClip") value Null() end
+  trait slot QName(PrivateNamespace(null, "bounceBlock/instance#0"), "animationMask") type QName(PackageNamespace("flash.display"), "Sprite") value Null() end
+  trait slot QName(PrivateNamespace(null, "bounceBlock/instance#0"), "bouncing") type QName(PackageNamespace(""), "Boolean") value False() end
+  trait slot QName(PrivateNamespace(null, "bounceBlock/instance#0"), "startYScale") type QName(PackageNamespace(""), "Number") end
+  trait slot QName(PrivateNamespace(null, "bounceBlock/instance#0"), "startHeight") type QName(PackageNamespace(""), "Number") end
+  trait slot QName(PrivateNamespace(null, "bounceBlock/instance#0"), "startXScale") type QName(PackageNamespace(""), "Number") end
+  trait slot QName(PrivateNamespace(null, "bounceBlock/instance#0"), "startWidth") type QName(PackageNamespace(""), "Number") end
+  trait method QName(ProtectedNamespace("bounceBlock"), "pushArray") flag OVERRIDE
+   method
+    refid "bounceBlock/instance/bounceBlock:pushArray"
+    param QName(PackageNamespace("flash.events"), "Event")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 4
+     localcount 2
+     initscopedepth 11
+     maxscopedepth 12
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      iffalse             L90
+
+      findproperty        QName(PackageNamespace(""), "main")
+      findpropstrict      QName(PackageNamespace("flash.display"), "MovieClip")
+      getlex              QName(PackageNamespace(""), "root")
+      callproperty        QName(PackageNamespace("flash.display"), "MovieClip"), 1
+      initproperty        QName(PackageNamespace(""), "main")
+
+      findproperty        QName(PackageNamespace(""), "player")
+      findpropstrict      QName(PackageNamespace("flash.display"), "MovieClip")
+      getlex              QName(PackageNamespace(""), "parent")
+      callproperty        QName(PackageNamespace("flash.display"), "MovieClip"), 1
+      getproperty         Multiname("player", [PrivateNamespace(null, "bounceBlock/instance#0"), PackageNamespace(""), PrivateNamespace(null, "bounceBlock/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("bounceBlock"), StaticProtectedNs("bounceBlock"), StaticProtectedNs("block"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      initproperty        QName(PackageNamespace(""), "player")
+
+      findpropstrict      QName(PackageNamespace("flash.display"), "MovieClip")
+      getlex              QName(PackageNamespace(""), "root")
+      callproperty        QName(PackageNamespace("flash.display"), "MovieClip"), 1
+      getproperty         Multiname("blocks", [PrivateNamespace(null, "bounceBlock/instance#0"), PackageNamespace(""), PrivateNamespace(null, "bounceBlock/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("bounceBlock"), StaticProtectedNs("bounceBlock"), StaticProtectedNs("block"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      callpropvoid        Multiname("push", [PrivateNamespace(null, "bounceBlock/instance#0"), PackageNamespace(""), PrivateNamespace(null, "bounceBlock/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("bounceBlock"), StaticProtectedNs("bounceBlock"), StaticProtectedNs("block"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+      findproperty        QName(PackageNamespace(""), "startX")
+      getlex              QName(PackageNamespace(""), "x")
+      initproperty        QName(PackageNamespace(""), "startX")
+
+      findproperty        QName(PackageNamespace(""), "startY")
+      getlex              QName(PackageNamespace(""), "y")
+      initproperty        QName(PackageNamespace(""), "startY")
+
+      findpropstrict      QName(ProtectedNamespace("block"), "createBounds")
+      callpropvoid        QName(ProtectedNamespace("block"), "createBounds"), 0
+
+      getlocal0
+      getlex              QName(PackageNamespace(""), "scaleY")
+      initproperty        QName(PrivateNamespace(null, "bounceBlock/instance#0"), "startYScale")
+
+      getlocal0
+      getlex              QName(PackageNamespace(""), "height")
+      initproperty        QName(PrivateNamespace(null, "bounceBlock/instance#0"), "startHeight")
+
+      getlocal0
+      getlex              QName(PackageNamespace(""), "scaleX")
+      initproperty        QName(PrivateNamespace(null, "bounceBlock/instance#0"), "startXScale")
+
+      getlocal0
+      getlex              QName(PackageNamespace(""), "width")
+      initproperty        QName(PrivateNamespace(null, "bounceBlock/instance#0"), "startWidth")
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "animation")
+      pushnull
+      ifne                L84
+
+      getlocal0
+      findpropstrict      QName(PackageNamespace(""), "arrowAnimation")
+      constructprop       QName(PackageNamespace(""), "arrowAnimation"), 0
+      initproperty        QName(PrivateNamespace(null, "bounceBlock/instance#0"), "animation")
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "animation")
+      getlex              QName(PackageNamespace(""), "x")
+      setproperty         QName(PackageNamespace(""), "x")
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "animation")
+      getlex              QName(PackageNamespace(""), "y")
+      setproperty         QName(PackageNamespace(""), "y")
+
+      findpropstrict      QName(PackageNamespace(""), "trace")
+      getlex              QName(PackageNamespace(""), "scaleX")
+      getlex              QName(PackageNamespace(""), "scaleY")
+      callpropvoid        QName(PackageNamespace(""), "trace"), 2
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "animation")
+      getlex              QName(PackageNamespace(""), "scaleX")
+      setproperty         QName(PackageNamespace(""), "scaleX")
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "animation")
+      getlex              QName(PackageNamespace(""), "scaleY")
+      setproperty         QName(PackageNamespace(""), "scaleY")
+
+      getlex              QName(PackageNamespace(""), "parent")
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "animation")
+      callpropvoid        QName(PackageNamespace(""), "addChild"), 1
+
+      getlex              QName(PackageNamespace(""), "parent")
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "animation")
+      getlex              QName(PackageNamespace(""), "parent")
+      getlocal0
+      callproperty        QName(PackageNamespace(""), "getChildIndex"), 1
+      pushbyte            1
+      add
+      callpropvoid        QName(PackageNamespace(""), "setChildIndex"), 2
+
+      getlocal0
+      callpropvoid        QName(PrivateNamespace(null, "bounceBlock/instance#0"), "newMask"), 0
+
+L84:
+      findpropstrict      QName(PackageNamespace(""), "removeEventListener")
+      getlex              QName(PackageNamespace("flash.events"), "Event")
+      getproperty         QName(PackageNamespace(""), "ADDED_TO_STAGE")
+      getlocal0
+      getproperty         QName(ProtectedNamespace("bounceBlock"), "pushArray")
+      callpropvoid        QName(PackageNamespace(""), "removeEventListener"), 2
+
+L90:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "update") flag OVERRIDE
+   method
+    refid "bounceBlock/instance/update"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 4
+     localcount 1
+     initscopedepth 11
+     maxscopedepth 12
+     code
+      getlocal0
+      pushscope
+
+      findproperty        QName(PackageNamespace(""), "player")
+      findpropstrict      QName(PackageNamespace("flash.display"), "MovieClip")
+      getlex              QName(PackageNamespace(""), "root")
+      callproperty        QName(PackageNamespace("flash.display"), "MovieClip"), 1
+      getproperty         Multiname("level", [PrivateNamespace(null, "bounceBlock/instance#0"), PackageNamespace(""), PrivateNamespace(null, "bounceBlock/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("bounceBlock"), StaticProtectedNs("bounceBlock"), StaticProtectedNs("block"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("player", [PrivateNamespace(null, "bounceBlock/instance#0"), PackageNamespace(""), PrivateNamespace(null, "bounceBlock/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("bounceBlock"), StaticProtectedNs("bounceBlock"), StaticProtectedNs("block"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      initproperty        QName(PackageNamespace(""), "player")
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "bouncing")
+      iffalse             L58
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushbyte            7
+      callpropvoid        QName(PackageNamespace(""), "gotoAndStop"), 1
+
+      findproperty        QName(PackageNamespace(""), "scaleY")
+      getlex              QName(PackageNamespace(""), "scaleY")
+      pushdouble          0.05
+      subtract
+      initproperty        QName(PackageNamespace(""), "scaleY")
+
+      findproperty        QName(PackageNamespace(""), "scaleX")
+      getlex              QName(PackageNamespace(""), "scaleX")
+      pushdouble          0.05
+      add
+      initproperty        QName(PackageNamespace(""), "scaleX")
+
+      findproperty        QName(PackageNamespace(""), "y")
+      getlex              QName(PackageNamespace(""), "startY")
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "startHeight")
+      getlex              QName(PackageNamespace(""), "height")
+      subtract
+      add
+      initproperty        QName(PackageNamespace(""), "y")
+
+      findproperty        QName(PackageNamespace(""), "x")
+      getlex              QName(PackageNamespace(""), "startX")
+      getlex              QName(PackageNamespace(""), "width")
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "startHeight")
+      subtract
+      pushdouble          0.5
+      multiply
+      subtract
+      initproperty        QName(PackageNamespace(""), "x")
+
+      getlex              QName(PackageNamespace(""), "player")
+      getlex              QName(PackageNamespace(""), "y")
+      setproperty         QName(PackageNamespace(""), "y")
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushbyte            0
+      setproperty         Multiname("xSpeed", [PrivateNamespace(null, "bounceBlock/instance#0"), PackageNamespace(""), PrivateNamespace(null, "bounceBlock/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("bounceBlock"), StaticProtectedNs("bounceBlock"), StaticProtectedNs("block"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlex              QName(PackageNamespace(""), "scaleY")
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "startYScale")
+      pushdouble          0.2
+      multiply
+      ifnlt               L57
+
+      getlocal0
+      callpropvoid        QName(PrivateNamespace(null, "bounceBlock/instance#0"), "fullBounce"), 0
+
+L57:
+      jump                L116
+
+L58:
+      getlex              QName(PackageNamespace(""), "scaleY")
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "startYScale")
+      ifnle               L78
+
+      findproperty        QName(PackageNamespace(""), "scaleY")
+      getlex              QName(PackageNamespace(""), "scaleY")
+      pushdouble          0.05
+      add
+      initproperty        QName(PackageNamespace(""), "scaleY")
+
+      getlex              QName(PackageNamespace(""), "scaleY")
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "startYScale")
+      ifngt               L78
+
+      findproperty        QName(PackageNamespace(""), "scaleY")
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "startYScale")
+      initproperty        QName(PackageNamespace(""), "scaleY")
+
+      findproperty        QName(PackageNamespace(""), "y")
+      getlex              QName(PackageNamespace(""), "startY")
+      initproperty        QName(PackageNamespace(""), "y")
+
+L78:
+      getlex              QName(PackageNamespace(""), "scaleX")
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "startXScale")
+      ifnge               L98
+
+      findproperty        QName(PackageNamespace(""), "scaleX")
+      getlex              QName(PackageNamespace(""), "scaleX")
+      pushdouble          0.05
+      subtract
+      initproperty        QName(PackageNamespace(""), "scaleX")
+
+      getlex              QName(PackageNamespace(""), "scaleX")
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "startXScale")
+      ifnlt               L98
+
+      findproperty        QName(PackageNamespace(""), "scaleX")
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "startXScale")
+      initproperty        QName(PackageNamespace(""), "scaleX")
+
+      findproperty        QName(PackageNamespace(""), "x")
+      getlex              QName(PackageNamespace(""), "startX")
+      initproperty        QName(PackageNamespace(""), "x")
+
+L98:
+      findproperty        QName(PackageNamespace(""), "y")
+      getlex              QName(PackageNamespace(""), "startY")
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "startHeight")
+      getlex              QName(PackageNamespace(""), "height")
+      subtract
+      add
+      initproperty        QName(PackageNamespace(""), "y")
+
+      findproperty        QName(PackageNamespace(""), "x")
+      getlex              QName(PackageNamespace(""), "startX")
+      getlex              QName(PackageNamespace(""), "width")
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "startHeight")
+      subtract
+      pushdouble          0.5
+      multiply
+      subtract
+      initproperty        QName(PackageNamespace(""), "x")
+
+L116:
+      getlocal0
+      callpropvoid        QName(PrivateNamespace(null, "bounceBlock/instance#0"), "newMask"), 0
+
+      findpropstrict      QName(ProtectedNamespace("block"), "checkRender")
+      callpropvoid        QName(ProtectedNamespace("block"), "checkRender"), 0
+
+      findpropstrict      QName(ProtectedNamespace("block"), "removeBounds")
+      callpropvoid        QName(ProtectedNamespace("block"), "removeBounds"), 0
+
+      findpropstrict      QName(ProtectedNamespace("block"), "createBounds")
+      callpropvoid        QName(ProtectedNamespace("block"), "createBounds"), 0
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "landed") flag OVERRIDE
+   method
+    refid "bounceBlock/instance/landed"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 4
+     localcount 1
+     initscopedepth 11
+     maxscopedepth 12
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      QName(PackageNamespace("flash.external"), "ExternalInterface")
+      pushstring          "canUseMove"
+      pushstring          "bounce"
+      callproperty        QName(PackageNamespace("flash.external"), "ExternalInterface"), 2
+      iffalse             L_ELSE
+
+      getlocal0
+      pushtrue
+      initproperty        QName(PrivateNamespace(null, "bounceBlock/instance#0"), "bouncing")
+      jump                L_END
+
+L_ELSE:
+      findpropstrict      QName(PackageNamespace("flash.display"), "MovieClip")
+      getlex              QName(PackageNamespace(""), "root")
+      callproperty        QName(PackageNamespace("flash.display"), "MovieClip"), 1
+      getproperty         Multiname("level", [PrivateNamespace(null, "bounceBlock/instance#0"), PackageNamespace(""), PrivateNamespace(null, "bounceBlock/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("bounceBlock"), StaticProtectedNs("bounceBlock"), StaticProtectedNs("block"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("player", [PrivateNamespace(null, "bounceBlock/instance#0"), PackageNamespace(""), PrivateNamespace(null, "bounceBlock/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("bounceBlock"), StaticProtectedNs("bounceBlock"), StaticProtectedNs("block"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushbyte            9
+      callpropvoid        Multiname("kill", [PrivateNamespace(null, "bounceBlock/instance#0"), PackageNamespace(""), PrivateNamespace(null, "bounceBlock/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("bounceBlock"), StaticProtectedNs("bounceBlock"), StaticProtectedNs("block"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+L_END:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PrivateNamespace(null, "bounceBlock/instance#0"), "fullBounce")
+   method
+    refid "bounceBlock/instance/bounceBlock/instance/fullBounce"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 4
+     localcount 2
+     initscopedepth 11
+     maxscopedepth 12
+     code
+      getlocal0
+      pushscope
+
+      findproperty        QName(PackageNamespace(""), "player")
+      findpropstrict      QName(PackageNamespace("flash.display"), "MovieClip")
+      getlex              QName(PackageNamespace(""), "root")
+      callproperty        QName(PackageNamespace("flash.display"), "MovieClip"), 1
+      getproperty         Multiname("level", [PrivateNamespace(null, "bounceBlock/instance#0"), PackageNamespace(""), PrivateNamespace(null, "bounceBlock/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("bounceBlock"), StaticProtectedNs("bounceBlock"), StaticProtectedNs("block"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("player", [PrivateNamespace(null, "bounceBlock/instance#0"), PackageNamespace(""), PrivateNamespace(null, "bounceBlock/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("bounceBlock"), StaticProtectedNs("bounceBlock"), StaticProtectedNs("block"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      initproperty        QName(PackageNamespace(""), "player")
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushbyte            -18
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "startHeight")
+      pushbyte            50
+      divide
+      multiply
+      setproperty         Multiname("ySpeed", [PrivateNamespace(null, "bounceBlock/instance#0"), PackageNamespace(""), PrivateNamespace(null, "bounceBlock/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("bounceBlock"), StaticProtectedNs("bounceBlock"), StaticProtectedNs("block"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushbyte            2
+      callpropvoid        QName(PackageNamespace(""), "gotoAndStop"), 1
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushtrue
+      setproperty         Multiname("falling", [PrivateNamespace(null, "bounceBlock/instance#0"), PackageNamespace(""), PrivateNamespace(null, "bounceBlock/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("bounceBlock"), StaticProtectedNs("bounceBlock"), StaticProtectedNs("block"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      pushfalse
+      initproperty        QName(PrivateNamespace(null, "bounceBlock/instance#0"), "bouncing")
+
+      getlex              QName(PackageNamespace(""), "Math")
+      callproperty        QName(PackageNamespace(""), "random"), 0
+      convert_d
+      setlocal1
+
+      getlocal1
+      pushdouble          0.33
+      ifnlt               L38
+
+      getlex              QName(PackageNamespace(""), "main")
+      pushstring          "Bounce"
+      pushfalse
+      callpropvoid        Multiname("playSound", [PrivateNamespace(null, "bounceBlock/instance#0"), PackageNamespace(""), PrivateNamespace(null, "bounceBlock/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("bounceBlock"), StaticProtectedNs("bounceBlock"), StaticProtectedNs("block"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+      jump                L50
+
+L38:
+      getlocal1
+      pushdouble          0.66
+      ifnlt               L46
+
+      getlex              QName(PackageNamespace(""), "main")
+      pushstring          "bounce1"
+      pushfalse
+      callpropvoid        Multiname("playSound", [PrivateNamespace(null, "bounceBlock/instance#0"), PackageNamespace(""), PrivateNamespace(null, "bounceBlock/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("bounceBlock"), StaticProtectedNs("bounceBlock"), StaticProtectedNs("block"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+      jump                L50
+
+L46:
+      getlex              QName(PackageNamespace(""), "main")
+      pushstring          "bounce2"
+      pushfalse
+      callpropvoid        Multiname("playSound", [PrivateNamespace(null, "bounceBlock/instance#0"), PackageNamespace(""), PrivateNamespace(null, "bounceBlock/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("bounceBlock"), StaticProtectedNs("bounceBlock"), StaticProtectedNs("block"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+L50:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PrivateNamespace(null, "bounceBlock/instance#0"), "newMask")
+   method
+    refid "bounceBlock/instance/bounceBlock/instance/newMask"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 5
+     localcount 1
+     initscopedepth 11
+     maxscopedepth 12
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "animationMask")
+      iffalse             L9
+
+      getlex              QName(PackageNamespace(""), "parent")
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "animationMask")
+      callpropvoid        QName(PackageNamespace(""), "removeChild"), 1
+
+L9:
+      getlocal0
+      findpropstrict      QName(PackageNamespace("flash.display"), "Sprite")
+      constructprop       QName(PackageNamespace("flash.display"), "Sprite"), 0
+      initproperty        QName(PrivateNamespace(null, "bounceBlock/instance#0"), "animationMask")
+
+      getlex              QName(PackageNamespace(""), "parent")
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "animationMask")
+      callpropvoid        QName(PackageNamespace(""), "addChild"), 1
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "animationMask")
+      getproperty         QName(PackageNamespace(""), "graphics")
+      pushshort           255
+      callpropvoid        QName(PackageNamespace(""), "beginFill"), 1
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "animationMask")
+      getproperty         QName(PackageNamespace(""), "graphics")
+      pushbyte            0
+      dup
+      getlex              QName(PackageNamespace(""), "width")
+      getlex              QName(PackageNamespace(""), "height")
+      callpropvoid        QName(PackageNamespace(""), "drawRect"), 4
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "animationMask")
+      getproperty         QName(PackageNamespace(""), "graphics")
+      callpropvoid        QName(PackageNamespace(""), "endFill"), 0
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "animationMask")
+      getlex              QName(PackageNamespace(""), "x")
+      setproperty         QName(PackageNamespace(""), "x")
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "animationMask")
+      getlex              QName(PackageNamespace(""), "y")
+      setproperty         QName(PackageNamespace(""), "y")
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "animation")
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "bounceBlock/instance#0"), "animationMask")
+      setproperty         QName(PackageNamespace(""), "mask")
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "bounceBlock/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 10
+   maxscopedepth 11
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

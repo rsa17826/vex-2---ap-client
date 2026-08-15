@@ -8,13 +8,13 @@ BASE_SWF="$PROJECT_DIR/vex2.swf"
 OUT_SWF="$PROJECT_DIR/vex2-modded.swf"
 TRACKED_FILE="$PROJECT_DIR/.modded_files"
 IMPORT_DIR="$PROJECT_DIR/.import_staging"
+RABCDASM_DIR="$PROJECT_DIR/RABCDAsm"
 
 # Ensure tracked-files list exists
 touch "$TRACKED_FILE"
 
 # Add any files passed as arguments to the tracked list (if not already present)
 for f in "$@"; do
-  # Normalize: allow passing either "starGraphic.as" or "scripts/starGraphic.as"
   rel="${f#"$SCRIPTS_DIR"/}"
   rel="${rel#scripts/}"
 
@@ -47,12 +47,58 @@ while IFS= read -r rel; do
   cp "$SCRIPTS_DIR/$rel" "$IMPORT_DIR/$rel"
 done <"$TRACKED_FILE"
 
-# Always import into the ORIGINAL base swf, so unrelated bulk-recompiles
-# never leak in (matches the working single-file-import approach)
+# Run FFDec import for standard files
 echo "Running ffdec importScript..."
 ffdec -importScript "$BASE_SWF" "$OUT_SWF" "$IMPORT_DIR"
-# python patchbgcolor.py vex2-modded.swf temp.swf
-# mv temp.swf vex2-modded.swf
+
+# --- DYNAMIC MULTI-ABC POST-PROCESS OVERRIDE ---
+if [[ -f "$PROJECT_DIR/bounceBlock.class.asasm" ]]; then
+  echo "Applying RABCDAsm dynamic post-patch for bounceBlock..."
+  WORK_DIR="$PROJECT_DIR/workspace"
+  rm -rf "$WORK_DIR"
+  mkdir -p "$WORK_DIR"
+  cp "$OUT_SWF" "$WORK_DIR/target.swf"
+
+  cd "$WORK_DIR"
+  "$RABCDASM_DIR/abcexport" target.swf
+
+  # Loop through all exported ABC files to find where bounceBlock lives
+  patched=0
+  for abc_file in target-*.abc; do
+    index="${abc_file#target-}"
+    index="${index%.abc}"
+
+    # Clean and disassemble this specific ABC index
+    rm -rf "target-$index"
+    "$RABCDASM_DIR/rabcdasm" "$abc_file"
+
+    # Check if this ABC file contains bounceBlock
+    if [[ -f "target-$index/bounceBlock.class.asasm" ]]; then
+      echo "Found bounceBlock inside ABC index $index!"
+
+      # Overwrite with your custom modded files
+      cp "$PROJECT_DIR/bounceBlock.class.asasm" "target-$index/"
+      [[ -f "$PROJECT_DIR/bounceBlock.script.asasm" ]] && cp "$PROJECT_DIR/bounceBlock.script.asasm" "target-$index/"
+
+      # Reassemble and inject back into the correct index
+      "$RABCDASM_DIR/rabcasm" "target-$index/target-$index.main.asasm"
+      "$RABCDASM_DIR/abcreplace" target.swf "$index" "target-$index/target-$index.main.abc"
+
+      patched=1
+      break
+    fi
+  done
+
+  if [[ $patched -eq 0 ]]; then
+    echo "Error: Could not find bounceBlock in any ABC tag of this SWF!" >&2
+    exit 1
+  fi
+
+  cp target.swf "$OUT_SWF"
+  cd "$PROJECT_DIR"
+  echo "RABCDAsm post-patch applied successfully!"
+fi
+
 echo ""
 echo "Done. Output: $OUT_SWF"
 echo "Tracked files ($(wc -l <"$TRACKED_FILE" | tr -d ' ')):"

@@ -265,6 +265,15 @@
           )
         }
       }
+      function canUseMove(move) {
+        return `walk
+jump
+walljump
+bounce
+slide`
+          .split("\n")
+          .includes(move)
+      }
       if (useDarkMode())
         setTimeout(() => {
           const playButton = document.querySelector("#play-button")
