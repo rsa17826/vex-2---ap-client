@@ -554,7 +554,7 @@ function apSendSayFromInput() {
       }
     }
   }
-  if (text.startsWith("/")){
+  if (text.startsWith("/")) {
     apWarn(`[WARNING] ${cmd} is not a valid command!`)
     return
   }
@@ -729,3 +729,6 @@ window.addEventListener(
   },
   false,
 )
+document.addEventListener("DOMContentLoaded", () => {
+  toggleCollapse(localStorage.apLogVisible !== "true")
+})
