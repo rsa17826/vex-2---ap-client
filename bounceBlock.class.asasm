@@ -339,7 +339,7 @@ L116:
     refid "bounceBlock/instance/landed"
     returns QName(PackageNamespace(""), "void")
     body
-     maxstack 4
+     maxstack 3
      localcount 1
      initscopedepth 11
      maxscopedepth 12
@@ -347,10 +347,10 @@ L116:
       getlocal0
       pushscope
 
-      findpropstrict      QName(PackageNamespace("flash.external"), "ExternalInterface")
+      getlex              QName(PackageNamespace("flash.external"), "ExternalInterface")
       pushstring          "canUseMove"
       pushstring          "bounce"
-      callproperty        QName(PackageNamespace("flash.external"), "ExternalInterface"), 2
+      callproperty        QName(PackageNamespace(""), "call"), 2
       iffalse             L_ELSE
 
       getlocal0
