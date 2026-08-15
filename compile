@@ -52,52 +52,54 @@ echo "Running ffdec importScript..."
 ffdec -importScript "$BASE_SWF" "$OUT_SWF" "$IMPORT_DIR"
 
 # --- DYNAMIC MULTI-ABC POST-PROCESS OVERRIDE ---
-if [[ -f "$PROJECT_DIR/bounceBlock.class.asasm" ]]; then
-  echo "Applying RABCDAsm dynamic post-patch for bounceBlock..."
-  WORK_DIR="$PROJECT_DIR/workspace"
-  rm -rf "$WORK_DIR"
-  mkdir -p "$WORK_DIR"
-  cp "$OUT_SWF" "$WORK_DIR/target.swf"
+for filepath in "$PROJECT_DIR"/asasm/*; do
+  if [[ -f "$filepath" ]]; then
+    filename=$(basename "$filepath")
+    echo "Applying RABCDAsm dynamic post-patch for $filename..."
+    WORK_DIR="$PROJECT_DIR/workspace"
+    rm -rf "$WORK_DIR"
+    mkdir -p "$WORK_DIR"
+    cp "$OUT_SWF" "$WORK_DIR/target.swf"
 
-  cd "$WORK_DIR"
-  "$RABCDASM_DIR/abcexport" target.swf
+    cd "$WORK_DIR"
+    "$RABCDASM_DIR/abcexport" target.swf
 
-  # Loop through all exported ABC files to find where bounceBlock lives
-  patched=0
-  for abc_file in target-*.abc; do
-    index="${abc_file#target-}"
-    index="${index%.abc}"
+    # Loop through all exported ABC files to find where the file lives
+    patched=0
+    for abc_file in target-*.abc; do
+      index="${abc_file#target-}"
+      index="${index%.abc}"
 
-    # Clean and disassemble this specific ABC index
-    rm -rf "target-$index"
-    "$RABCDASM_DIR/rabcdasm" "$abc_file"
+      # Clean and disassemble this specific ABC index
+      rm -rf "target-$index"
+      "$RABCDASM_DIR/rabcdasm" "$abc_file"
 
-    # Check if this ABC file contains bounceBlock
-    if [[ -f "target-$index/bounceBlock.class.asasm" ]]; then
-      echo "Found bounceBlock inside ABC index $index!"
+      # Check if this ABC file contains the file
+      if [[ -f "target-$index/$filename" ]]; then
+        echo "Found $filename inside ABC index $index!"
 
-      # Overwrite with your custom modded files
-      cp "$PROJECT_DIR/bounceBlock.class.asasm" "target-$index/"
-      [[ -f "$PROJECT_DIR/bounceBlock.script.asasm" ]] && cp "$PROJECT_DIR/bounceBlock.script.asasm" "target-$index/"
+        # Overwrite with your custom modded files
+        cp "$filepath" "target-$index/"
 
-      # Reassemble and inject back into the correct index
-      "$RABCDASM_DIR/rabcasm" "target-$index/target-$index.main.asasm"
-      "$RABCDASM_DIR/abcreplace" target.swf "$index" "target-$index/target-$index.main.abc"
+        # Reassemble and inject back into the correct index
+        "$RABCDASM_DIR/rabcasm" "target-$index/target-$index.main.asasm"
+        "$RABCDASM_DIR/abcreplace" target.swf "$index" "target-$index/target-$index.main.abc"
 
-      patched=1
-      break
+        patched=1
+        break
+      fi
+    done
+
+    if [[ $patched -eq 0 ]]; then
+      echo "Error: Could not find $filename in any ABC tag of this SWF!" >&2
+      exit 1
     fi
-  done
 
-  if [[ $patched -eq 0 ]]; then
-    echo "Error: Could not find bounceBlock in any ABC tag of this SWF!" >&2
-    exit 1
+    cp target.swf "$OUT_SWF"
+    cd "$PROJECT_DIR"
+    echo "RABCDAsm post-patch applied successfully!"
   fi
-
-  cp target.swf "$OUT_SWF"
-  cd "$PROJECT_DIR"
-  echo "RABCDAsm post-patch applied successfully!"
-fi
+done
 
 echo ""
 echo "Done. Output: $OUT_SWF"

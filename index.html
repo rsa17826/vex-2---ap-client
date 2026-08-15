@@ -265,13 +265,11 @@
           )
         }
       }
+      var moves = []
+      // TODO slide blocker not working
       function canUseMove(move) {
-        return `walk
-jump
-walljump
-bounce
-slide`
-          .split("\n")
+        return moves
+          .map((e) => e.replaceAll("move:", "").trim())
           .includes(move)
       }
       if (useDarkMode())

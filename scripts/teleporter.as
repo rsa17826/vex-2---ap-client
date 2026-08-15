@@ -3,7 +3,6 @@ package
    import fl.motion.AdjustColor;
    import flash.display.MovieClip;
    import flash.events.Event;
-   import flash.external.ExternalInterface;
    import flash.filters.BlurFilter;
    import flash.filters.ColorMatrixFilter;
    import flash.filters.GlowFilter;

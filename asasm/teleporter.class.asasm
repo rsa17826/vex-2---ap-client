@@ -1,0 +1,1045 @@
+class
+ refid "teleporter"
+ instance QName(PackageNamespace(""), "teleporter")
+  extends QName(PackageNamespace(""), "finishPortal")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("teleporter")
+  iinit
+   name "teleporter/teleporter"
+   refid "teleporter/instance/init"
+   body
+    maxstack 3
+    localcount 3
+    initscopedepth 11
+    maxscopedepth 12
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     getlocal0
+     getlex              QName(PackageNamespace(""), "teleporters")
+     setproperty         QName(PackageNamespace(""), "teleportID")
+
+     findproperty        QName(PackageNamespace(""), "teleporters")
+     dup
+     setlocal1
+
+     getproperty         QName(PackageNamespace(""), "teleporters")
+     increment_i
+     setlocal2
+
+     getlocal1
+     getlocal2
+     setproperty         QName(PackageNamespace(""), "teleporters")
+
+     kill                2
+     kill                1
+     findpropstrict      QName(PackageNamespace(""), "addEventListener")
+     getlex              QName(PackageNamespace("flash.events"), "Event")
+     getproperty         QName(PackageNamespace(""), "ADDED_TO_STAGE")
+     getlocal0
+     getproperty         QName(PrivateNamespace("teleporter"), "addFilters")
+     callpropvoid        QName(PackageNamespace(""), "addEventListener"), 2
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PackageNamespace(""), "teleportID") type QName(PackageNamespace(""), "int") value Integer(0) end
+  trait method QName(PrivateNamespace("teleporter"), "addFilters")
+   method
+    name "teleporter/private/addFilters"
+    refid "teleporter/instance/teleporter/instance/addFilters"
+    param QName(PackageNamespace("flash.events"), "Event")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 7
+     localcount 8
+     initscopedepth 11
+     maxscopedepth 12
+     code
+      getlocal0
+      pushscope
+
+      debug               1, "param1", 0, 0
+      debug               1, "_loc2_", 1, 29
+      debug               1, "_loc3_", 2, 30
+      debug               1, "_loc4_", 3, 31
+      debug               1, "_loc5_", 4, 32
+      debug               1, "_loc6_", 5, 28
+      debug               1, "_loc7_", 6, 33
+      pushnull
+      coerce              QName(PackageNamespace("flash.filters"), "ColorMatrixFilter")
+      setlocal            6
+
+      findpropstrict      QName(PackageNamespace("flash.filters"), "BlurFilter")
+      pushbyte            8
+      pushbyte            8
+      pushbyte            3
+      constructprop       QName(PackageNamespace("flash.filters"), "BlurFilter"), 3
+      coerce              QName(PackageNamespace("flash.filters"), "BlurFilter")
+      setlocal2
+
+      findpropstrict      QName(PackageNamespace("flash.filters"), "GlowFilter")
+      pushint             65280
+      pushbyte            1
+      pushbyte            15
+      pushbyte            15
+      pushdouble          0.5
+      pushbyte            3
+      constructprop       QName(PackageNamespace("flash.filters"), "GlowFilter"), 6
+      coerce              QName(PackageNamespace("flash.filters"), "GlowFilter")
+      setlocal3
+
+      findpropstrict      QName(PackageNamespace("flash.filters"), "GlowFilter")
+      pushint             13369289
+      pushbyte            1
+      pushbyte            30
+      pushbyte            30
+      pushbyte            2
+      pushbyte            3
+      constructprop       QName(PackageNamespace("flash.filters"), "GlowFilter"), 6
+      coerce              QName(PackageNamespace("flash.filters"), "GlowFilter")
+      setlocal            4
+
+      findpropstrict      QName(PackageNamespace("fl.motion"), "AdjustColor")
+      constructprop       QName(PackageNamespace("fl.motion"), "AdjustColor"), 0
+      coerce              QName(PackageNamespace("fl.motion"), "AdjustColor")
+      setlocal            5
+
+      newarray            0
+      coerce              QName(PackageNamespace(""), "Array")
+      setlocal            7
+
+      getlocal            5
+      pushbyte            100
+      setproperty         QName(PackageNamespace(""), "hue")
+
+      getlocal            5
+      pushbyte            0
+      setproperty         QName(PackageNamespace(""), "brightness")
+
+      getlocal            5
+      pushbyte            0
+      setproperty         QName(PackageNamespace(""), "saturation")
+
+      getlocal            5
+      pushbyte            0
+      setproperty         QName(PackageNamespace(""), "contrast")
+
+      getlocal            5
+      callproperty        QName(PackageNamespace(""), "CalculateFinalFlatArray"), 0
+      coerce              QName(PackageNamespace(""), "Array")
+      setlocal            7
+
+      findpropstrict      QName(PackageNamespace("flash.filters"), "ColorMatrixFilter")
+      getlocal            7
+      constructprop       QName(PackageNamespace("flash.filters"), "ColorMatrixFilter"), 1
+      coerce              QName(PackageNamespace("flash.filters"), "ColorMatrixFilter")
+      setlocal            6
+
+      findproperty        QName(PackageNamespace(""), "filters")
+      getlocal2
+      getlocal3
+      getlocal            4
+      getlocal            6
+      newarray            4
+      setproperty         QName(PackageNamespace(""), "filters")
+
+      findpropstrict      QName(PackageNamespace(""), "trace")
+      pushstring          "filters added"
+      callpropvoid        QName(PackageNamespace(""), "trace"), 1
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "update") flag OVERRIDE
+   method
+    name "teleporter/update"
+    refid "teleporter/instance/update"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 6
+     localcount 2
+     initscopedepth 11
+     maxscopedepth 12
+     code
+      getlocal0
+      pushscope
+
+      debug               1, "_loc1_", 0, 46
+      pushbyte            0
+      convert_i
+      setlocal1
+
+      getlex              QName(PackageNamespace(""), "player")
+      pop
+
+      ; Check ExternalInterface.call("canUseMove", "portal")
+      getlex              QName(PackageNamespace("flash.external"), "ExternalInterface")
+      pushstring          "canUseMove"
+      pushstring          "portal"
+      callproperty        QName(PackageNamespace(""), "call"), 2
+      convert_b
+      iffalse             L99
+
+      ; Check hitbox.hitTestObject(player)
+      getlex              QName(PackageNamespace(""), "hitbox")
+      getlex              QName(PackageNamespace(""), "player")
+      callproperty        Multiname("hitTestObject", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")]), 1
+      iffalse             L99
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushbyte            0
+      setproperty         QName(PackageNamespace(""), "xSpeed")
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushbyte            0
+      setproperty         QName(PackageNamespace(""), "ySpeed")
+
+      getlex              QName(PackageNamespace(""), "player")
+      getproperty         QName(PackageNamespace(""), "teleporting")
+      not
+      iffalse             L26
+
+      getlex              QName(PackageNamespace(""), "main")
+      pushstring          "Portal"
+      pushfalse
+      callpropvoid        Multiname("playSound", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")]), 2
+
+L26:
+      getlex              QName(PackageNamespace(""), "player")
+      pushtrue
+      setproperty         QName(PackageNamespace(""), "teleporting")
+
+      findproperty        QName(ProtectedNamespace("finishPortal"), "teleportingToThis")
+      pushtrue
+      setproperty         QName(ProtectedNamespace("finishPortal"), "teleportingToThis")
+
+      getlex              QName(PackageNamespace(""), "additionalMaths")
+      getlex              QName(PackageNamespace(""), "player")
+      getlex              QName(PackageNamespace(""), "x")
+      getlex              QName(PackageNamespace(""), "y")
+      pushbyte            10
+      callpropvoid        QName(PackageNamespace(""), "easeToPoint"), 4
+
+      getlex              QName(PackageNamespace(""), "additionalMaths")
+      getlex              QName(PackageNamespace(""), "player")
+      getlocal0
+      callproperty        QName(PackageNamespace(""), "getDistance"), 2
+      pushbyte            1
+      ifnle               L46
+
+      getlocal0
+      callpropvoid        QName(ProtectedNamespace("teleporter"), "teleport"), 0
+
+L46:
+      getlex              QName(PackageNamespace(""), "player")
+      pushbyte            2
+      callpropvoid        QName(PackageNamespace(""), "gotoAndStop"), 1
+
+      getlex              QName(PackageNamespace(""), "player")
+      getproperty         QName(PackageNamespace(""), "inner_animation")
+      getproperty         QName(PackageNamespace(""), "currentFrame")
+      pushbyte            28
+      ifnlt               L58
+
+      getlex              QName(PackageNamespace(""), "player")
+      getproperty         QName(PackageNamespace(""), "inner_animation")
+      pushbyte            28
+      callpropvoid        QName(PackageNamespace(""), "gotoAndPlay"), 1
+
+L58:
+      pushbyte            8
+      convert_i
+      setlocal1
+
+      getlex              QName(PackageNamespace(""), "player")
+      getlex              QName(PackageNamespace(""), "player")
+      getproperty         QName(PackageNamespace(""), "rotation")
+      getlocal1
+      getlex              QName(PackageNamespace(""), "Math")
+      getlex              QName(PackageNamespace(""), "player")
+      getproperty         QName(PackageNamespace(""), "scaleX")
+      getlex              QName(PackageNamespace(""), "player")
+      getproperty         QName(PackageNamespace(""), "scaleX")
+      multiply
+      callproperty        QName(PackageNamespace(""), "sqrt"), 1
+      getlocal1
+      multiply
+      subtract
+      add
+      setproperty         QName(PackageNamespace(""), "rotation")
+
+      getlex              QName(PackageNamespace(""), "player")
+      getlex              QName(PackageNamespace(""), "player")
+      getproperty         QName(PackageNamespace(""), "scaleX")
+      pushdouble          0.95
+      multiply
+      setproperty         QName(PackageNamespace(""), "scaleX")
+
+      getlex              QName(PackageNamespace(""), "player")
+      getproperty         QName(PackageNamespace(""), "scaleX")
+      pushbyte            0
+      ifngt               L92
+
+      getlex              QName(PackageNamespace(""), "player")
+      getlex              QName(PackageNamespace(""), "player")
+      getproperty         QName(PackageNamespace(""), "scaleX")
+      setproperty         QName(PackageNamespace(""), "scaleY")
+
+      jump                L98
+
+L92:
+      getlex              QName(PackageNamespace(""), "player")
+      getlex              QName(PackageNamespace(""), "player")
+      getproperty         QName(PackageNamespace(""), "scaleX")
+      pushbyte            -1
+      multiply
+      setproperty         QName(PackageNamespace(""), "scaleY")
+
+L98:
+      jump                L110
+
+L99:
+      getlex              QName(PackageNamespace(""), "player")
+      getproperty         QName(PackageNamespace(""), "teleporting")
+      iffalse             L110
+
+      getlex              QName(ProtectedNamespace("finishPortal"), "teleportingToThis")
+      iffalse             L110
+
+      getlex              QName(PackageNamespace(""), "additionalMaths")
+      getlex              QName(PackageNamespace(""), "player")
+      getlex              QName(PackageNamespace(""), "x")
+      getlex              QName(PackageNamespace(""), "y")
+      pushbyte            10
+      callpropvoid        QName(PackageNamespace(""), "easeToPoint"), 4
+
+L110:
+      getlocal0
+      callpropvoid        QName(ProtectedNamespace("teleporter"), "createParticles"), 0
+
+      getlocal0
+      callpropvoid        QName(ProtectedNamespace("teleporter"), "suckParticles"), 0
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(ProtectedNamespace("teleporter"), "createParticles") flag OVERRIDE
+   method
+    name "teleporter/protected/createParticles"
+    refid "teleporter/instance/teleporter:createParticles"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 6
+     localcount 5
+     initscopedepth 11
+     maxscopedepth 12
+     code
+      getlocal0
+      pushscope
+
+      debug               1, "_loc1_", 0, 93
+      debug               1, "_loc2_", 1, 94
+      pushbyte            0
+      convert_i
+      setlocal1
+
+      pushundefined
+      coerce_a
+      setlocal2
+
+      findproperty        QName(ProtectedNamespace("finishPortal"), "particleTimer")
+      dup
+      setlocal3
+
+      getproperty         QName(ProtectedNamespace("finishPortal"), "particleTimer")
+      increment_i
+      setlocal            4
+
+      getlocal3
+      getlocal            4
+      setproperty         QName(ProtectedNamespace("finishPortal"), "particleTimer")
+
+      kill                4
+      kill                3
+      getlex              QName(ProtectedNamespace("finishPortal"), "particleTimer")
+      getlex              QName(ProtectedNamespace("finishPortal"), "particleSpawnRate")
+      ifngt               L88
+
+      pushbyte            100
+      convert_i
+      setlocal1
+
+      findpropstrict      QName(PackageNamespace(""), "particle")
+      pushint             3407871
+      pushbyte            4
+      pushfalse
+      constructprop       QName(PackageNamespace(""), "particle"), 3
+      coerce_a
+      setlocal2
+
+      getlocal2
+      findpropstrict      QName(PackageNamespace(""), "int")
+      getlex              QName(PackageNamespace(""), "x")
+      getlex              QName(PackageNamespace(""), "Math")
+      callproperty        QName(PackageNamespace(""), "random"), 0
+      getlex              QName(PackageNamespace(""), "width")
+      getlocal1
+      add
+      multiply
+      getlex              QName(PackageNamespace(""), "width")
+      pushdouble          0.5
+      multiply
+      subtract
+      getlocal1
+      pushdouble          0.5
+      multiply
+      subtract
+      add
+      callproperty        QName(PackageNamespace(""), "int"), 1
+      setproperty         Multiname("x", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+
+      getlocal2
+      findpropstrict      QName(PackageNamespace(""), "int")
+      getlex              QName(PackageNamespace(""), "y")
+      getlex              QName(PackageNamespace(""), "Math")
+      callproperty        QName(PackageNamespace(""), "random"), 0
+      getlex              QName(PackageNamespace(""), "hitbox")
+      getproperty         Multiname("height", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      getlocal1
+      add
+      multiply
+      getlex              QName(PackageNamespace(""), "hitbox")
+      getproperty         Multiname("height", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      pushdouble          0.5
+      multiply
+      subtract
+      getlocal1
+      pushdouble          0.5
+      multiply
+      subtract
+      add
+      callproperty        QName(PackageNamespace(""), "int"), 1
+      setproperty         Multiname("y", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+
+      getlocal2
+      pushbyte            0
+      setproperty         Multiname("xSpeed", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+
+      getlocal2
+      pushbyte            0
+      setproperty         Multiname("ySpeed", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+
+      getlex              QName(PackageNamespace(""), "parent")
+      getlocal2
+      callpropvoid        Multiname("addChild", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")]), 1
+
+      findproperty        QName(ProtectedNamespace("finishPortal"), "particleTimer")
+      pushbyte            0
+      setproperty         QName(ProtectedNamespace("finishPortal"), "particleTimer")
+
+L88:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(ProtectedNamespace("teleporter"), "suckParticles") flag OVERRIDE
+   method
+    name "teleporter/protected/suckParticles"
+    refid "teleporter/instance/teleporter:suckParticles"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 4
+     localcount 4
+     initscopedepth 11
+     maxscopedepth 12
+     code
+      getlocal0
+      pushscope
+
+      debug               1, "_loc1_", 0, 112
+      debug               1, "_loc2_", 1, 113
+      debug               1, "_loc3_", 2, 111
+      pushbyte            0
+      convert_i
+      setlocal3
+
+      getlex              QName(PackageNamespace(""), "main")
+      getproperty         Multiname("particles", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      coerce              QName(PackageNamespace(""), "Array")
+      setlocal1
+
+      pushbyte            0
+      convert_i
+      setlocal2
+
+      jump                L113
+
+L16:
+      label
+      getlex              QName(PackageNamespace(""), "additionalMaths")
+      getlocal0
+      getlocal1
+      getlocal2
+      getproperty         MultinameL([PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      callproperty        QName(PackageNamespace(""), "getDistance"), 2
+      convert_i
+      setlocal3
+
+      getlocal3
+      pushshort           250
+      ifnlt               L112
+
+      getlocal3
+      pushbyte            50
+      ifnlt               L46
+
+      getlocal1
+      getlocal2
+      getproperty         MultinameL([PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      pushshort           150
+      setproperty         Multiname("fadeTime", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+
+      getlocal1
+      getlocal2
+      getproperty         MultinameL([PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      getlocal1
+      getlocal2
+      getproperty         MultinameL([PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      getproperty         Multiname("alpha", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      pushdouble          0.5
+      multiply
+      setproperty         Multiname("alpha", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+
+L46:
+      getlocal1
+      getlocal2
+      getproperty         MultinameL([PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      getproperty         Multiname("y", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      getlex              QName(PackageNamespace(""), "y")
+      ifnlt               L63
+
+      getlocal1
+      getlocal2
+      getproperty         MultinameL([PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      getlocal1
+      getlocal2
+      getproperty         MultinameL([PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      getproperty         Multiname("ySpeed", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      pushdouble          0.75
+      add
+      setproperty         Multiname("ySpeed", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+
+      jump                L79
+
+L63:
+      getlocal1
+      getlocal2
+      getproperty         MultinameL([PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      getproperty         Multiname("y", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      getlex              QName(PackageNamespace(""), "y")
+      ifngt               L79
+
+      getlocal1
+      getlocal2
+      getproperty         MultinameL([PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      getlocal1
+      getlocal2
+      getproperty         MultinameL([PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      getproperty         Multiname("ySpeed", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      pushdouble          0.75
+      subtract
+      setproperty         Multiname("ySpeed", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+
+L79:
+      getlocal1
+      getlocal2
+      getproperty         MultinameL([PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      getproperty         Multiname("x", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      getlex              QName(PackageNamespace(""), "x")
+      ifnlt               L96
+
+      getlocal1
+      getlocal2
+      getproperty         MultinameL([PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      getlocal1
+      getlocal2
+      getproperty         MultinameL([PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      getproperty         Multiname("xSpeed", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      pushdouble          0.75
+      add
+      setproperty         Multiname("xSpeed", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+
+      jump                L112
+
+L96:
+      getlocal1
+      getlocal2
+      getproperty         MultinameL([PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      getproperty         Multiname("x", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      getlex              QName(PackageNamespace(""), "x")
+      ifngt               L112
+
+      getlocal1
+      getlocal2
+      getproperty         MultinameL([PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      getlocal1
+      getlocal2
+      getproperty         MultinameL([PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      getproperty         Multiname("xSpeed", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      pushdouble          0.75
+      subtract
+      setproperty         Multiname("xSpeed", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+
+L112:
+      inclocal_i          2
+L113:
+      getlocal2
+      getlocal1
+      getproperty         QName(PackageNamespace(""), "length")
+      iflt                L16
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(ProtectedNamespace("teleporter"), "teleport")
+   method
+    name "teleporter/protected/teleport"
+    refid "teleporter/instance/teleporter:teleport"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 5
+     localcount 7
+     initscopedepth 11
+     maxscopedepth 12
+     code
+      getlocal0
+      pushscope
+
+      debug               1, "_loc1_", 0, 152
+      debug               1, "_loc2_", 1, 147
+      debug               1, "_loc3_", 2, 148
+      debug               1, "_loc4_", 3, 149
+      debug               1, "_loc5_", 4, 150
+      debug               1, "_loc6_", 5, 151
+      pushbyte            0
+      convert_i
+      setlocal2
+
+      pushnull
+      coerce              QName(PackageNamespace("flash.display"), "MovieClip")
+      setlocal3
+
+      pushbyte            0
+      convert_i
+      setlocal            4
+
+      pushundefined
+      coerce_a
+      setlocal            5
+
+      pushfalse
+      convert_b
+      setlocal            6
+
+      getlex              QName(PackageNamespace(""), "main")
+      getproperty         Multiname("checkpoints", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      coerce              QName(PackageNamespace(""), "Array")
+      setlocal1
+
+      pushbyte            0
+      convert_i
+      setlocal2
+
+      jump                L151
+
+L31:
+      label
+      getlex              QName(PackageNamespace(""), "parent")
+      getlocal2
+      callproperty        Multiname("getChildAt", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")]), 1
+      getlex              QName(PackageNamespace(""), "teleporterReceiver")
+      istypelate
+      iffalse             L150
+
+      findpropstrict      QName(PackageNamespace("flash.display"), "MovieClip")
+      getlex              QName(PackageNamespace(""), "parent")
+      getlocal2
+      callproperty        Multiname("getChildAt", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")]), 1
+      callproperty        QName(PackageNamespace("flash.display"), "MovieClip"), 1
+      coerce              QName(PackageNamespace("flash.display"), "MovieClip")
+      setlocal3
+
+      getlocal3
+      getproperty         Multiname("teleportID", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      getlocal0
+      getproperty         QName(PackageNamespace(""), "teleportID")
+      ifne                L150
+
+      findpropstrict      QName(PackageNamespace(""), "trace")
+      pushstring          "teleported"
+      callpropvoid        QName(PackageNamespace(""), "trace"), 1
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushfalse
+      setproperty         QName(PackageNamespace(""), "teleporting")
+
+      findproperty        QName(ProtectedNamespace("finishPortal"), "teleportingToThis")
+      pushfalse
+      setproperty         QName(ProtectedNamespace("finishPortal"), "teleportingToThis")
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushfalse
+      setproperty         QName(PackageNamespace(""), "swimming")
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushnull
+      setproperty         QName(PackageNamespace(""), "currentPool")
+
+      getlex              QName(PackageNamespace(""), "player")
+      getlocal3
+      getproperty         QName(PackageNamespace(""), "x")
+      setproperty         QName(PackageNamespace(""), "x")
+
+      getlex              QName(PackageNamespace(""), "player")
+      getlocal3
+      getproperty         QName(PackageNamespace(""), "y")
+      setproperty         QName(PackageNamespace(""), "y")
+
+      getlex              QName(PackageNamespace(""), "camera")
+      getlex              QName(PackageNamespace(""), "player")
+      getlex              QName(PackageNamespace(""), "parent")
+      pushshort           320
+      pushshort           240
+      callpropvoid        QName(PackageNamespace(""), "snap"), 4
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushbyte            -4
+      setproperty         QName(PackageNamespace(""), "ySpeed")
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushbyte            0
+      setproperty         QName(PackageNamespace(""), "xSpeed")
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushbyte            1
+      setproperty         QName(PackageNamespace(""), "scaleX")
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushbyte            1
+      setproperty         QName(PackageNamespace(""), "scaleY")
+
+      getlex              QName(PackageNamespace(""), "player")
+      getproperty         QName(PackageNamespace(""), "inner_animation")
+      pushbyte            1
+      callpropvoid        QName(PackageNamespace(""), "gotoAndPlay"), 1
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushtrue
+      setproperty         QName(PackageNamespace(""), "falling")
+
+      pushbyte            0
+      convert_i
+      setlocal            4
+
+      jump                L146
+
+L102:
+      label
+      getlex              QName(PackageNamespace(""), "Math")
+      callproperty        QName(PackageNamespace(""), "random"), 0
+      pushdouble          0.5
+      ifnlt               L113
+
+      findpropstrict      QName(PackageNamespace(""), "particle")
+      pushint             65535
+      constructprop       QName(PackageNamespace(""), "particle"), 1
+      coerce_a
+      setlocal            5
+
+      jump                L118
+
+L113:
+      findpropstrict      QName(PackageNamespace(""), "particle")
+      pushint             3407871
+      constructprop       QName(PackageNamespace(""), "particle"), 1
+      coerce_a
+      setlocal            5
+
+L118:
+      getlocal            5
+      getlocal3
+      getproperty         QName(PackageNamespace(""), "x")
+      setproperty         Multiname("x", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+
+      getlocal            5
+      getlocal3
+      getproperty         QName(PackageNamespace(""), "y")
+      setproperty         Multiname("y", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+
+      getlocal            5
+      getlex              QName(PackageNamespace(""), "Math")
+      callproperty        QName(PackageNamespace(""), "random"), 0
+      pushbyte            16
+      multiply
+      pushbyte            8
+      subtract
+      setproperty         Multiname("xSpeed", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+
+      getlocal            5
+      getlex              QName(PackageNamespace(""), "Math")
+      callproperty        QName(PackageNamespace(""), "random"), 0
+      pushbyte            16
+      multiply
+      pushbyte            8
+      subtract
+      setproperty         Multiname("ySpeed", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+
+      getlex              QName(PackageNamespace(""), "parent")
+      getlocal            5
+      callpropvoid        Multiname("addChild", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")]), 1
+
+      inclocal_i          4
+L146:
+      getlocal            4
+      pushbyte            15
+      iflt                L102
+
+      jump                L155
+
+L150:
+      inclocal_i          2
+L151:
+      getlocal2
+      getlex              QName(PackageNamespace(""), "parent")
+      getproperty         Multiname("numChildren", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      iflt                L31
+
+L155:
+      jump                L293
+
+L156:
+      label
+      findpropstrict      QName(PackageNamespace(""), "trace")
+      pushstring          "teleport didnt work"
+      callpropvoid        QName(PackageNamespace(""), "trace"), 1
+
+      pushfalse
+      convert_b
+      setlocal            6
+
+      pushbyte            0
+      convert_i
+      setlocal2
+
+      jump                L282
+
+L167:
+      label
+      getlex              QName(PackageNamespace(""), "parent")
+      getlocal2
+      callproperty        Multiname("getChildAt", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")]), 1
+      getlex              QName(PackageNamespace(""), "teleporterReceiver")
+      istypelate
+      iffalse             L281
+
+      pushtrue
+      convert_b
+      setlocal            6
+
+      getlex              QName(PackageNamespace(""), "Math")
+      callproperty        QName(PackageNamespace(""), "random"), 0
+      pushdouble          0.25
+      ifnlt               L281
+
+      findpropstrict      QName(PackageNamespace("flash.display"), "MovieClip")
+      getlex              QName(PackageNamespace(""), "parent")
+      getlocal2
+      callproperty        Multiname("getChildAt", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")]), 1
+      callproperty        QName(PackageNamespace("flash.display"), "MovieClip"), 1
+      coerce              QName(PackageNamespace("flash.display"), "MovieClip")
+      setlocal3
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushfalse
+      setproperty         QName(PackageNamespace(""), "teleporting")
+
+      findproperty        QName(ProtectedNamespace("finishPortal"), "teleportingToThis")
+      pushfalse
+      setproperty         QName(ProtectedNamespace("finishPortal"), "teleportingToThis")
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushfalse
+      setproperty         QName(PackageNamespace(""), "swimming")
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushnull
+      setproperty         QName(PackageNamespace(""), "currentPool")
+
+      getlex              QName(PackageNamespace(""), "player")
+      getlocal3
+      getproperty         QName(PackageNamespace(""), "x")
+      setproperty         QName(PackageNamespace(""), "x")
+
+      getlex              QName(PackageNamespace(""), "player")
+      getlocal3
+      getproperty         QName(PackageNamespace(""), "y")
+      setproperty         QName(PackageNamespace(""), "y")
+
+      getlex              QName(PackageNamespace(""), "camera")
+      getlex              QName(PackageNamespace(""), "player")
+      getlex              QName(PackageNamespace(""), "parent")
+      pushshort           320
+      pushshort           240
+      callpropvoid        QName(PackageNamespace(""), "snap"), 4
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushbyte            -4
+      setproperty         QName(PackageNamespace(""), "ySpeed")
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushbyte            0
+      setproperty         QName(PackageNamespace(""), "xSpeed")
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushbyte            1
+      setproperty         QName(PackageNamespace(""), "scaleX")
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushbyte            1
+      setproperty         QName(PackageNamespace(""), "scaleY")
+
+      getlex              QName(PackageNamespace(""), "player")
+      getproperty         QName(PackageNamespace(""), "inner_animation")
+      pushbyte            1
+      callpropvoid        QName(PackageNamespace(""), "gotoAndPlay"), 1
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushtrue
+      setproperty         QName(PackageNamespace(""), "falling")
+
+      pushbyte            0
+      convert_i
+      setlocal            4
+
+      getlocal            4
+      pushbyte            15
+      ifnlt               L281
+
+      getlex              QName(PackageNamespace(""), "Math")
+      callproperty        QName(PackageNamespace(""), "random"), 0
+      pushdouble          0.5
+      ifnlt               L249
+
+      findpropstrict      QName(PackageNamespace(""), "particle")
+      pushint             65535
+      constructprop       QName(PackageNamespace(""), "particle"), 1
+      coerce_a
+      setlocal            5
+
+      jump                L254
+
+L249:
+      findpropstrict      QName(PackageNamespace(""), "particle")
+      pushint             3407871
+      constructprop       QName(PackageNamespace(""), "particle"), 1
+      coerce_a
+      setlocal            5
+
+L254:
+      getlocal            5
+      getlocal3
+      getproperty         QName(PackageNamespace(""), "x")
+      setproperty         Multiname("x", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+
+      getlocal            5
+      getlocal3
+      getproperty         QName(PackageNamespace(""), "y")
+      setproperty         Multiname("y", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+
+      getlocal            5
+      getlex              QName(PackageNamespace(""), "Math")
+      callproperty        QName(PackageNamespace(""), "random"), 0
+      pushbyte            16
+      multiply
+      pushbyte            8
+      subtract
+      setproperty         Multiname("xSpeed", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+
+      getlocal            5
+      getlex              QName(PackageNamespace(""), "Math")
+      callproperty        QName(PackageNamespace(""), "random"), 0
+      pushbyte            16
+      multiply
+      pushbyte            8
+      subtract
+      setproperty         Multiname("ySpeed", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+
+      getlex              QName(PackageNamespace(""), "parent")
+      getlocal            5
+      callpropvoid        Multiname("addChild", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")]), 1
+
+L281:
+      inclocal_i          2
+L282:
+      getlocal2
+      getlex              QName(PackageNamespace(""), "parent")
+      getproperty         Multiname("numChildren", [PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageInternalNs(""), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PrivateNamespace("teleporter"), ProtectedNamespace("teleporter"), StaticProtectedNs("teleporter"), PrivateNamespace("teleporter.as$232")])
+      iflt                L167
+
+      getlocal            6
+      not
+      iffalse             L293
+
+      getlex              QName(PackageNamespace(""), "player")
+      pushbyte            16
+      callpropvoid        QName(PackageNamespace(""), "kill"), 1
+
+      jump                L295
+
+L293:
+      getlex              QName(ProtectedNamespace("finishPortal"), "teleportingToThis")
+      iftrue              L156
+
+L295:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  name ""
+  refid "teleporter/class/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 10
+   maxscopedepth 11
+   code
+    getlocal0
+    pushscope
+
+    findproperty        QName(PackageNamespace(""), "teleporters")
+    pushbyte            0
+    setproperty         QName(PackageNamespace(""), "teleporters")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait slot QName(PackageNamespace(""), "teleporters") slotid 1 type QName(PackageNamespace(""), "int") value Integer(0) end
+end ; class
