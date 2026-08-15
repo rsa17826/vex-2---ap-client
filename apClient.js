@@ -880,33 +880,32 @@ function apTryConnect() {
     ap.onRoomInfo = async function (...s) {
       a(...s)
       let data
-      if ((data = window.saveData[getSaveFileId()])) {
-        var newdata = data["lastReceivedItem"]
-        if (isNaN(newdata)) {
-          apWarn("newdata was nan")
-          newdata = 0
+      if (!(data = window.saveData[getSaveFileId()])) {
+        data = createNewSave()
+      }
+      var newdata = data["lastReceivedItem"]
+      if (isNaN(newdata)) {
+        apWarn("newdata was nan")
+        newdata = 0
+      }
+      log(newdata, "newdata")
+      window.lastReceivedItem = newdata
+      if (window.playerLoaded) {
+        for (var packet of window.waitingPackets) {
+          ap.handlePacket(packet)
         }
-        log(newdata, "newdata")
-        window.lastReceivedItem = newdata
-        if (window.playerLoaded) {
+        window.waitingPackets = []
+        // Player is already in-game (20 = CLIENT_PLAYING).
+        ap.sendStatusUpdate(20)
+      } else {
+        window.onPlayerLoaded.push(function () {
           for (var packet of window.waitingPackets) {
             ap.handlePacket(packet)
           }
-          waitingPackets = []
-          // Player is already in-game (20 = CLIENT_PLAYING).
+          window.waitingPackets = []
+          // Player is now actually in-game (20 = CLIENT_PLAYING).
           ap.sendStatusUpdate(20)
-        } else {
-          window.onPlayerLoaded.push(function () {
-            for (var packet of window.waitingPackets) {
-              ap.handlePacket(packet)
-            }
-            waitingPackets = []
-            // Player is now actually in-game (20 = CLIENT_PLAYING).
-            ap.sendStatusUpdate(20)
-          })
-        }
-      } else {
-        createNewSave()
+        })
       }
     }
     window.ap.connect()
