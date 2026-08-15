@@ -201,7 +201,7 @@
         apTryConnect()
       })()
       function createNewSave() {
-        return getSaveData()
+        return (saveData[getSaveFileId()] = defaultSaveData)
       }
       function getSaveData() {
         return (saveData[getSaveFileId()] ??= defaultSaveData)
@@ -212,6 +212,8 @@
           : "nonAP"
       }
       function saveGame(data) {
+        data.unlockedActs = unlockedActs
+        data.lastReceivedItem = window.lastReceivedItem
         saveData[getSaveFileId()] = data
       }
       player.load({
@@ -286,7 +288,7 @@
         }, 1000)
       window.unlockedActs = new Set([])
       function isActUnlocked(actType) {
-        log(actType, "asdasdaskdhkasdkjhasd")
+        // log(actType, "asdasdaskdhkasdkjhasd")
         return window.unlockedActs.has(actType)
       }
       function useDarkMode() {
