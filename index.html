@@ -88,6 +88,12 @@
       }
       window.apErrors = []
       window.onPlayerLoaded = []
+      window.onPlayerLoaded.push(() => {
+        for (var i of getSaveData().unlockedActs) {
+          player[`setActLocked_${i}`]?.(false)
+          unlockedActs.add(Number(i))
+        }
+      })
       function markPlayerLoaded() {
         window.playerLoaded = true
         onPlayerLoaded.forEach((e) => e())
