@@ -394,8 +394,8 @@ package
         {
           trace("aaaaaaaaaaaaa");
         }
-        this.setChildIndex(this.darkBG, 1);
       }
+      this.setChildIndex(this.darkBG, 1);
       this.refreshSounds();
       if (currentFrame == 2)
       {

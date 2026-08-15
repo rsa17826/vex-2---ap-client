@@ -2384,12 +2384,12 @@ package
       {
         this.main.removeChild(this.main.dark);
         this.main.dark = null;
-        this.main.dark = new flashOverlay();
-        this.main.dark.x = x + parent.x;
-        this.main.dark.y = y + parent.y - height * 0.5;
-        this.main.addChild(this.main.dark);
-        _loc6_ = this.main.getChildIndex(this.main.level) + 1;
-        this.main.setChildIndex(this.main.dark, _loc6_);
+        // this.main.dark = new flashOverlay();
+        // this.main.dark.x = x + parent.x;
+        // this.main.dark.y = y + parent.y - height * 0.5;
+        // this.main.addChild(this.main.dark);
+        // _loc6_ = this.main.getChildIndex(this.main.level) + 1;
+        // this.main.setChildIndex(this.main.dark, _loc6_);
       }
       var _loc2_:Array = this.main.obstacles;
       var _loc3_:int = 0;
