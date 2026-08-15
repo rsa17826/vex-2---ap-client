@@ -22,6 +22,7 @@ package
     private static var lKeyJustPressed:Boolean = false;
     private function onKeyDown(param1:KeyboardEvent):void
     {
+      if (!ExternalInterface.call("debugModeEnabled")){return}
       if (param1.keyCode == Keyboard.L)
       {
         lKeyJustPressed = true;

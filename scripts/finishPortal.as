@@ -42,6 +42,7 @@ package
 
     private function onKeyDown(param1:KeyboardEvent):void
     {
+      if (!ExternalInterface.call("debugModeEnabled")){return}
       if (param1.keyCode == Keyboard.G)
       {
         ExternalInterface.call("newItem", "stage"+((this.main.act==0?1:this.main.act)-1)+" - level:stage" + (this.main.act==0?1:this.main.act));
