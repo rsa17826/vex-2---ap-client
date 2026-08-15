@@ -30,6 +30,12 @@
     <script>
       Object.assign(window, console)
       owo = (e) => e
+      function pmax() {
+        for (var i in new Array(11).fill(1)) {
+          player[`setActLocked_${i}`]?.(false)
+          unlockedActs.add(Number(i))
+        }
+      }
       const itemList = {
         "level:stage0": () => {
           player.setActLocked_0?.(false)
