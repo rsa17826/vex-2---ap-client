@@ -1145,10 +1145,9 @@ package
                   {
                     if (this.dDown)
                     {
-                      if (canSlide) { gotoAndStop(7); }
+                      if (canSlide) { gotoAndStop(7); this.xSpeed = 0; }
                       this.crouching = true;
                       this.sHold = true;
-                      this.xSpeed = 0;
                     }
                     else
                     {
@@ -1161,10 +1160,9 @@ package
                   {
                     if (this.aDown)
                     {
-                      if (canSlide) { gotoAndStop(7); }
+                      if (canSlide) { gotoAndStop(7); this.xSpeed = 0; }
                       this.crouching = true;
                       this.sHold = true;
-                      this.xSpeed = 0;
                     }
                     else
                     {
