@@ -25,6 +25,7 @@ window.apError ??= console.error.bind("[ARCHIPELAGO]")
 const itemColors = {
   level: "yellow",
   trap: "red",
+  move: "brown",
 }
 
 function highlightArray(str) {
@@ -79,22 +80,6 @@ function formatItemName(data, useColor) {
     var name = data.itemName.split(":")
     name[1] ??= name[0]
     var color = itemColors[name[0]]
-    if (name[0] == "permit") {
-      name[1] += " permit"
-      name[0] = ""
-    } else if (name[0] == "skill") {
-      name[1] += " skill"
-      name[0] = ""
-    } else if (name[0] == "magic") {
-      name[1] += " spell"
-      name[0] = ""
-    } else if (name[0] == "quest") {
-      name[1] += " quest"
-      name[0] = ""
-    }
-    if (name[1].includes(".") && name[0] != "quest") {
-      name[1] = "progressive " + name[1].split(".")[0]
-    }
     // @ts-ignore
     name = `${owner ? owner + " " : ""}${`@${color}!@console!${data.itemName} - @!@${color}!${name[1]}@!`}`
   } else {
@@ -705,6 +690,14 @@ class ArchipelagoClient {
         .replace(
           /Client\((\d+)\.(\d+)\.(\d+)\)/,
           "@pink!Client@blue!(@!@green!$1@!@blue!.@!@green!$2@!@blue!.@!@green!$3@!@blue!)@!",
+        )
+        .replace(
+          /\bstage(\d+)/,
+          "@pink!stage@! @blue!$1@!",
+        )
+        .replace(
+          /\bstar:(\d+)/,
+          "@yellow!star@! @blue!$1@!",
         )
         // 2. Highlight any command starting with ! or / (e.g., !help, /release)
         .replace(/(^|\s)([!/][a-zA-Z_0-9]+)/g, "$1@green!$2@!")

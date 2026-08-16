@@ -34,7 +34,7 @@
       }
       owo = (e) => e
       function pmax() {
-        moves = [
+        window.moves = [
           "move:bounce",
           "move:cannon",
           "move:kick",
@@ -51,17 +51,18 @@
           unlockedActs.add(Number(i))
         }
       }
+      window.moves ??= []
       const itemList = {
-        "move:bounce": () => getSaveData().moves.push("bounce"),
-        "move:cannon": () => getSaveData().moves.push("cannon"),
-        "move:kick": () => getSaveData().moves.push("kick"),
-        "move:lever": () => getSaveData().moves.push("lever"),
-        "move:polejump": () => getSaveData().moves.push("polejump"),
-        "move:portal": () => getSaveData().moves.push("portal"),
-        "move:pulley": () => getSaveData().moves.push("pulley"),
-        "move:slide": () => getSaveData().moves.push("slide"),
-        "move:swim": () => getSaveData().moves.push("swim"),
-        "move:walljump": () => getSaveData().moves.push("walljump"),
+        "move:bounce": () => window.moves.push("bounce"),
+        "move:cannon": () => window.moves.push("cannon"),
+        "move:kick": () => window.moves.push("kick"),
+        "move:lever": () => window.moves.push("lever"),
+        "move:polejump": () => window.moves.push("polejump"),
+        "move:portal": () => window.moves.push("portal"),
+        "move:pulley": () => window.moves.push("pulley"),
+        "move:slide": () => window.moves.push("slide"),
+        "move:swim": () => window.moves.push("swim"),
+        "move:walljump": () => window.moves.push("walljump"),
         "level:stage0": () => {
           player.setActLocked_0?.(false)
           unlockedActs.add(0)
@@ -160,6 +161,7 @@
         )
       })
       const defaultSaveData = {
+        moves: [],
         achievements: {
           achievement1: 0,
           achievement2: 0,
@@ -251,6 +253,7 @@
         saveData[getSaveFileId()] ??= {
           ...defaultSaveData,
         }
+        window.moves = saveData[getSaveFileId()]?.moves
         return {
           ...defaultSaveData,
           ...saveData[getSaveFileId()],
@@ -267,6 +270,7 @@
       function saveGame(data) {
         data.unlockedActs = unlockedActs
         data.lastReceivedItem = window.lastReceivedItem
+        data.moves = window.moves
         saveData[getSaveFileId()] = data
         for (var k of Object.keys(globalOpts)) {
           saveData.globalOpts[k] = data[k]
@@ -439,8 +443,8 @@
       //   }
       // }
       function canUseMove(move) {
-        return getSaveData()
-          .moves.map((e) => e.replaceAll("move:", "").trim())
+        return window.moves
+          .map((e) => e.replaceAll("move:", "").trim())
           .includes(move)
       }
       if (useDarkMode())

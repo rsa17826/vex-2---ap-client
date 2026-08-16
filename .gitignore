@@ -31,3 +31,4 @@ vex2-modded.swf
 workspace
 RABCDAsm
 RABCDAsm/**
+!pushBlock.as
