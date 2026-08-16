@@ -272,12 +272,16 @@
         data.lastReceivedItem = window.lastReceivedItem
         data.moves = window.moves
         if (localStorage.dontAutoSendCompleteEvent != "true") {
+          var win = true
           // CHECK IF PLAYER WINS
-          var at = { ...data.actTimes }
-          delete at["1"]
-          if (!Object.values(at).includes(0)) {
-            ap.sendStatusUpdate(30)
+          if (ap.slotData.all_stages_complete) {
+            var at = { ...data.actTimes }
+            delete at["1"]
+            if (Object.values(at).includes(0)) {
+              win = false
+            }
           }
+          if (win) ap.sendStatusUpdate(30)
         }
         if (data.actTimes) saveData[getSaveFileId()] = data
         for (var k of Object.keys(globalOpts)) {
