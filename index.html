@@ -52,6 +52,16 @@
         }
       }
       const itemList = {
+        "move:bounce": () => getSaveData().moves.push("bounce"),
+        "move:cannon": () => getSaveData().moves.push("cannon"),
+        "move:kick": () => getSaveData().moves.push("kick"),
+        "move:lever": () => getSaveData().moves.push("lever"),
+        "move:polejump": () => getSaveData().moves.push("polejump"),
+        "move:portal": () => getSaveData().moves.push("portal"),
+        "move:pulley": () => getSaveData().moves.push("pulley"),
+        "move:slide": () => getSaveData().moves.push("slide"),
+        "move:swim": () => getSaveData().moves.push("swim"),
+        "move:walljump": () => getSaveData().moves.push("walljump"),
         "level:stage0": () => {
           player.setActLocked_0?.(false)
           unlockedActs.add(0)
@@ -302,7 +312,6 @@
           )
         }
       }
-      var moves = []
       // const m = {
       //   "0-0": [["move:walljump", "move:bounce", "move:slide"]],
       //   "0-win": [["move:walljump", "move:bounce", "move:slide"]],
@@ -430,8 +439,8 @@
       //   }
       // }
       function canUseMove(move) {
-        return moves
-          .map((e) => e.replaceAll("move:", "").trim())
+        return getSaveData()
+          .moves.map((e) => e.replaceAll("move:", "").trim())
           .includes(move)
       }
       if (useDarkMode())
