@@ -17,3 +17,7 @@ each level beaten is a check
 all the moves `duck/slide`, `pull lever`, `swim`, `bounce`, `walljump`, `polejump`, `pulley`, `portal`, and `kick pushable box` are items
 
 all the level unlocks are items
+
+---
+
+win conds are get all acevivements or beat all levels
