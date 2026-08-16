@@ -22,8 +22,11 @@
     </div>
     <link rel="stylesheet" href="main.css" />
     <script src="ruffle/ruffle.js"></script>
+    <script src="newelem.js"></script>
     <script src="apClient.js"></script>
     <script src="hintTracker.js"></script>
+    <script src="progression.js"></script>
+    <script src="progression_overlay.js"></script>
     <script src="aplog.js"></script>
     <script src="indexeddbProxy.js"></script>
     <div id="game" style="width: 800px; height: 600px"></div>
@@ -271,6 +274,12 @@
         data.unlockedActs = unlockedActs
         data.lastReceivedItem = window.lastReceivedItem
         data.moves = window.moves
+        window.beatStages = []
+        for (var [k, v] of Object.entries(data.actTimes)) {
+          if (v > 0) {
+            window.beatStages.push(k == 0 ? 0 : k - 1)
+          }
+        }
         if (localStorage.dontAutoSendCompleteEvent != "true") {
           var win = true
           // CHECK IF PLAYER WINS
