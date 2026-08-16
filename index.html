@@ -216,21 +216,24 @@
       })()
       function createNewSave() {
         saveData.globalOpts ??= {}
-        Object.assign(saveData.globalOpts, globalOpts)
         return (saveData[getSaveFileId()] = {
           ...defaultSaveData,
+          ...saveData[getSaveFileId()],
           ...globalOpts,
           ...saveData.globalOpts,
         })
       }
       function getSaveData() {
         saveData.globalOpts ??= {}
-        Object.assign(saveData.globalOpts, globalOpts)
-        return (saveData[getSaveFileId()] ??= {
+        saveData[getSaveFileId()] ??= {
           ...defaultSaveData,
+        }
+        return {
+          ...defaultSaveData,
+          ...saveData[getSaveFileId()],
           ...globalOpts,
           ...saveData.globalOpts,
-        })
+        }
       }
       // onPlayerLoaded.push(alert)
       function getSaveFileId() {
