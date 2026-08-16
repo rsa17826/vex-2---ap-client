@@ -109,13 +109,13 @@ function buildOverlay() {
       maxWidth: "95vw",
       height: "100vh",
       overflowY: "auto",
-      background: "#ffffff",
-      borderLeft: "1px solid #e5e7eb",
-      boxShadow: "-4px 0 24px rgba(0,0,0,0.25)",
+      background: "#111827",
+      borderLeft: "1px solid #1f2937",
+      boxShadow: "-4px 0 24px rgba(0,0,0,0.5)",
       zIndex: "999999",
       fontFamily:
         "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-      color: "#111827",
+      color: "#f3f4f6",
       padding: "16px",
       boxSizing: "border-box",
       display: "none",
@@ -170,7 +170,7 @@ function render() {
         ),
         newelem(
           "span",
-          { style: { fontSize: "11px", color: "#9ca3af" } },
+          { style: { fontSize: "11px", color: "#6b7280" } },
           ["[Tab] to close"],
         ),
       ],
@@ -181,7 +181,7 @@ function render() {
       "p",
       {
         style: {
-          color: "#6b7280",
+          color: "#9ca3af",
           fontSize: "13px",
           margin: "0 0 14px 0",
         },
@@ -201,7 +201,7 @@ function render() {
     const card = newelem("div", {
       style: {
         border: "1px solid #10b98155",
-        background: "#ecfdf5",
+        background: "#064e3b33",
         borderRadius: "8px",
         padding: "8px 10px",
         display: "flex",
@@ -217,7 +217,8 @@ function render() {
           style: {
             fontSize: "11px",
             fontWeight: "700",
-            background: "#e5e7eb",
+            background: "#374151",
+            color: "#e5e7eb",
             padding: "2px 7px",
             borderRadius: "5px",
             flexShrink: "0",
