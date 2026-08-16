@@ -34,6 +34,18 @@
       }
       owo = (e) => e
       function pmax() {
+        moves = [
+          "move:bounce",
+          "move:cannon",
+          "move:kick",
+          "move:lever",
+          "move:polejump",
+          "move:portal",
+          "move:pulley",
+          "move:slide",
+          "move:swim",
+          "move:walljump",
+        ]
         for (var i in new Array(11).fill(1)) {
           player[`setActLocked_${i}`]?.(false)
           unlockedActs.add(Number(i))
