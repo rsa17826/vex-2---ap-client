@@ -698,7 +698,7 @@ package
       {
         this.inner_animation.top_half.play();
       }
-      if (this.sDown)
+      if (this.sDown && ExternalInterface.call("canUseMove", "slide"))
       {
         _loc1_ = this.inner_animation.top_half.rotation - 90;
         _loc2_ = -Math.cos(_loc1_ / 180 * Math.PI);
@@ -2775,7 +2775,7 @@ package
                     if (y >= _loc1_[_loc2_].y + _loc1_[_loc2_].height - _loc1_[_loc2_].height * _loc9_)
                     {
                       _loc10_ = _loc1_[_loc2_].height / _loc1_[_loc2_].width;
-                      if (this.ySpeed > -5 - _loc10_ && ExternalInterface.call("canUseMove", "slide"))
+                      if (this.ySpeed > -5 - _loc10_)
                       {
                         if (this.ySpeed >= 20)
                         {
@@ -2812,7 +2812,7 @@ package
                     if (y >= _loc1_[_loc2_].y + _loc1_[_loc2_].height - _loc1_[_loc2_].height * _loc9_)
                     {
                       _loc10_ = _loc1_[_loc2_].height / _loc1_[_loc2_].width;
-                      if (this.ySpeed > -5 - _loc10_ && ExternalInterface.call("canUseMove", "slide"))
+                      if (this.ySpeed > -5 - _loc10_)
                       {
                         if (this.ySpeed >= 20)
                         {

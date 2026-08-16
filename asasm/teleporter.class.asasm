@@ -178,9 +178,21 @@ class
       convert_i
       setlocal1
 
-      getlex              QName(PackageNamespace(""), "player")
-      pop
+      ; Assign player = MovieClip(parent).player; safely
+      findproperty        QName(PackageNamespace(""), "player")
+      getlex              QName(PackageNamespace(""), "parent")
+      coerce              QName(PackageNamespace("flash.display"), "MovieClip")
+      getproperty         QName(PackageNamespace(""), "player")
+      initproperty        QName(PackageNamespace(""), "player")
 
+      ; Safe null check for player to prevent Error #1009
+      getlex              QName(PackageNamespace(""), "player")
+      pushnull
+      equals
+      iffalse             L_player_ok
+      returnvoid
+
+L_player_ok:
       ; Check ExternalInterface.call("canUseMove", "portal")
       getlex              QName(PackageNamespace("flash.external"), "ExternalInterface")
       pushstring          "canUseMove"

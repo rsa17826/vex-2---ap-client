@@ -2609,6 +2609,8 @@ package
           this.savedStages = saveData.stages;
         if (saveData.stageNames != null)
           this.savedStagesNames = saveData.stageNames;
+        if (saveData.options != null)
+          this.options = saveData.options;
 
         trace("Game successfully loaded via JS getSaveData!");
         return; // Exit early since JS save was loaded
@@ -2653,43 +2655,45 @@ package
             "stats": this.stats,
             "itemPackages": this.savedItemPacks,
             "stages": this.savedStages,
-            "stageNames": this.savedStagesNames
+            "stageNames": this.savedStagesNames,
+"options": [this.particleLimit, this.qualitySetting, this.blendModes, this.audioBGM, this.audioSFX, this.resetWarning, this.autoReset]
           };
 
         // Call JS save handler on window
         ExternalInterface.call("saveGame", saveData);
       }
 
-      // ----------------------------------------------------
-      // 3. (Optional) Save locally to SharedObject as a fallback
-      // ----------------------------------------------------
-      var _loc1_:SharedObject = SharedObject.getLocal("vex2");
-      _loc1_.data.actTimes = this.savedTimes;
-      _loc1_.data.actDeaths = this.savedDeaths;
+      // // ----------------------------------------------------
+      // // 3. (Optional) Save locally to SharedObject as a fallback
+      // // ----------------------------------------------------
+      // var _loc1_:SharedObject = SharedObject.getLocal("vex2");
+      // _loc1_.data.actTimes = this.savedTimes;
+      // _loc1_.data.actDeaths = this.savedDeaths;
 
-      for (var actKey:String in starData)
-      {
-        _loc1_.data[actKey + "Stars"] = starData[actKey];
-      }
+      // for (var actKey:String in starData)
+      // {
+      //   _loc1_.data[actKey + "Stars"] = starData[actKey];
+      // }
 
-      for (var achKey:String in achievementData)
-      {
-        _loc1_.data[achKey] = achievementData[achKey];
-      }
+      // for (var achKey:String in achievementData)
+      // {
+      //   _loc1_.data[achKey] = achievementData[achKey];
+      // }
 
-      _loc1_.data.stats = this.stats;
-      this.saveOptions();
-      _loc1_.data.itemPackages = this.savedItemPacks;
-      _loc1_.data.stages = this.savedStages;
-      _loc1_.data.stageNames = this.savedStagesNames;
-      _loc1_.flush(); // Flushes changes to memory/disk
+      // _loc1_.data.stats = this.stats;
+      // this.saveOptions();
+      // _loc1_.data.itemPackages = this.savedItemPacks;
+      // _loc1_.data.stages = this.savedStages;
+      // _loc1_.data.stageNames = this.savedStagesNames;
+      // _loc1_.flush(); // Flushes changes to memory/disk
 
       trace("Game successfully saved!");
     }
     public function saveOptions():void
     {
-      var _loc1_:SharedObject = SharedObject.getLocal("vex2");
-      _loc1_.data.options = [this.particleLimit, this.qualitySetting, this.blendModes, this.audioBGM, this.audioSFX, this.resetWarning, this.autoReset];
+      this.saveGame();
+      // var _loc1_:SharedObject = SharedObject.getLocal("vex2");
+      // _loc1_.data.options = [this.particleLimit, this.qualitySetting, this.blendModes, this.audioBGM, this.audioSFX, this.resetWarning, this.autoReset];
     }
 
     public function clearAllData():void
