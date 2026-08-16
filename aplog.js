@@ -318,92 +318,11 @@ function apSendSayFromInput() {
         apLog(logtext.trimEnd())
       },
     },
-    autoCloseDialogueBoxes: {
-      desc: "don't wait for enter prompt on non battle end messages",
-      args: [["on", "true/false"]],
-      func(on) {
-        localStorage.autoCloseDialogueBoxes = ["1", "true"].includes(
-          on,
-        )
-      },
-    },
-    autoCloseBattleMessages: {
-      desc: "don't wait for enter prompt on battle end messages",
-      args: [["on", "true/false"]],
-      func(on) {
-        localStorage.autoCloseBattleMessages = ["1", "true"].includes(
-          on,
-        )
-      },
-    },
-    instantBattleStarts: {
-      desc: "encounters start instantly instead of waiting for the attacked text",
-      args: [["on", "true/false"]],
-      func(on) {
-        localStorage.instantBattleStarts = ["1", "true"].includes(on)
-        test.attackedTimer.__delay =
-          localStorage.instantBattleStarts == "true" ? 0 : 1e3
-      },
-    },
-    instantBattleEndText: {
-      desc: "each line of loot text at battle end appears instantly",
-      args: [["on", "true/false"]],
-      func(on) {
-        localStorage.instantBattleEndText = ["1", "true"].includes(on)
-        test.batEndTimer.__delay =
-          localStorage.instantBattleEndText == "true" ? 0 : 350
-      },
-    },
     debug: {
       desc: "enable debug/chear mode w/a/s/d moves one screen that dir\nrclick on game sets player to that position\ndbclick on map tps player to that screen",
       args: [["on", "true/false"]],
       func(on) {
         localStorage.debug = ["1", "true"].includes(on)
-      },
-    },
-    owo: {
-      desc: "enables owo mode",
-      func() {
-        owo = _owo
-        localStorage.owo = true
-      },
-    },
-    showPlayerPos: {
-      desc: "toggle showing player position information in the bottom right of the game",
-      func(on = "1") {
-        localStorage.showPlayerPos = ["1", "true"].includes(on)
-      },
-    },
-    renderExits: {
-      desc: "toggle showing each rooms exit regions ingame",
-      func(on = "1") {
-        localStorage.renderExits = ["1", "true"].includes(on)
-      },
-    },
-    instantBombs: {
-      desc: "bombs explode instantly",
-      func(on = "1") {
-        localStorage.instantBombs = ["1", "true"].includes(on)
-      },
-    },
-    renderCheckerboard: {
-      desc: "toggle rendering a checkerboard over each tile ingame",
-      func(on = "1") {
-        localStorage.renderCheckerboard = ["1", "true"].includes(on)
-      },
-    },
-    dontLikeBridges: {
-      desc: "dontLikeBridges",
-      func(on = "1") {
-        localStorage.dontLikeBridges = ["1", "true"].includes(on)
-      },
-    },
-    neverShowLocationScouts: {
-      desc: "never show location scouts",
-      func(on = "1") {
-        localStorage.neverShowLocationScouts = ["1", "true"].includes(
-          on,
-        )
       },
     },
     dontAutoSendCompleteEvent: {
@@ -415,30 +334,18 @@ function apSendSayFromInput() {
         ].includes(on)
       },
     },
-    autoYes: {
-      desc: "if enabled the yes button is instantly clicked in all interactions",
-      func(on = "1") {
-        localStorage.autoYes = ["1", "true"].includes(on)
-      },
-    },
-    alwaysShowAllPaths: {
-      desc: "alwaysShowAllPaths",
-      func(on = "1") {
-        localStorage.alwaysShowAllPaths = ["1", "true"].includes(on)
-      },
-    },
-    reconnect: {
-      desc: "reconnects to ap for if disconnected",
-      func() {
-        if (!window.ap) {
-          apError(
-            "ap not connected, use @green!/connect@! to connect for the first time",
-          )
-          return
-        }
-        ap.connect()
-      },
-    },
+    // reconnect: {
+    //   desc: "reconnects to ap for if disconnected",
+    //   func() {
+    //     if (!window.ap) {
+    //       apError(
+    //         "ap not connected, use @green!/connect@! to connect for the first time",
+    //       )
+    //       return
+    //     }
+    //     ap.connect()
+    //   },
+    // },
     showMissing: {
       desc: "shows missing locations",
       func(seed) {
@@ -467,13 +374,13 @@ function apSendSayFromInput() {
         window._apChatBuffer.forEach((e) => e.el.remove())
       },
     },
-    nowo: {
-      desc: "disables owo mode",
-      func() {
-        owo = nowo
-        localStorage.owo = false
-      },
-    },
+    // nowo: {
+    //   desc: "disables owo mode",
+    //   func() {
+    //     owo = nowo
+    //     localStorage.owo = false
+    //   },
+    // },
     connect: {
       desc: "connect to ap",
       args: [["host", "127.0.0.1:38281"], ["name"], ["password"]],
@@ -511,26 +418,26 @@ function apSendSayFromInput() {
         }
       },
     },
-    backupSaveData: {
-      alias: ["downloadSaveData", "exportSaveData"],
-      desc: "export save data to a local file",
-      args: [],
-      func() {
-        const jsonString = JSON.stringify(saveData, null, 2) // The 'null, 2' makes it nicely formatted
-        const blob = new Blob([jsonString], {
-          type: "application/json",
-        })
-        const href = URL.createObjectURL(blob)
-        const a = newelem("a", {
-          href,
-          download: "Vex2 save files.json",
-        })
-        document.body.appendChild(a)
-        a.click()
-        document.body.removeChild(a)
-        URL.revokeObjectURL(href)
-      },
-    },
+    // backupSaveData: {
+    //   alias: ["downloadSaveData", "exportSaveData"],
+    //   desc: "export save data to a local file",
+    //   args: [],
+    //   func() {
+    //     const jsonString = JSON.stringify(saveData, null, 2) // The 'null, 2' makes it nicely formatted
+    //     const blob = new Blob([jsonString], {
+    //       type: "application/json",
+    //     })
+    //     const href = URL.createObjectURL(blob)
+    //     const a = newelem("a", {
+    //       href,
+    //       download: "Vex2 save files.json",
+    //     })
+    //     document.body.appendChild(a)
+    //     a.click()
+    //     document.body.removeChild(a)
+    //     URL.revokeObjectURL(href)
+    //   },
+    // },
   }
   log(text)
   if (!text) return

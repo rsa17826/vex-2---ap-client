@@ -2863,7 +2863,10 @@ package
         if (this.body.hitTestObject(_loc1_[_loc3_]))
         {
           _loc2_ = true;
-          if (currentFrame != 10 && ExternalInterface.call("canUseMove", "swim"))
+          if (!ExternalInterface.call("canUseMove", "swim")){
+            this.kill(9)
+          }
+          if (currentFrame != 10)
           {
             if (this.ySpeed >= 0)
             {
