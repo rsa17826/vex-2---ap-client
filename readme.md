@@ -14,9 +14,11 @@ each level beaten is a check
 
 ---
 
-all the moves `duck/slide`, `pull lever`, `swim`, `bounce`, `walljump`, `polejump`, `pulley`, `portal`, and `kick pushable box` are items
+all the moves `duck/slide`, `pull lever`, `swim`, `bounce`, `walljump`, `polejump`, `pulley`, `portal`, `cannon`, and `kick pushable box` are items
 
 all the level unlocks are items
+
+water and bounce blocks when not having the corresponding move will kill you to interact with them, the rest just do nothing
 
 ---
 
