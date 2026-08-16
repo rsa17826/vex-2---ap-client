@@ -271,7 +271,15 @@
         data.unlockedActs = unlockedActs
         data.lastReceivedItem = window.lastReceivedItem
         data.moves = window.moves
-        saveData[getSaveFileId()] = data
+        if (localStorage.dontAutoSendCompleteEvent != "true") {
+          // CHECK IF PLAYER WINS
+          var at = { ...data.actTimes }
+          delete at["1"]
+          if (!Object.values(at).includes(0)) {
+            ap.sendStatusUpdate(30)
+          }
+        }
+        if (data.actTimes) saveData[getSaveFileId()] = data
         for (var k of Object.keys(globalOpts)) {
           saveData.globalOpts[k] = data[k]
         }
