@@ -139,8 +139,7 @@ const PROG = [
     ],
     "receive": [
       "achievement:16:BUZZ LIGHTYEAR",
-      "achievement:24:OLYMPIAN",
-      "achievement:26:DOUBLE DOWN"
+      "achievement:24:OLYMPIAN"
     ]
   },
   {
