@@ -6,6 +6,10 @@ to use offline on the webpage type /installsw and the game will be available off
 
 ---
 
+vex 2 is a platformer made in actionscript/flash
+
+---
+
 each achievement is a check eccpet `time flies`, `light cardio`, and `mini maraton` as these require no skill and only time to get
 
 each star is a check
