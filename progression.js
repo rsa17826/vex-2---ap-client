@@ -8,7 +8,7 @@ const PROG = [
       ]
     ],
     "receive": [
-      "achievement:14 - STARGAZER"
+      "achievement:14:STARGAZER"
     ]
   },
   {
@@ -19,7 +19,7 @@ const PROG = [
       ]
     ],
     "receive": [
-      "achievement:15 - ASTRONAUT"
+      "achievement:15:ASTRONAUT"
     ]
   },
   {
@@ -273,7 +273,8 @@ const PROG = [
     "receive": [
       "achievement:4:ACT 3",
       "flag:beat stage3",
-      "level:stage4"
+      "level:stage4",
+      "achievement:-1:LEVEL 3 NO CHECKPOINTS"
     ]
   },
   {
