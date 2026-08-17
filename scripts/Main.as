@@ -2493,7 +2493,6 @@ package
               "23": "hub - achievement:23:PERFECT",
               "24": "hub - achievement:24:OLYMPIAN",
               "25": "hub - achievement:25:PERFECTIONIST",
-              "26": "hub - achievement:26:DOUBLE DOWN",
               "27": "stage0 - achievement:27:CURB STOMP",
               "28": "hub - achievement:28:LIFESAVER",
               "29": "hub - achievement:29:KEYLOGGER",
