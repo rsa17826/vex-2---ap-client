@@ -692,12 +692,20 @@ class ArchipelagoClient {
           "@pink!Client@blue!(@!@green!$1@!@blue!.@!@green!$2@!@blue!.@!@green!$3@!@blue!)@!",
         )
         .replace(
-          /\bstage(\d+)/,
-          "@pink!stage@! @blue!$1@!",
+          /\b((?:level:)?(?:stage|level|act))(\d+)/i,
+          "@hotpink!$1@! @blue!$2@!",
+        )
+        .replace(
+          /\bachievement( |:)(-?\d+):([^)]+)/,
+          "@hotpink!achievement@!@blue!$1@!@green!$2@!@blue!:@!@pink!$3@!",
         )
         .replace(
           /\bstar:(\d+)/,
           "@yellow!star@! @blue!$1@!",
+        )
+        .replace(
+          / - /,
+          "@green! - @!",
         )
         // 2. Highlight any command starting with ! or / (e.g., !help, /release)
         .replace(/(^|\s)([!/][a-zA-Z_0-9]+)/g, "$1@green!$2@!")
@@ -721,7 +729,10 @@ class ArchipelagoClient {
           /(Option\s)([_a-zA-Z0-9]+)(\sis\sset\sto\s)(.*)/g,
           "$1@cyan!$2@!$3@green!$4@!",
         )
-
+        .replace(
+          /\(|\)/g,
+          "@cyan!$&@!",
+        )
         .replace(
           /(Didn't find something that closely matches) '([^']+)' did you mean '([^']+)'\? \((\d+)% sure\)/gm,
           "@red!$1@!",

@@ -2510,6 +2510,7 @@ package
 
     private function checkClearStageAchievements():void
     {
+      // ExternalInterface.call("log", "this.level.currentFrame", this.level.currentFrame, this.player.checkpointsReached);
       if (this.level.currentFrame == 1)
       {
         this.incAchievement(1);
@@ -2521,6 +2522,10 @@ package
       else if (this.level.currentFrame > 2)
       {
         this.incAchievement(this.level.currentFrame - 1);
+        if (this.level.currentFrame == 5 && this.player.checkpointsReached == 0)
+        {
+          ExternalInterface.call("newItem", "stage3 - achievement:-1:LEVEL 3 NO CHECKPOINTS");
+        }
       }
       if (this.deaths == 0)
       {
@@ -2614,13 +2619,20 @@ package
           var opts:Array = saveData.options as Array;
           if (opts != null)
           {
-            if (opts[0] != null) this.particleLimit = opts[0];
-            if (opts[1] != null) this.qualitySetting = opts[1];
-            if (opts[2] != null) this.blendModes = opts[2];
-            if (opts[3] != null) this.audioBGM = opts[3];
-            if (opts[4] != null) this.audioSFX = opts[4];
-            if (opts[5] != null) this.resetWarning = opts[5];
-            if (opts[6] != null) this.autoReset = opts[6];
+            if (opts[0] != null)
+              this.particleLimit = opts[0];
+            if (opts[1] != null)
+              this.qualitySetting = opts[1];
+            if (opts[2] != null)
+              this.blendModes = opts[2];
+            if (opts[3] != null)
+              this.audioBGM = opts[3];
+            if (opts[4] != null)
+              this.audioSFX = opts[4];
+            if (opts[5] != null)
+              this.resetWarning = opts[5];
+            if (opts[6] != null)
+              this.autoReset = opts[6];
           }
         }
         // ExternalInterface.call("log", saveData.options, saveData);
@@ -2667,7 +2679,7 @@ package
             "itemPackages": this.savedItemPacks,
             "stages": this.savedStages,
             "stageNames": this.savedStagesNames,
-"options": [this.particleLimit, this.qualitySetting, this.blendModes, this.audioBGM, this.audioSFX, this.resetWarning, this.autoReset]
+            "options": [this.particleLimit, this.qualitySetting, this.blendModes, this.audioBGM, this.audioSFX, this.resetWarning, this.autoReset]
           };
 
         // Call JS save handler on window
@@ -2683,12 +2695,12 @@ package
 
       // for (var actKey:String in starData)
       // {
-      //   _loc1_.data[actKey + "Stars"] = starData[actKey];
+      // _loc1_.data[actKey + "Stars"] = starData[actKey];
       // }
 
       // for (var achKey:String in achievementData)
       // {
-      //   _loc1_.data[achKey] = achievementData[achKey];
+      // _loc1_.data[achKey] = achievementData[achKey];
       // }
 
       // _loc1_.data.stats = this.stats;
@@ -3308,29 +3320,29 @@ package
     {
       // if (this.__setPropDict[this.__id0_] == undefined || int(this.__setPropDict[this.__id0_]) != 1)
       // {
-      //   this.__setPropDict[this.__id0_] = 1;
-      //   try
-      //   {
-      //     this.__id0_["componentInspectorSetting"] = true;
-      //   }
-      //   catch (e:Error)
-      //   {
-      //   }
-      //   this.__id0_.apiId = "32512:cCrsgJNu";
-      //   this.__id0_.encryptionKey = "7QKRwpi9DmtTe6NVQXLFpKKGF6qwC9l2";
-      //   this.__id0_.debugMode = "Simulate Logged-in User";
-      //   this.__id0_.movieVersion = "1";
-      //   this.__id0_.connectorType = "Invisible";
-      //   this.__id0_.redirectOnNewVersion = false;
-      //   this.__id0_.redirectOnHostBlocked = false;
-      //   this.__id0_.adType = "Video";
-      //   try
-      //   {
-      //     this.__id0_["componentInspectorSetting"] = false;
-      //   }
-      //   catch (e:Error)
-      //   {
-      //   }
+      // this.__setPropDict[this.__id0_] = 1;
+      // try
+      // {
+      // this.__id0_["componentInspectorSetting"] = true;
+      // }
+      // catch (e:Error)
+      // {
+      // }
+      // this.__id0_.apiId = "32512:cCrsgJNu";
+      // this.__id0_.encryptionKey = "7QKRwpi9DmtTe6NVQXLFpKKGF6qwC9l2";
+      // this.__id0_.debugMode = "Simulate Logged-in User";
+      // this.__id0_.movieVersion = "1";
+      // this.__id0_.connectorType = "Invisible";
+      // this.__id0_.redirectOnNewVersion = false;
+      // this.__id0_.redirectOnHostBlocked = false;
+      // this.__id0_.adType = "Video";
+      // try
+      // {
+      // this.__id0_["componentInspectorSetting"] = false;
+      // }
+      // catch (e:Error)
+      // {
+      // }
       // }
     }
 
