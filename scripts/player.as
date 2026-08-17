@@ -1266,6 +1266,7 @@ package
       if (_loc2_ == 32)
       {
         this.spaceDown = true;
+        ExternalInterface.call("log", "player is at", this.x, this.y)
       }
       // NOTE q||z
       if (_loc2_ == 81||_loc2_==90)

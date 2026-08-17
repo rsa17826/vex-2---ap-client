@@ -33,3 +33,4 @@ RABCDAsm
 RABCDAsm/**
 images
 !pushBlock.as
+!iceBlock.as
