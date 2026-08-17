@@ -15,101 +15,53 @@ package
    {
 
       public var stageContainer:MovieClip;
-
       public var itemPointerDest:Point;
-
       public var menuPointerDest:Point;
-
       public var itemDescDest:Point;
-
       public var itemCount:TextField;
-
       public var guideLine:Shape = null;
-
       public var itemMax:int = 100;
-
       public var attachmentsOn:Boolean = true;
-
       public var snapOn:Boolean = false;
-
       public var guideLines:int = 50;
-
       private var itemsDisplaying:int = 0;
-
       public var itemsAdded:Array = [];
-
       public var selectedItems:Array = [];
-
       private var multiSelecting:Boolean = false;
-
       public var itemDescTimer:int;
-
       public var rolledOver:Boolean = false;
-
       private var itemSliderPos:int = 0;
-
       private var itemsSpawned:int = 0;
-
       private const itemSliderMax:int = 15;
-
       private var cDown:Boolean = false;
-
       private var cHold:Boolean = false;
-
       private var aDown:Boolean = false;
-
       private var aHold:Boolean = false;
-
       private var wDown:Boolean = false;
-
       private var wHold:Boolean = false;
-
       private var sDown:Boolean = false;
-
       private var sHold:Boolean = false;
-
       private var dDown:Boolean = false;
-
       private var dHold:Boolean = false;
-
       public var main:MovieClip;
-
       public var deleteBox:MovieClip = null;
-
       public var arrangeUpBox:MovieClip = null;
-
       public var arrangeDownBox:MovieClip = null;
-
       public var menuPointer:MovieClip;
-
       public var itemPointer:MovieClip;
-
       public var itemDesc:MovieClip;
-
       public var blocksButton:MovieClip;
-
       public var obstButton:MovieClip;
-
       public var othersButton:MovieClip;
-
       public var decorButton:MovieClip;
-
       public var itemSlider:MovieClip;
-
       public var itemsprev:MovieClip;
-
       public var itemsnext:MovieClip;
-
       public var testStage:MovieClip;
-
       public var optionsButton:MovieClip;
-
       public var saveButton:MovieClip;
-
       public var quitButton:MovieClip;
-
       public var tutorialButton:MovieClip;
-
       public function stageBuilderGUI()
       {
          super();

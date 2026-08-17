@@ -1267,6 +1267,11 @@ package
       {
         this.spaceDown = true;
       }
+      // NOTE q||z
+      if (_loc2_ == 81||_loc2_==90)
+      {
+        this.main.levelButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+      }
     }
 
     private function keyReleased(param1:KeyboardEvent):*
