@@ -63,7 +63,6 @@ ruffle-player {
   border-bottom: 1px solid #444;
 }
 * {
-  font-family: "Booter - Zero Zero";
   font-size: 13.2px;
 }
 #apChatLogToggle {
@@ -135,12 +134,6 @@ ruffle-player {
 }
 #apChatSaySend:hover {
   background: rgba(40, 40, 40, 0.9);
-}
-@font-face {
-  font-family: "Booter - Zero Zero";
-  src: url("/Vex2/fonts/BOOTERZZ.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
 }
 
 @media screen and (max-width: 1150px) {
