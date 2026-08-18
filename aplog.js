@@ -383,8 +383,8 @@ function apSendSayFromInput() {
     // },
     connect: {
       desc: "connect to ap",
-      args: [["host", "127.0.0.1:38281"], ["name"], ["password"]],
-      func(host = "127.0.0.1:38281", name, password = "") {
+      args: [["host", "ao.localhost"], ["name"], ["password"]],
+      func(host = "ao.localhost", name, password = "") {
         log(host, name, password)
         location.search = `?connect=${host}&name=${name}&password=${password}`
         if (window.playerLoaded && !window.ap) {

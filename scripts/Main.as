@@ -2510,12 +2510,13 @@ package
 
     private function checkClearStageAchievements():void
     {
-      // ExternalInterface.call("log", "this.level.currentFrame", this.level.currentFrame, this.player.checkpointsReached);
+      ExternalInterface.call("log", "this.level.currentFrame", this.level.currentFrame, this.player.checkpointsReached);
       if (this.level.currentFrame == 1)
       {
         this.incAchievement(1);
         if (this.player.checkpointsReached == 0)
         {
+          // TODO - why is this not always unlocking when it should???
           this.incAchievement(12);
         }
       }
