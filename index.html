@@ -310,6 +310,12 @@
           saveData.globalOpts[k] = data[k]
         }
       }
+      function killPlayer(){
+        player.deathLinkIncoming()
+      }
+      function sendDeathLink(msg) {
+        ap.sendDeathLink(`@pink!${ap.playerName}@! @red!${msg}@!`)
+      }
       player.load({
         url: "vex2-modded.swf",
         allowScriptAccess: true,

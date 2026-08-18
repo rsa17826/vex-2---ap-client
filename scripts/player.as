@@ -2870,7 +2870,7 @@ package
         {
           _loc2_ = true;
           if (!ExternalInterface.call("canUseMove", "swim")){
-            this.kill(9)
+            this.kill(18)
           }
           if (currentFrame != 10)
           {
@@ -3119,6 +3119,7 @@ package
 
     protected function addedToStage(param1:Event):void
     {
+      ExternalInterface.addCallback("deathLinkIncoming", this.deathLinkIncoming);
       if (this.main.player != null)
       {
         parent.removeChild(this);
@@ -3129,7 +3130,10 @@ package
       this.startPoint.y = y;
       this.checkPoint = this.startPoint;
     }
-
+    public function deathLinkIncoming():void
+    {
+      this.kill(19);
+    }
     public function backflip():void
     {
       gotoAndStop(2);

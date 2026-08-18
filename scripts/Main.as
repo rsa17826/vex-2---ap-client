@@ -1041,6 +1041,20 @@ package
       {
         _loc2_.text = "Lost in space.";
       }
+      else if (param1 == 17)
+      {
+        _loc2_.text = "failed to bounce.";
+      }
+      else if (param1 == 18)
+      {
+        _loc2_.text = "hasnt learned to swim.";
+      }
+      else if (param1 == 19)
+      {
+        _loc2_.text = "TODO - deathlink message.";
+      }
+      if (param1 != 19)
+      ExternalInterface.call("sendDeathLink", _loc2_.text)
     }
 
     private function init(param1:Event):void

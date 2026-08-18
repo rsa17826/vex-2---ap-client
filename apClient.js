@@ -517,7 +517,7 @@ class ArchipelagoClient {
    * @param {Packet} packet
    */
   onBounced(packet) {
-    warn(packet.tags, "packet.tags")
+    warn(packet.tags, "onBounced, packet.tags")
     if (!packet.tags || !packet.tags.includes("DeathLink")) return
     if (!this.deathLinkEnabled) return
 
