@@ -1275,7 +1275,10 @@ package
             if (!this.levelCleared)
             {
               this.saveTimes(this.level.currentFrame);
-              this.checkClearStageAchievements();
+            }
+            this.checkClearStageAchievements();
+            if (!this.levelCleared)
+            {
               ++this.stats[1];
               this.incAchievement(26);
             }
