@@ -367,9 +367,6 @@ package
           1]
           param2=12
         }
-        if (param2==10){
-          param1[1] = "Complete all acts to any standard - jk, it just checks act 9"
-        }
         ExternalInterface.call("log", "createAchievement", param1, param2);
          var _loc5_:* = undefined;
          var _loc3_:* = "achievement" + param2 + "Button";

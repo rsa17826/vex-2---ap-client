@@ -21,7 +21,7 @@ package
 
       public static var achievement9:Array = ["Act 8","Complete Act 8 to any standard.",0,1,1,2,10];
 
-      public static var achievement10:Array = ["Act Master","Complete all acts to any standard.",0,1,1,2,11];
+      public static var achievement10:Array = ["Act Master","Complete all acts to any standard - jk, it just checks act 9.",0,1,1,2,11];
 
       public static var achievement11:Array = ["Vexed much?","Complete The Vexation to any standard.",0,1,2,2,12];
 
