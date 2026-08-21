@@ -2561,6 +2561,10 @@ package
       _loc3_.achievementName.text = _loc2_[0];
       addChild(_loc3_);
       this.findColourChangeTransition(_loc3_.bgColours);
+      // NOTE show correct icon when unlocking custom achievement
+      if (param1==17){
+        param1=12
+      }
       var _loc4_:* = "achievement" + param1 + "Button";
       _loc3_.icon = new (getDefinitionByName(_loc4_))();
       _loc3_.icon.x = 110;
