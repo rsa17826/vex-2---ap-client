@@ -364,9 +364,7 @@ package
           // y location 0/1/2
           2,
           // ??
-          1,
-          // ??
-          2]
+          1]
           param2=12
         }
         if (param2==10){

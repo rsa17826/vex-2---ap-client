@@ -2476,6 +2476,7 @@ package
     public function incAchievement(param1:int, param2:int = 1):void
     {
       var _loc3_:Array = achievementsLog["achievement" + param1];
+      ExternalInterface.call("log", "incAchievement", param1, param2, _loc3_)
       if (_loc3_[2] < _loc3_[3])
       {
         _loc3_[2] += param2;
@@ -2485,6 +2486,7 @@ package
           this.unlockAchievement(param1);
           var map = {
               "17": "stage3 - achievement:-1:LEVEL 3 NO CHECKPOINTS",
+
               "1": "stage0 - achievement:1:TUTORIAL",
               "2": "stage1 - achievement:2:ACT 1",
               "3": "stage2 - achievement:3:ACT 2",
