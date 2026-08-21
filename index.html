@@ -311,17 +311,22 @@
           saveData.globalOpts[k] = data[k]
         }
       }
-      function killPlayer(){
+      function killPlayer() {
         player.deathLinkIncoming()
       }
       function sendDeathLink(msg) {
         ap.sendDeathLink(`@pink!${ap.playerName}@! @red!${msg}@!`)
       }
+      window.onApConnect.push(() => {
+        player.style.pointerEvents = "all"
+        player.play()
+      })
       player.load({
         url: "vex2-modded.swf",
         allowScriptAccess: true,
+        autoplay: "off",
       })
-      window.checksInFlight = []
+      window.checksInFlight = new Set()
       function newItem(name) {
         console.log("New Item Received:", name)
         if (!window.ap?.slotData) {
@@ -349,7 +354,7 @@
             `[Archipelago] Check registered: ${name} (ID: ${apLocationId})`,
           )
           // window.onItemSent.forEach((e) => e())
-          window.checksInFlight.push(apLocationId)
+          window.checksInFlight.add(apLocationId)
           window.ap.sendLocationChecks([apLocationId])
         } else {
           apWarn(

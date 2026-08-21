@@ -14,6 +14,9 @@ ruffle-player {
   max-width: 150vh;
   display: block;
 }
+ruffle-player {
+  pointer-events: none;
+}
 :has(#play-button[style*="display: block;"]) canvas {
   display: none;
 }
