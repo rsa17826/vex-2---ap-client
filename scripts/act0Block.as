@@ -211,6 +211,8 @@ private function onLockedChanged(isLocked:Boolean):void
               main.levelComplete(this.type);
             }
             main.fadingIn = false;
+            // NOTE fixes cp counting acheivs not working when first entering a level so dont have to reset after first entering now
+            main.player.checkpointsReached = 0
           }
         }
       }

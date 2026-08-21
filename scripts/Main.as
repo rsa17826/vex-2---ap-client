@@ -1275,10 +1275,7 @@ package
             if (!this.levelCleared)
             {
               this.saveTimes(this.level.currentFrame);
-            }
-            this.checkClearStageAchievements();
-            if (!this.levelCleared)
-            {
+              this.checkClearStageAchievements();
               ++this.stats[1];
               this.incAchievement(26);
             }
@@ -2533,7 +2530,6 @@ package
         this.incAchievement(1);
         if (this.player.checkpointsReached == 0)
         {
-          // TODO - why is this not always unlocking when it should???
           this.incAchievement(12);
         }
       }
