@@ -287,12 +287,7 @@ class ArchipelagoClient {
         // Also clear it from the in-flight queue: the server has
         // acknowledged this location as checked, whether or not it
         // ends up granting us an item (e.g. it's someone else's item).
-        if (window.checksInFlight) {
-          const inFlightIdx = window.checksInFlight.indexOf(loc)
-          if (inFlightIdx !== -1) {
-            window.checksInFlight.splice(inFlightIdx, 1)
-          }
-        }
+        window.checksInFlight.delete(loc)
       })
     }
   }
@@ -699,14 +694,8 @@ class ArchipelagoClient {
           /\bachievement( |:)(-?\d+):([^)]+)/,
           "@hotpink!achievement@!@blue!$1@!@green!$2@!@blue!:@!@pink!$3@!",
         )
-        .replace(
-          /\bstar:(\d+)/,
-          "@yellow!star@! @blue!$1@!",
-        )
-        .replace(
-          / - /,
-          "@green! - @!",
-        )
+        .replace(/\bstar:(\d+)/, "@yellow!star@! @blue!$1@!")
+        .replace(/ - /, "@green! - @!")
         // 2. Highlight any command starting with ! or / (e.g., !help, /release)
         .replace(/(^|\s)([!/][a-zA-Z_0-9]+)/g, "$1@green!$2@!")
 
@@ -729,10 +718,7 @@ class ArchipelagoClient {
           /(Option\s)([_a-zA-Z0-9]+)(\sis\sset\sto\s)(.*)/g,
           "$1@cyan!$2@!$3@green!$4@!",
         )
-        .replace(
-          /\(|\)/g,
-          "@cyan!$&@!",
-        )
+        .replace(/\(|\)/g, "@cyan!$&@!")
         .replace(
           /(Didn't find something that closely matches) '([^']+)' did you mean '([^']+)'\? \((\d+)% sure\)/gm,
           "@red!$1@!",

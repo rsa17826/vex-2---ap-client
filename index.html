@@ -116,7 +116,17 @@
       window.apErrors = []
       window.onPlayerLoaded = []
       window.onPlayerLoaded.push(() => {
-        for (var i of getSaveData().unlockedActs) {
+        var sd = getSaveData()
+        window.checksInFlight =
+          sd?.checksInFlight ?? window.checksInFlight
+        var cif = [...window.checksInFlight].filter(
+          (e) => !ap.checkedLocations.includes(e),
+        )
+        window.checksInFlight = new Set(cif)
+        if (cif.length) {
+          window.ap.sendLocationChecks(cif)
+        }
+        for (var i of sd.unlockedActs) {
           player[`setActLocked_${i}`]?.(false)
           unlockedActs.add(Number(i))
         }
@@ -274,6 +284,7 @@
         data.unlockedActs = unlockedActs
         data.lastReceivedItem = window.lastReceivedItem
         data.moves = window.moves
+        data.checksInFlight = window.checksInFlight
         window.beatStages = []
         for (var [k, v] of Object.entries(data.actTimes)) {
           if (v > 0) {
