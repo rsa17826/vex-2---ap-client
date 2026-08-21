@@ -28,6 +28,7 @@
     <script src="progression.js"></script>
     <script src="progression_overlay.js"></script>
     <script src="aplog.js"></script>
+    <script src="any.js"></script>
     <script src="indexeddbProxy.js"></script>
     <div id="game" style="width: 800px; height: 600px"></div>
     <script>
@@ -441,6 +442,14 @@
       function useDarkMode() {
         return true
       }
+      window.onApNotConnecting.push(() => {
+        player.style.pointerEvents = "all"
+        player.play()
+        window.ap = Any
+        var sd = getSaveData()
+        pmax()
+        saveGame(sd)
+      })
     </script>
   </body>
 </html>

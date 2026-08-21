@@ -19,6 +19,8 @@
  * @property {string} locationName
  * @property {number} flags
  */
+
+window.onApNotConnecting ??= []
 window.apLog ??= console.log.bind("[ARCHIPELAGO]")
 window.apWarn ??= console.warn.bind("[ARCHIPELAGO]")
 window.apError ??= console.error.bind("[ARCHIPELAGO]")
@@ -896,6 +898,8 @@ function apTryConnect() {
       }
     }
     window.ap.connect()
+  } else {
+    window.onApNotConnecting.forEach((e) => e())
   }
 }
 window.waitingPackets ??= []
