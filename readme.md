@@ -29,3 +29,6 @@ level 3 can be beaten without checkpoints just like level 0 so there is also a c
 ---
 
 win conds are get all acevivements or beat all levels
+
+![](./a.png)
+![](./s.png)
