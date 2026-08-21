@@ -268,7 +268,6 @@ package
                 {
                   this.metersMoved -= 20;
                   ++this.main.stats[2];
-                  this.main.incAchievement(17, 1);
                   this.main.incAchievement(18, 1);
                 }
               }

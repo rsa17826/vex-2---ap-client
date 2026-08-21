@@ -2484,7 +2484,7 @@ package
           _loc3_[2] = _loc3_[3];
           this.unlockAchievement(param1);
           var map = {
-              "-1": "stage3 - achievement:-1:LEVEL 3 NO CHECKPOINTS",
+              "17": "stage3 - achievement:-1:LEVEL 3 NO CHECKPOINTS",
               "1": "stage0 - achievement:1:TUTORIAL",
               "2": "stage1 - achievement:2:ACT 1",
               "3": "stage2 - achievement:3:ACT 2",
@@ -2494,7 +2494,7 @@ package
               "7": "stage6 - achievement:7:ACT 6",
               "8": "stage7 - achievement:8:ACT 7",
               "9": "stage8 - achievement:9:ACT 8",
-              "10": "stage9 - achievement:10:ACT 9",
+              "10": "stage9 - achievement:10:ACT MASTER",
               "11": "stage10 - achievement:11:VEXED MUCH?",
               "12": "stage0 - achievement:12:VEXIPHOBIA",
               "13": "hub - achievement:13:NOT A SCRATCH",
@@ -2538,7 +2538,8 @@ package
         this.incAchievement(this.level.currentFrame - 1);
         if (this.level.currentFrame == 5 && this.player.checkpointsReached == 0)
         {
-          ExternalInterface.call("newItem", "stage3 - achievement:-1:LEVEL 3 NO CHECKPOINTS");
+          this.incAchievement(17)
+          // ExternalInterface.call("newItem", "stage3 - achievement:-1:LEVEL 3 NO CHECKPOINTS");
         }
       }
       if (this.deaths == 0)
