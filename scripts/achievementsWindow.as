@@ -349,12 +349,12 @@ package
          }
       }
 
-      private function createAchievement(param1:Array, id:int = 1) : void
+      private function createAchievement(param1:Array, param2:int = 1) : void
       {
-        if (param2==26||param2==19||param2==18){id
+        if (param2==26||param2==19||param2==18){
           return
         }
-        if (param2==17){id
+        if (param2==17){
           param1 = ['VexiphobiaX3', 'Complete act 3 without touching any checkpoints.',
           // current
           param1[2]
