@@ -1070,7 +1070,7 @@ package
       {
         this.secondsPlayed = 0;
         ++this.minutesPlayed;
-        this.incAchievement(19, 1);
+        // this.incAchievement(19, 1);
         if (this.minutesPlayed >= 60)
         {
           ++this.hoursPlayed;
@@ -1778,7 +1778,7 @@ package
           {
             this.incAchievement(21);
           }
-          this.incAchievement(22);
+          // this.incAchievement(22);
           this.incAchievement(24);
         }
         else if (_loc6_ == 1)
@@ -1789,7 +1789,7 @@ package
           }
           if (_loc5_ > 2)
           {
-            this.incAchievement(22);
+            // this.incAchievement(22);
             this.incAchievement(24);
           }
           this.incAchievement(23);
