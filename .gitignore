@@ -40,3 +40,8 @@ images
 *.7z
 .direnv
 *.zip
+!.foldericon.png
+!a.png
+!icon-512.png
+!s.png
+!s.png
