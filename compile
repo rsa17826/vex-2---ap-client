@@ -26,7 +26,7 @@ for f in "$@"; do
   if ! grep -qxF "$rel" "$TRACKED_FILE"; then
     echo "Adding $rel to tracked mod files"
     echo "$rel" >>"$TRACKED_FILE"
-    echo "!$rel" >>".gitignore"
+    echo "!scripts/$rel" >>".gitignore"
   fi
 done
 

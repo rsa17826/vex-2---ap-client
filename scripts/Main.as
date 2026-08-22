@@ -404,8 +404,6 @@ package
           this.introSkipped = true;
           gotoAndStop(3);
           this.transitionIn = new gameTransitionIn();
-          addChild(this.transitionIn);
-          this.findColourChangeTransition(this.transitionIn);
           this.playGameFunction();
         }
         else if (this.introAnimation)
@@ -414,8 +412,6 @@ package
           {
             gotoAndStop(3);
             this.transitionIn = new gameTransitionIn();
-            addChild(this.transitionIn);
-            this.findColourChangeTransition(this.transitionIn);
           }
         }
       }
@@ -1239,7 +1235,6 @@ package
       {
         if (this.transitionIn.currentFrame == this.transitionIn.totalFrames)
         {
-          removeChild(this.transitionIn);
           this.transitionIn = null;
         }
       }
@@ -1247,13 +1242,12 @@ package
       {
         this.fadingIn = true;
         trace("fade in");
-        removeChild(this.transitionOut);
         trace("removed");
         this.transitionOut = null;
-        this.transitionIn = new gameTransitionIn();
-        addChild(this.transitionIn);
+        // this.transitionIn = new gameTransitionIn();
+        // addChild(this.transitionIn);
         trace("transitionIn made");
-        this.findColourChangeTransition(this.transitionIn);
+        // this.findColourChangeTransition(this.transitionIn);
         if (currentFrame == 1)
         {
           gotoAndStop(2);
@@ -1269,7 +1263,7 @@ package
             if (_loc1_ == 13)
             {
               this.backToMenu(6);
-              setChildIndex(this.transitionIn, numChildren - 1);
+              // setChildIndex(this.transitionIn, numChildren - 1);
               return;
             }
             if (!this.levelCleared)
@@ -1348,7 +1342,7 @@ package
           removeChild(this.window);
           this.window = null;
         }
-        setChildIndex(this.transitionIn, numChildren - 1);
+        // setChildIndex(this.transitionIn, numChildren - 1);
       }
     }
 
@@ -1869,8 +1863,6 @@ package
       if (this.transitionOut == null)
       {
         this.transitionOut = new gameTransition();
-        addChild(this.transitionOut);
-        this.findColourChangeTransition(this.transitionOut);
       }
     }
 
@@ -2455,8 +2447,6 @@ package
     public function playGameFunction():void
     {
       this.transitionOut = new gameTransition();
-      addChild(this.transitionOut);
-      this.findColourChangeTransition(this.transitionOut);
       this.frameDestination = 4;
       this.levelDestination = 2;
       this.fadingIn = false;
@@ -2467,8 +2457,6 @@ package
       if (!this.transitionOut && !this.transitionIn)
       {
         this.transitionOut = new gameTransition();
-        addChild(this.transitionOut);
-        this.findColourChangeTransition(this.transitionOut);
         this.frameDestination = 5;
       }
     }
