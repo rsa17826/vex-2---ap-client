@@ -1,5 +1,5 @@
 // prettier-ignore
-const ASSETS = ["/","/main.css","/ruffle/ruffle.js","/apClient.js","/hintTracker.js","/aplog.js","/indexeddbProxy.js","/ruffle/core.ruffle.15317142e75ce021ac04.js","/ruffle/6ce4f603a1fe7cc88438.wasm","/vex2-modded.swf",]
+const ASSETS = ["/sw.js",]
 // Install Service Worker and cache core assets
 self.addEventListener("install", (event) => {
   self.skipWaiting()

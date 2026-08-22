@@ -37,3 +37,6 @@ images
 !scripts/achievementsWindow.as
 !scripts/achievementsLog.as
 !scripts/gameTransitionIn.as
+*.7z
+.direnv
+*.zip
