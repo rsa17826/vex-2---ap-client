@@ -168,7 +168,7 @@ package
 
     public function teleportToMouse(param1:MouseEvent):void
     {
-      if (!ExternalInterface.call("debugModeEnabled")){return}
+      if (!ExternalInterface.call("debugModeEnabled")||!stage){return}
       var _loc2_:Point = new Point(stage.mouseX, stage.mouseY);
       if (this.parent)
       {
