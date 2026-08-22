@@ -101,6 +101,8 @@ for filepath in "$PROJECT_DIR"/asasm/*; do
   fi
 done
 
+python patch_swf.py "$OUT_SWF" "$OUT_SWF"
+
 echo ""
 echo "Done. Output: $OUT_SWF"
 echo "Tracked files ($(wc -l <"$TRACKED_FILE" | tr -d ' ')):"

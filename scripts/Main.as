@@ -229,6 +229,22 @@ package
 
     public function Main()
     {
+      if (this.darkBG == null)
+      {
+        if (ExternalInterface.call("useDarkMode"))
+        {
+          this.darkBG = new darkOverlay(true);
+          this.darkBG.scaleX = 20;
+          this.darkBG.scaleY = 20;
+          this.darkBG.alpha = .9;
+          this.addChild(this.darkBG);
+          this.setChildIndex(this.darkBG, 1);
+        }
+        if (this.level === null)
+        {
+          trace("aaaaaaaaaaaaa");
+        }
+      }
       super();
       addFrameScript(0, this.frame1, 1, this.frame2, 2, this.frame3);
       addEventListener(Event.ADDED_TO_STAGE, this.init, false, 0, true);
@@ -382,7 +398,6 @@ package
       {
         if (ExternalInterface.call("useDarkMode"))
         {
-          this.playSound("nightVision", false);
           this.darkBG = new darkOverlay(true);
           this.darkBG.scaleX = 20;
           this.darkBG.scaleY = 20;
@@ -1312,7 +1327,6 @@ package
         }
         else
         {
-          gotoAndStop(1);
           gotoAndStop(this.frameDestination);
           if (currentFrame == 4 || currentFrame == 6)
           {
@@ -2187,6 +2201,11 @@ package
       {
         if (this.logo)
         {
+            if (this.logo.currentFrame != this.logo.totalFrames)
+  {
+    this.logo.gotoAndStop(this.logo.totalFrames);
+  }
+
           if (this.logo.currentFrame == this.logo.totalFrames)
           {
             additionalMaths.easeToPoint(this.logo, this.logo.x, -185);
@@ -2204,8 +2223,8 @@ package
                 {
                   if (_loc2_.buttonMask.currentFrame < _loc2_.buttonMask.totalFrames)
                   {
-                    _loc2_.buttonMask.play();
-                    _loc2_.buttonBG.gotoAndStop(_loc2_.buttonMask.currentFrame);
+  _loc2_.buttonMask.gotoAndStop(_loc2_.buttonMask.totalFrames);
+  _loc2_.buttonBG.gotoAndStop(_loc2_.buttonMask.totalFrames);
                   }
                 }
               }
@@ -2232,8 +2251,8 @@ package
           {
             if (_loc2_.buttonMask.currentFrame > 1)
             {
-              _loc2_.buttonMask.gotoAndStop(_loc2_.buttonMask.currentFrame - 1);
-              _loc2_.buttonBG.gotoAndStop(_loc2_.buttonMask.currentFrame);
+  _loc2_.buttonMask.gotoAndStop(1);
+  _loc2_.buttonBG.gotoAndStop(1);
             }
             else if (this.menuDestination == -1)
             {
