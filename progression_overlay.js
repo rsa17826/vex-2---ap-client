@@ -242,9 +242,6 @@ function init() {
   buildOverlay()
   window.addEventListener("keydown", (e) => {
     if (e.key === "Tab") {
-      const tag =
-        document.activeElement && document.activeElement.tagName
-      if (tag === "INPUT" || tag === "TEXTAREA") return
       e.preventDefault()
       toggleOverlay()
     }
