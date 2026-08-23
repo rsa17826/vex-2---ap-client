@@ -597,14 +597,6 @@ window.addEventListener(
       }
     }
 
-    // Existing space/arrow key protection
-    if (
-      [37, 38, 39, 40, 32, 8].indexOf(e.keyCode) > -1 &&
-      document.activeElement?.nodeName != "INPUT" &&
-      document.activeElement?.nodeName != "TEXTAREA"
-    ) {
-      e.preventDefault()
-    }
     if (e.key == "`") {
       e.preventDefault()
       if (document.activeElement?.id != "apChatSayInput") {

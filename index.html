@@ -352,10 +352,11 @@
         }
       }
       function killPlayer() {
-        player.deathLinkIncoming()
+        if (ap.slotData.death_link) player.deathLinkIncoming()
       }
       function sendDeathLink(msg) {
-        ap.sendDeathLink(`@pink!${ap.playerName}@! @red!${msg}@!`)
+        if (ap.slotData.death_link)
+          ap.sendDeathLink(`@pink!${ap.playerName}@! @red!${msg}@!`)
       }
       window.onApConnect.push(() => {
         player.style.pointerEvents = "all"
