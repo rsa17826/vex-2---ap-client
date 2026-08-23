@@ -2585,7 +2585,7 @@ package
 
     private function unlockNewgroundsMedal(param1:String):void
     {
-      API.unlockMedal(param1);
+      // API.unlockMedal(param1);
     }
 
     public function loadGame():void
