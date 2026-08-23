@@ -23,131 +23,68 @@ package
   {
 
     protected var aDown:Boolean = false;
-
     protected var wDown:Boolean = false;
-
     protected var wHold:Boolean = false;
-
     protected var sDown:Boolean = false;
-
     protected var sHold:Boolean = false;
-
     protected var dDown:Boolean = false;
-
     protected var rDown:Boolean = false;
-
     protected var rHold:Boolean = false;
-
     protected var spaceDown:Boolean = false;
-
     public const startGravity:Number = 0.5;
-
     public var gravity:Number = 0.5;
-
     protected var friction:Number = 0.98;
-
     public var maxSpeed:Number = 6;
-
     protected var acc:Number = 1;
-
     public var breathe:int = 10;
-
     public var startPoint:Point = new Point();
-
     public var checkPoint:Point = new Point();
-
     public var ySpeed:Number = 0;
-
     public var xSpeed:Number = 0;
-
     protected var running:Boolean = false;
-
     public var swimming:Boolean = false;
-
     public var falling:Boolean = true;
-
     public var kicking:Boolean = false;
-
     public var squeezing:Boolean = false;
-
     public var teleporting:Boolean = false;
-
     public var diving:Boolean = false;
-
     public var hanging:Boolean = false;
-
     protected var scaling:Boolean = false;
-
     public var crouching:Boolean = false;
-
     public var pushing:Boolean = false;
-
     protected var scaleHistory:MovieClip = null;
-
     protected var scaleTime:int = 0;
-
     protected var maxScaleTime:int = 45;
-
     protected var hangTime:int = 10;
-
     protected var maxHangCoolDown:int = 10;
-
     protected var fallingMax:int = 20;
-
     protected var poleTimer:int = 0;
-
     public var breatheTimer:Timer;
-
     public var startStageHeight:int;
-
     public var keysObtained:int = 0;
-
     protected var rotationDest:int = 0;
-
     protected var swimmingLegs:Array = [];
-
     protected var lastTrail:Boolean = true;
-
     public var currentTint:Color = new Color();
-
     public var tintStr:int = 0;
-
     public var levelTint:Color = new Color();
-
     public var levelTintStr:int = 0;
-
     public var destLevelTintStr:int = 0;
-
     public var levelTintColour:uint = 0;
-
     public var feet:MovieClip;
-
     public var body:MovieClip;
-
     public var head:MovieClip;
-
     public var hands:MovieClip;
-
     public var inner_animation:MovieClip;
-
     public var main:MovieClip = MovieClip(root);
-
     public var level:MovieClip = MovieClip(parent);
-
     public var currentSlope:MovieClip = null;
-
     public var currentPool:MovieClip = null;
-
     public var currentLever:MovieClip = null;
-
     public var currentPole:MovieClip = null;
-
     public var currentCannon:MovieClip = null;
-
     public var currentPulley:MovieClip = null;
-
     public var checkpointsReached:int = 0;
-
     private var metersMoved:Number = 0;
 
     public function player()
@@ -168,7 +105,10 @@ package
 
     public function teleportToMouse(param1:MouseEvent):void
     {
-      if (!ExternalInterface.call("debugModeEnabled")||!stage){return}
+      if (!ExternalInterface.call("debugModeEnabled") || !stage)
+      {
+        return;
+      }
       var _loc2_:Point = new Point(stage.mouseX, stage.mouseY);
       if (this.parent)
       {
@@ -181,9 +121,7 @@ package
     }
 
     public var arrayIndex:int;
-
     public var toggle:MovieClip;
-
     private var shadow:DropShadowFilter;
 
     private var bevel:BevelFilter;
@@ -1058,7 +996,7 @@ package
         {
           if (!this.wHold)
           {
-            if (!(this.crouching  && ExternalInterface.call("canUseMove", "slide")))
+            if (!(this.crouching && ExternalInterface.call("canUseMove", "slide")))
             {
               this.ySpeed = -8;
               y += this.ySpeed;
@@ -1093,122 +1031,142 @@ package
     }
 
     private function getCrouch():void
-{
-  if (!this.swimming)
-  {
-    if (!this.falling)
     {
-      if (!this.scaling)
+      if (!this.swimming)
       {
-        if (!this.hanging)
+        if (!this.falling)
         {
-          if (!this.kicking)
+          if (!this.scaling)
           {
-            if (this.sDown)
+            if (!this.hanging)
             {
-              if (this.currentLever != null)
+              if (!this.kicking)
               {
-                if (currentFrame != 9)
+                if (this.sDown)
                 {
-                  if (this.currentLever.leverTime <= 0)
+                  if (this.currentLever != null)
                   {
-                    gotoAndStop(9);
-                    this.xSpeed = 0;
-                  }
-                }
-              }
-              else
-              {
-                if (this.currentPole)
-                {
-                  this.currentPole.redSection.alpha = 0;
-                  this.currentPole = null;
-                  this.poleTimer = 0;
-                  return;
-                }
-                if (this.currentPulley)
-                {
-                  this.pulleyDrop();
-                  return;
-                }
-                var canSlide:Boolean = ExternalInterface.call("canUseMove", "slide");
-                if (!(this.crouching && canSlide))
-                {
-                  if (this.xSpeed < 1 && this.xSpeed > -1)
-                  {
-                    if (canSlide) { gotoAndStop(7); }
-                    this.crouching = true;
-                    this.sHold = true;
-                  }
-                  else if (this.currentSlope is leftSlope)
-                  {
-                    if (this.dDown)
+                    if (currentFrame != 9)
                     {
-                      if (canSlide) { gotoAndStop(7); this.xSpeed = 0; }
-                      this.crouching = true;
-                      this.sHold = true;
-                    }
-                    else
-                    {
-                      if (canSlide) { gotoAndStop(8); }
-                      this.crouching = true;
-                      this.sHold = true;
-                    }
-                  }
-                  else if (this.currentSlope is rightSlope)
-                  {
-                    if (this.aDown)
-                    {
-                      if (canSlide) { gotoAndStop(7); this.xSpeed = 0; }
-                      this.crouching = true;
-                      this.sHold = true;
-                    }
-                    else
-                    {
-                      if (canSlide) { gotoAndStop(8); }
-                      this.crouching = true;
-                      this.sHold = true;
+                      if (this.currentLever.leverTime <= 0)
+                      {
+                        gotoAndStop(9);
+                        this.xSpeed = 0;
+                      }
                     }
                   }
                   else
                   {
-                    if (canSlide) { gotoAndStop(8); }
-                    this.crouching = true;
-                    this.sHold = true;
-                  }
-                }
-                else
-                {
-                  if (currentFrame == 8)
-                  {
-                    if (this.currentSlope is leftSlope)
+                    if (this.currentPole)
                     {
-                      if (this.dDown)
+                      this.currentPole.redSection.alpha = 0;
+                      this.currentPole = null;
+                      this.poleTimer = 0;
+                      return;
+                    }
+                    if (this.currentPulley)
+                    {
+                      this.pulleyDrop();
+                      return;
+                    }
+                    var canSlide:Boolean = ExternalInterface.call("canUseMove", "slide");
+                    if (!(this.crouching && canSlide))
+                    {
+                      if (this.xSpeed < 1 && this.xSpeed > -1)
                       {
-                        gotoAndStop(7);
+                        if (canSlide)
+                        {
+                          gotoAndStop(7);
+                        }
                         this.crouching = true;
                         this.sHold = true;
-                        this.xSpeed = 0;
+                      }
+                      else if (this.currentSlope is leftSlope)
+                      {
+                        if (this.dDown)
+                        {
+                          if (canSlide)
+                          {
+                            gotoAndStop(7);
+                            this.xSpeed = 0;
+                          }
+                          this.crouching = true;
+                          this.sHold = true;
+                        }
+                        else
+                        {
+                          if (canSlide)
+                          {
+                            gotoAndStop(8);
+                          }
+                          this.crouching = true;
+                          this.sHold = true;
+                        }
+                      }
+                      else if (this.currentSlope is rightSlope)
+                      {
+                        if (this.aDown)
+                        {
+                          if (canSlide)
+                          {
+                            gotoAndStop(7);
+                            this.xSpeed = 0;
+                          }
+                          this.crouching = true;
+                          this.sHold = true;
+                        }
+                        else
+                        {
+                          if (canSlide)
+                          {
+                            gotoAndStop(8);
+                          }
+                          this.crouching = true;
+                          this.sHold = true;
+                        }
+                      }
+                      else
+                      {
+                        if (canSlide)
+                        {
+                          gotoAndStop(8);
+                        }
+                        this.crouching = true;
+                        this.sHold = true;
+                      }
+                    }
+                    else
+                    {
+                      if (currentFrame == 8)
+                      {
+                        if (this.currentSlope is leftSlope)
+                        {
+                          if (this.dDown)
+                          {
+                            gotoAndStop(7);
+                            this.crouching = true;
+                            this.sHold = true;
+                            this.xSpeed = 0;
+                          }
+                        }
+                      }
+                      if (currentFrame == 8)
+                      {
+                        if (this.currentSlope is rightSlope)
+                        {
+                          if (this.aDown)
+                          {
+                            gotoAndStop(7);
+                            this.crouching = true;
+                            this.sHold = true;
+                            this.xSpeed = 0;
+                          }
+                        }
                       }
                     }
                   }
-                  if (currentFrame == 8)
-                  {
-                    if (this.currentSlope is rightSlope)
-                    {
-                      if (this.aDown)
-                      {
-                        gotoAndStop(7);
-                        this.crouching = true;
-                        this.sHold = true;
-                        this.xSpeed = 0;
-                      }
-                    }
-                  }
                 }
-              }
-            }
-            else if (currentFrame == 7 || currentFrame == 8)
+                else if (currentFrame == 7 || currentFrame == 8)
                 {
                   this.inner_animation.play();
                   if (this.inner_animation.currentFrame == this.inner_animation.totalFrames)
@@ -1265,10 +1223,10 @@ package
       if (_loc2_ == 32)
       {
         this.spaceDown = true;
-        ExternalInterface.call("log", "player is at", this.x, this.y, this.checkpointsReached)
+        ExternalInterface.call("log", "player is at", this.x, this.y, this.checkpointsReached);
       }
       // NOTE q||z
-      if (_loc2_ == 81||_loc2_==90)
+      if (_loc2_ == 81 || _loc2_ == 90)
       {
         this.main.levelButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
       }
@@ -2309,10 +2267,10 @@ package
 
     protected function boundsInvis():void
     {
-      this.feet.visible = false;
-      this.body.visible = false;
-      this.hands.visible = false;
-      this.head.visible = false;
+      this.feet.visible = ExternalInterface.call("debugModeEnabled");
+      this.body.visible = this.feet.visible;
+      this.hands.visible = this.feet.visible;
+      this.head.visible = this.feet.visible;
     }
 
     public function kill(param1:int = 0):void
@@ -2350,6 +2308,7 @@ package
 
     public function respawn(param1:Boolean = false):void
     {
+      this.boundsInvis();
       var _loc6_:int = 0;
       this.destLevelTintStr = 0;
       if (MovieClip(parent).currentFrame != 2)
@@ -2385,7 +2344,7 @@ package
       this.currentCannon = null;
       this.currentPulley = null;
       this.breathe = 10;
-      visible = false;
+      visible = true;
       scaleX = 1;
       scaleY = 1;
       this.gravity = this.startGravity;
@@ -2432,6 +2391,7 @@ package
         _loc4_[_loc5_].respawn();
         _loc5_++;
       }
+      camera.snap(this, this.level, 320, 280);
     }
 
     public function reset():void
@@ -2868,8 +2828,9 @@ package
         if (this.body.hitTestObject(_loc1_[_loc3_]))
         {
           _loc2_ = true;
-          if (!ExternalInterface.call("canUseMove", "swim")){
-            this.kill(18)
+          if (!ExternalInterface.call("canUseMove", "swim"))
+          {
+            this.kill(18);
           }
           if (currentFrame != 10)
           {
