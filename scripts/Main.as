@@ -1065,7 +1065,7 @@ package
         _loc2_.text = "TODO - deathlink message.";
       }
       if (param1 != 19)
-      ExternalInterface.call("sendDeathLink", _loc2_.text)
+        ExternalInterface.call("sendDeathLink", _loc2_.text);
     }
 
     private function init(param1:Event):void
@@ -2201,35 +2201,31 @@ package
       {
         if (this.logo)
         {
-            if (this.logo.currentFrame != this.logo.totalFrames)
-  {
-    this.logo.gotoAndStop(this.logo.totalFrames);
-  }
-
-          if (this.logo.currentFrame == this.logo.totalFrames)
+          if (this.logo.currentFrame != this.logo.totalFrames)
           {
-            additionalMaths.easeToPoint(this.logo, this.logo.x, -185);
-            additionalMaths.easeToPoint(this.menuSponsor, this.menuSponsor.x, 490);
-            additionalMaths.easeToPoint(this.facebook, this.facebook.x, 505);
-            additionalMaths.easeToPoint(this.twitter, this.twitter.x, 505);
-            additionalMaths.easeToPoint(this.vexButton, this.vexButton.x, 440);
-            _loc1_ = 0;
-            while (_loc1_ < numChildren)
+            this.logo.gotoAndStop(this.logo.totalFrames);
+          }
+          additionalMaths.easeToPoint(this.logo, this.logo.x, -185);
+          additionalMaths.easeToPoint(this.menuSponsor, this.menuSponsor.x, 490);
+          additionalMaths.easeToPoint(this.facebook, this.facebook.x, 505);
+          additionalMaths.easeToPoint(this.twitter, this.twitter.x, 505);
+          additionalMaths.easeToPoint(this.vexButton, this.vexButton.x, 440);
+          _loc1_ = 0;
+          while (_loc1_ < numChildren)
+          {
+            _loc2_ = getChildAt(_loc1_);
+            if (_loc2_ is button)
             {
-              _loc2_ = getChildAt(_loc1_);
-              if (_loc2_ is button)
+              if (_loc2_ is playGame || _loc2_ is stageBuilder || _loc2_ is achievements || _loc2_ is options || _loc2_ is moreGames)
               {
-                if (_loc2_ is playGame || _loc2_ is stageBuilder || _loc2_ is achievements || _loc2_ is options || _loc2_ is moreGames)
+                if (_loc2_.buttonMask.currentFrame < _loc2_.buttonMask.totalFrames)
                 {
-                  if (_loc2_.buttonMask.currentFrame < _loc2_.buttonMask.totalFrames)
-                  {
-  _loc2_.buttonMask.gotoAndStop(_loc2_.buttonMask.totalFrames);
-  _loc2_.buttonBG.gotoAndStop(_loc2_.buttonMask.totalFrames);
-                  }
+                  _loc2_.buttonMask.gotoAndStop(_loc2_.buttonMask.totalFrames);
+                  _loc2_.buttonBG.gotoAndStop(_loc2_.buttonMask.totalFrames);
                 }
               }
-              _loc1_++;
             }
+            _loc1_++;
           }
         }
       }
@@ -2251,8 +2247,8 @@ package
           {
             if (_loc2_.buttonMask.currentFrame > 1)
             {
-  _loc2_.buttonMask.gotoAndStop(1);
-  _loc2_.buttonBG.gotoAndStop(1);
+              _loc2_.buttonMask.gotoAndStop(1);
+              _loc2_.buttonBG.gotoAndStop(1);
             }
             else if (this.menuDestination == -1)
             {
@@ -2483,7 +2479,7 @@ package
     public function incAchievement(param1:int, param2:int = 1):void
     {
       var _loc3_:Array = achievementsLog["achievement" + param1];
-      ExternalInterface.call("log", "incAchievement", param1, param2, _loc3_)
+      ExternalInterface.call("log", "incAchievement", param1, param2, _loc3_);
       if (_loc3_[2] < _loc3_[3])
       {
         _loc3_[2] += param2;
@@ -2547,7 +2543,7 @@ package
         this.incAchievement(this.level.currentFrame - 1);
         if (this.level.currentFrame == 5 && this.player.checkpointsReached == 0)
         {
-          this.incAchievement(17)
+          this.incAchievement(17);
           // ExternalInterface.call("newItem", "stage3 - achievement:-1:LEVEL 3 NO CHECKPOINTS");
         }
       }
@@ -2569,8 +2565,9 @@ package
       addChild(_loc3_);
       this.findColourChangeTransition(_loc3_.bgColours);
       // NOTE show correct icon when unlocking custom achievement
-      if (param1==17){
-        param1=12
+      if (param1 == 17)
+      {
+        param1 = 12;
       }
       var _loc4_:* = "achievement" + param1 + "Button";
       _loc3_.icon = new (getDefinitionByName(_loc4_))();
