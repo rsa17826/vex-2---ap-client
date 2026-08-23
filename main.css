@@ -248,3 +248,70 @@ button {
   --text-primary: #e0e0e0;
   --border-color: #333333;
 }
+
+#movesList {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  color: #e6e6e6;
+  display: flex;
+  justify-content: center;
+  padding: 0px 0px;
+  pointer-events: none;
+  .list {
+    width: 100%;
+    max-width: 360px;
+  }
+  .move {
+    padding-left: 4px;
+    display: flex;
+    align-items: center;
+    height: 20px;
+    gap: 4px;
+    border-radius: 10px;
+    background: #1a1d24;
+    border: 1px solid #2a2d36;
+    cursor: pointer;
+    user-select: none;
+    /* .icon {
+      width: 20px;
+      height: 20px;
+    } */
+    .name {
+      flex: 1;
+      font-size: 15px;
+      color: #777;
+      transition: color 0.15s;
+    }
+    .check {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      margin-right: 4px;
+      border: 2px solid #444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: transparent;
+      flex-shrink: 0;
+    }
+  }
+  .move:hover {
+    border-color: #3a3d46;
+  }
+
+  .move.obtained {
+    background: #16241c;
+    border-color: #2f6b46;
+
+    .name {
+      color: #eafff0;
+    }
+    .check {
+      background: #3ddc84;
+      border-color: #3ddc84;
+      color: #0f1115;
+    }
+  }
+}

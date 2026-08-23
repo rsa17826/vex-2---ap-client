@@ -32,8 +32,13 @@
     <script src="any.js"></script>
     <script src="indexeddbProxy.js"></script>
     <div id="game" style="width: 800px; height: 600px"></div>
+    <div id="movesList">
+      <div class="list">
+        <div id="moves"></div>
+      </div>
+    </div>
     <script>
-      // TODO make move overlay
+      window.moves = []
       Object.assign(window, console)
       function debugModeEnabled() {
         return localStorage.debug == "true"
@@ -56,6 +61,7 @@
           player[`setActLocked_${i}`]?.(false)
           unlockedActs.add(Number(i))
         }
+        renderMovesList()
       }
       window.moves ??= []
       const itemList = {
@@ -269,6 +275,7 @@
           ...defaultSaveData,
         }
         window.moves = saveData[getSaveFileId()]?.moves
+        renderMovesList()
         return {
           ...defaultSaveData,
           ...saveData[getSaveFileId()],
@@ -479,6 +486,35 @@
         pmax()
         saveGame(sd)
       })
+      const allMoves = [
+        "bounce",
+        "cannon",
+        "kick",
+        "lever",
+        "polejump",
+        "portal",
+        "pulley",
+        "slide",
+        "swim",
+        "walljump",
+      ]
+
+      const container = document.getElementById("moves")
+
+      function renderMovesList() {
+        container.innerHTML = ""
+        allMoves.forEach((m, i) => {
+          const el = document.createElement("div")
+          el.className = "move" + (canUseMove(m) ? " obtained" : "")
+          el.innerHTML = `
+            <div class="name">${m}</div>
+            <div class="check">✓</div>
+            `
+          container.appendChild(el)
+        })
+      }
+      renderMovesList()
+      window.onReceivedItems.push(renderMovesList)
     </script>
   </body>
 </html>

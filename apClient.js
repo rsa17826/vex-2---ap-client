@@ -21,6 +21,8 @@
  */
 
 window.onApNotConnecting ??= []
+window.onReceivedItems ??= []
+window.onRoomUpdate ??= []
 window.apLog ??= console.log.bind("[ARCHIPELAGO]")
 window.apWarn ??= console.warn.bind("[ARCHIPELAGO]")
 window.apError ??= console.error.bind("[ARCHIPELAGO]")
@@ -292,6 +294,7 @@ class ArchipelagoClient {
         window.checksInFlight.delete(loc)
       })
     }
+    window.onRoomUpdate.forEach((e) => e())
   }
   /**
    * Handshake Step 2: Server sends RoomInfo.
@@ -622,6 +625,7 @@ class ArchipelagoClient {
       alreadyReceivedItemsList.forEach((e) => apLog(...e))
       alreadyReceivedItemsList = []
     }
+    window.onReceivedItems.forEach((e) => e())
   }
 
   /**
