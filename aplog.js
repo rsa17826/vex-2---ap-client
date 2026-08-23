@@ -575,8 +575,10 @@ function toggleCollapse(on) {
     window._apUpdateToastOpacities()
     // NOTE refocus canvas when closing
     const canvas = player.querySelector("canvas")
-    canvas.tabIndex = 0
-    canvas.focus()
+    if (canvas) {
+      canvas.tabIndex = 0
+      canvas.focus()
+    }
   } else {
     window._apResetEntryStyles()
   }
