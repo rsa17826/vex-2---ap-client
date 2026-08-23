@@ -1062,7 +1062,7 @@ package
       }
       else if (param1 == 19)
       {
-        _loc2_.text = "TODO - deathlink message.";
+        _loc2_.text = "your soulmate died.";
       }
       if (param1 != 19)
         ExternalInterface.call("sendDeathLink", _loc2_.text);

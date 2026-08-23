@@ -31,6 +31,7 @@ package
     protected var rDown:Boolean = false;
     protected var rHold:Boolean = false;
     protected var spaceDown:Boolean = false;
+    protected var fc:Number = 4;
     public const startGravity:Number = 0.5;
     public var gravity:Number = 0.5;
     protected var friction:Number = 0.98;
@@ -118,6 +119,7 @@ package
       this.y = _loc2_.y;
       this.xSpeed = 0;
       this.ySpeed = 0;
+      fc = 0;
     }
 
     public var arrayIndex:int;
@@ -2344,7 +2346,7 @@ package
       this.currentCannon = null;
       this.currentPulley = null;
       this.breathe = 10;
-      visible = true;
+      visible = false;
       scaleX = 1;
       scaleY = 1;
       this.gravity = this.startGravity;
@@ -2391,7 +2393,17 @@ package
         _loc4_[_loc5_].respawn();
         _loc5_++;
       }
-      camera.snap(this, this.level, 320, 280);
+      // NOTE don't move camera when using clicktp
+      if (this.fc >= 4)
+        camera.snap(this, this.level, 320, 280);
+      // visible = true;
+    }
+    public function countFrames(event:Event):void
+    {
+      if (this.fc < 4)
+      {
+        this.fc++;
+      }
     }
 
     public function reset():void
