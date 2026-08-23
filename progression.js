@@ -185,8 +185,7 @@ const PROG = [
     "requires": [
       [
         "move:walljump",
-        "move:lever",
-        "move:bounce"
+        "move:lever"
       ]
     ],
     "receive": [
@@ -463,8 +462,7 @@ const PROG = [
       [
         "move:lever",
         "move:walljump",
-        "move:slide",
-        "move:bounce"
+        "move:slide"
       ]
     ],
     "receive": [
@@ -681,6 +679,12 @@ const PROG = [
         "level:stage5",
         "move:cannon",
         "move:walljump"
+      ],
+      [
+        "level:stage4",
+        "move:walljump",
+        "move:swim",
+        "???"
       ]
     ],
     "receive": [
