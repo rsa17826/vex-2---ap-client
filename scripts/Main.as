@@ -1286,7 +1286,7 @@ package
               this.saveTimes(this.level.currentFrame);
               this.checkClearStageAchievements();
               ++this.stats[1];
-              this.incAchievement(26);
+              // this.incAchievement(26);
             }
             this.level.gotoAndStop(2);
             this.changeColours();
@@ -1786,7 +1786,7 @@ package
           {
             this.incAchievement(21);
           }
-          // this.incAchievement(22);
+          this.incAchievement(22);
           this.incAchievement(24);
         }
         else if (_loc6_ == 1)
@@ -1797,7 +1797,7 @@ package
           }
           if (_loc5_ > 2)
           {
-            // this.incAchievement(22);
+            this.incAchievement(22);
             this.incAchievement(24);
           }
           this.incAchievement(23);
