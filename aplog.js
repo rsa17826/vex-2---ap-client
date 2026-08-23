@@ -587,7 +587,6 @@ function toggleCollapse(on) {
 window.addEventListener(
   "keydown",
   function (e) {
-    // Check for Tab key (9)
     if ((e.key == "r" && e.ctrlKey) || e.key == "F5") {
       location.reload()
     }
@@ -595,14 +594,6 @@ window.addEventListener(
       e.stopPropagation()
       e.stopImmediatePropagation()
       return
-    }
-    if (e.keyCode === 9) {
-      e.preventDefault() // Stop default browser focus switching
-
-      var mapIframe = document.getElementById("map")
-      if (mapIframe) {
-        mapIframe.classList.toggle("in-front")
-      }
     }
 
     if (e.key == "`") {
