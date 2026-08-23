@@ -121,28 +121,6 @@ const PROG = [
     ]
   },
   {
-    "room": "hub",
-    "requires": [
-      [
-        "level:stage0",
-        "level:stage1",
-        "level:stage2",
-        "level:stage3",
-        "level:stage4",
-        "level:stage5",
-        "level:stage6",
-        "level:stage7",
-        "level:stage8",
-        "level:stage9",
-        "level:stage10"
-      ]
-    ],
-    "receive": [
-      "achievement:16:BUZZ LIGHTYEAR",
-      "achievement:24:OLYMPIAN"
-    ]
-  },
-  {
     "room": "stage0",
     "requires": [
       [
@@ -277,8 +255,7 @@ const PROG = [
         "move:polejump"
       ],
       [
-        "move:lever",
-        "move:walljump"
+        "move:lever"
       ]
     ],
     "receive": [
@@ -477,8 +454,7 @@ const PROG = [
     "receive": [
       "achievement:8:ACT 7",
       "flag:beat stage7",
-      "level:stage8",
-      "star:0"
+      "level:stage8"
     ]
   },
   {
@@ -492,20 +468,7 @@ const PROG = [
       ]
     ],
     "receive": [
-      "star:0"
-    ]
-  },
-  {
-    "room": "stage8",
-    "requires": [
-      [
-        "move:lever",
-        "move:walljump",
-        "move:slide",
-        "move:bounce"
-      ]
-    ],
-    "receive": [
+      "star:0",
       "star:1"
     ]
   },
@@ -524,9 +487,7 @@ const PROG = [
     "receive": [
       "achievement:9:ACT 8",
       "flag:beat stage8",
-      "level:stage9",
-      "star:0",
-      "star:1"
+      "level:stage9"
     ]
   },
   {
@@ -577,7 +538,7 @@ const PROG = [
       ]
     ],
     "receive": [
-      "achievement:10:ACT 9",
+      "achievement:10:ACT MASTER",
       "flag:beat stage9",
       "level:stage10"
     ]
@@ -599,6 +560,12 @@ const PROG = [
         "move:walljump",
         "move:bounce",
         "move:pulley"
+      ],
+      [
+        "move:cannon",
+        "move:swim",
+        "move:bounce",
+        "move:walljump"
       ]
     ],
     "receive": [
@@ -712,7 +679,8 @@ const PROG = [
     "requires": [
       [
         "level:stage5",
-        "move:cannon"
+        "move:cannon",
+        "move:walljump"
       ]
     ],
     "receive": [
