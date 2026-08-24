@@ -7,6 +7,7 @@ SCRIPTS_DIR="$PROJECT_DIR/scripts"
 BASE_SWF="$PROJECT_DIR/vex2.swf"
 OUT_SWF="$PROJECT_DIR/vex2-modded.swf"
 TRACKED_FILE="$PROJECT_DIR/.modded_files"
+HASH_FILE="$PROJECT_DIR/.modded_hashes"
 IMPORT_DIR="$PROJECT_DIR/.import_staging"
 RABCDASM_DIR="$PROJECT_DIR/RABCDAsm"
 
@@ -35,21 +36,66 @@ if [[ ! -s "$TRACKED_FILE" ]]; then
   exit 1
 fi
 
-# Stage only the tracked files, preserving their relative package paths
+touch "$HASH_FILE"
+
+# Decide whether we can do an incremental compile: only possible if a
+# previously-built vex2-modded.swf already exists, since that's the file
+# we'd import the unchanged scripts' bytecode from / build on top of.
+INCREMENTAL=0
+IMPORT_BASE="$BASE_SWF"
+if [[ -f "$OUT_SWF" ]]; then
+  INCREMENTAL=1
+  IMPORT_BASE="$OUT_SWF"
+  echo "Found existing $(basename "$OUT_SWF") - checking for changed files (incremental compile)"
+fi
+
+get_stored_hash() {
+  awk -F'::' -v r="$1" '$1==r{print $2; found=1} END{if(!found) exit 1}' "$HASH_FILE" 2>/dev/null
+}
+
+# Determine which tracked files actually changed since the last compile
+CHANGED=()
+UNCHANGED=()
+while IFS= read -r rel; do
+  [[ -z "$rel" ]] && continue
+  current_hash=$(sha256sum "$SCRIPTS_DIR/$rel" | awk '{print $1}')
+  if [[ "$INCREMENTAL" -eq 1 ]]; then
+    if stored_hash=$(get_stored_hash "$rel") && [[ "$stored_hash" == "$current_hash" ]]; then
+      UNCHANGED+=("$rel")
+      continue
+    fi
+  fi
+  CHANGED+=("$rel")
+done <"$TRACKED_FILE"
+
+# Stage only the files that need (re)compiling, preserving their relative
+# package paths
 rm -rf "$IMPORT_DIR"
 mkdir -p "$IMPORT_DIR"
 
-echo "Staging tracked files:"
-while IFS= read -r rel; do
-  [[ -z "$rel" ]] && continue
-  echo "  - $rel"
-  mkdir -p "$IMPORT_DIR/$(dirname "$rel")"
-  cp "$SCRIPTS_DIR/$rel" "$IMPORT_DIR/$rel"
-done <"$TRACKED_FILE"
+if [[ "${#CHANGED[@]}" -eq 0 ]]; then
+  echo "No tracked files changed since last compile - skipping ffdec import."
+else
+  echo "Staging changed files:"
+  for rel in "${CHANGED[@]}"; do
+    echo "  - $rel"
+    mkdir -p "$IMPORT_DIR/$(dirname "$rel")"
+    cp "$SCRIPTS_DIR/$rel" "$IMPORT_DIR/$rel"
+  done
 
-# Run FFDec import for standard files
-echo "Running ffdec importScript..."
-ffdec -importScript "$BASE_SWF" "$OUT_SWF" "$IMPORT_DIR"
+  if [[ "${#UNCHANGED[@]}" -gt 0 ]]; then
+    echo "Skipping unchanged files:"
+    for rel in "${UNCHANGED[@]}"; do
+      echo "  - $rel"
+    done
+  fi
+
+  # Run FFDec import for the changed files, building on top of the existing
+  # modded swf when doing an incremental compile so unchanged bytecode is
+  # left alone.
+  echo "Running ffdec importScript..."
+  ffdec -importScript "$IMPORT_BASE" "$OUT_SWF" "$IMPORT_DIR"
+fi
 
 # --- DYNAMIC MULTI-ABC POST-PROCESS OVERRIDE ---
 for filepath in "$PROJECT_DIR"/asasm/*; do
@@ -103,7 +149,22 @@ done
 
 python patch_swf.py "$OUT_SWF" "$OUT_SWF"
 
+# Record fresh hashes for every currently-tracked file so the next run can
+# tell what changed. This rewrites the hash file (dropping entries for files
+# that are no longer tracked).
+: >"$HASH_FILE"
+while IFS= read -r rel; do
+  [[ -z "$rel" ]] && continue
+  current_hash=$(sha256sum "$SCRIPTS_DIR/$rel" | awk '{print $1}')
+  echo "${rel}::${current_hash}" >>"$HASH_FILE"
+done <"$TRACKED_FILE"
+
 echo ""
 echo "Done. Output: $OUT_SWF"
+if [[ "$INCREMENTAL" -eq 1 ]]; then
+  echo "Mode: incremental (${#CHANGED[@]} changed, ${#UNCHANGED[@]} unchanged)"
+else
+  echo "Mode: full compile"
+fi
 echo "Tracked files ($(wc -l <"$TRACKED_FILE" | tr -d ' ')):"
 cat "$TRACKED_FILE"
