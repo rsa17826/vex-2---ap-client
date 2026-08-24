@@ -2492,14 +2492,14 @@ package
           _loc3_[2] = _loc3_[3];
           this.unlockAchievement(param1);
           var map = {
-              "31": "stage1 - achievement:-1:VEXIPHOBIAX1",
-              "32": "stage2 - achievement:-1:VEXIPHOBIAX2",
-              "33": "stage3 - achievement:17:VEXIPHOBIAX3",
-              "34": "stage5 - achievement:-1:VEXIPHOBIAX5",
-              "35": "stage6 - achievement:-1:VEXIPHOBIAX6",
-              "36": "stage7 - achievement:-1:VEXIPHOBIAX7",
-              "37": "stage8 - achievement:-1:VEXIPHOBIAX8",
-              "38": "stage10 - achievement:-1:VEXIPHOBIAX10",
+              "31": "stage1 - achievement:31:VEXIPHOBIAX1",
+              "32": "stage2 - achievement:32:VEXIPHOBIAX2",
+              "33": "stage3 - achievement:33:VEXIPHOBIAX3",
+              "34": "stage5 - achievement:34:VEXIPHOBIAX5",
+              "35": "stage6 - achievement:35:VEXIPHOBIAX6",
+              "36": "stage7 - achievement:36:VEXIPHOBIAX7",
+              "37": "stage8 - achievement:37:VEXIPHOBIAX8",
+              "38": "stage10 - achievement:38:VEXIPHOBIAX10",
 
               "1": "stage0 - achievement:1:TUTORIAL",
               "2": "stage1 - achievement:2:ACT 1",
