@@ -898,24 +898,23 @@ package
         }
         _loc2_++;
       }
-      _loc1_.push("\n");
       if (this.attachmentsOn)
       {
-        _loc1_.push("attachmentsOn", 1);
+        _loc1_.push("\nattachmentsOn", 1);
       }
       else
       {
-        _loc1_.push("attachmentsOn", 0);
+        _loc1_.push("\nattachmentsOn", 0);
       }
       if (this.snapOn)
       {
-        _loc1_.push("snapOn", 1);
+        _loc1_.push("\nsnapOn", 1);
       }
       else
       {
-        _loc1_.push("snapOn", 0);
+        _loc1_.push("\nsnapOn", 0);
       }
-      _loc1_.push("this.guideLines", this.guideLines);
+      _loc1_.push("\nthis.guideLines", this.guideLines, "\n");
       return _loc1_;
     }
 
