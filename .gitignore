@@ -50,3 +50,5 @@ images
 !scripts/achievement31Button.as
 .modded_hashes
 !scripts/sbItem.as
+!scripts/stageButton.as
+!scripts/sbTopic1.as

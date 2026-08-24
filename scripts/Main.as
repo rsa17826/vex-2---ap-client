@@ -2799,11 +2799,19 @@ package
       this.loadGame();
     }
 
+    public function fm(e, i, arr):Boolean
+    {
+      return int(e) == e;
+    }
     private function renderStage():void
     {
       var _loc3_:* = undefined;
       var _loc4_:int = 0;
       trace(this.localMap);
+      this.localMap = this.localMap.filter(this.fm);
+      ExternalInterface.call("log", "this.localMap", this.localMap
+          // , this.savedStages
+        );
       trace("Level: ", this.level);
       trace("Player: ", this.level.player);
       trace("Portal: ", this.level.finishPortal);
@@ -2998,6 +3006,7 @@ package
     {
       var _loc4_:* = undefined;
       var _loc5_:int = 0;
+      this.localMap = this.localMap.filter(this.fm);
       param1.playerStart.x = this.localMap[0];
       param1.playerStart.y = this.localMap[1];
       param1.finishPortal.x = this.localMap[2];

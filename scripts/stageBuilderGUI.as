@@ -667,7 +667,10 @@ package
           _loc3_ = _loc2_.substr(8, _loc2_.length - 9);
           _loc4_ = getDefinitionByName(_loc3_) as Class;
           _loc5_ = new _loc4_();
-          _loc5_.x = this.selectedItems[_loc1_].x + 200;
+          _loc5_.rotation = this.selectedItems[_loc1_].rotation;
+          this.selectedItems[_loc1_].rotation = 0;
+          _loc5_.x = this.selectedItems[_loc1_].x + this.selectedItems[_loc1_].width;
+          this.selectedItems[_loc1_].rotation = _loc5_.rotation;
           _loc5_.y = this.selectedItems[_loc1_].y;
           _loc5_.width = this.selectedItems[_loc1_].width;
           _loc5_.height = this.selectedItems[_loc1_].height;
@@ -876,22 +879,22 @@ package
       while (_loc2_ < this.itemsAdded.length)
       {
         _loc3_ = this.itemsAdded[_loc2_];
-        _loc1_.push(this.findItemCode(_loc3_));
-        _loc1_.push(_loc3_.x, _loc3_.y);
+        _loc1_.push("\nid", this.findItemCode(_loc3_));
+        _loc1_.push("x", _loc3_.x, "y", _loc3_.y);
         var _savedRotation:Number = _loc3_.rotation;
         _loc3_.rotation = 0;
         if (_loc3_.editWidth)
         {
-          _loc1_.push(_loc3_.width);
+          _loc1_.push("w", _loc3_.width);
         }
         if (_loc3_.editHeight)
         {
-          _loc1_.push(_loc3_.height);
+          _loc1_.push("h", _loc3_.height);
         }
         _loc3_.rotation = _savedRotation;
         if (_loc3_.editRotation)
         {
-          _loc1_.push(_loc3_.rotation);
+          _loc1_.push("r", _loc3_.rotation);
         }
         _loc2_++;
       }
