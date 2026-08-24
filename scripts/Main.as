@@ -2552,9 +2552,26 @@ package
       else if (this.level.currentFrame > 2)
       {
         this.incAchievement(this.level.currentFrame - 1);
-        if (this.level.currentFrame == 5 && this.player.checkpointsReached == 0)
+        if (this.player.checkpointsReached == 0)
         {
-          this.incAchievement(33);
+          if (this.level.currentFrame == 3)
+            this.incAchievement(31);
+          else if (this.level.currentFrame == 4)
+            this.incAchievement(32);
+          else if (this.level.currentFrame == 5)
+            this.incAchievement(33);
+          else if (this.level.currentFrame == 7)
+            this.incAchievement(34);
+          else if (this.level.currentFrame == 8)
+            this.incAchievement(35);
+          else if (this.level.currentFrame == 9)
+            this.incAchievement(36);
+          else if (this.level.currentFrame == 10)
+            this.incAchievement(37);
+          else if (this.level.currentFrame == 12)
+            this.incAchievement(38);
+          else
+            ExternalInterface.call("apWarn", "@yellow!WARNING@! beat level with 0 cps - this.level.currentFrame", this.level.currentFrame);
         }
       }
       if (this.deaths == 0)
