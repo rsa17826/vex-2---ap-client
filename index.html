@@ -43,7 +43,7 @@
       function debugModeEnabled() {
         return localStorage.debug == "true"
       }
-      owo = (e) => e
+      window.owo ??= (e) => e
       function pmax() {
         window.moves = [
           "move:bounce",
@@ -511,7 +511,7 @@
           const el = document.createElement("div")
           el.className = "move" + (canUseMove(m) ? " obtained" : "")
           el.innerHTML = `
-            <div class="name">${m}</div>
+            <div class="name">${owo(m)}</div>
             <div class="check">✓</div>
             `
           container.appendChild(el)
