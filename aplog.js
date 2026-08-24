@@ -334,7 +334,7 @@ function apSendSayFromInput() {
     },
     checkpointSize: {
       alias: ["cps"],
-      desc: "changes the size of the checkpoint hitboxes\n    by default hitboxes are large first entrance to every stage and small after every reset of any stage\n    default keeps it this way\n    large and small force it to be consistently large/small every time\n    large only takes affect upon reentering a level or if still pre reset",
+      desc: "changes the size of the checkpoint hitboxes\n    by default hitboxes are large first entrance to every stage and small after every reset of any stage\n    default keeps it this way\n    large and small force it to be consistently large/small every time",
       args: [["size", "small/default/large"]],
       func(size = "default") {
         window.cps = size

@@ -8,7 +8,7 @@ package
       super();
     }
 
-    public static function easeToPoint(param1:Object, param2:int = 0, param3:int = 0, param4:int = 5):*
+    public static function easeToPoint(param1:Object, param2:int = 0, param3:int = 0, param4:int = 5, ...a):*
     {
       var _loc5_:Number = param2 - param1.x;
       var _loc6_:Number = param3 - param1.y;
@@ -16,11 +16,11 @@ package
       var _loc8_:Number = Number(Math.round(Math.sqrt(_loc5_ * _loc5_ + _loc6_ * _loc6_)));
       param1.x += Math.cos(_loc7_ / 180 * Math.PI) * (_loc8_ / param4);
       param1.y += Math.sin(_loc7_ / 180 * Math.PI) * (_loc8_ / param4);
-      // if (_loc8_ <= 0.5)
-      // {
-      param1.y = param3;
-      param1.x = param2;
-      // }
+      if (_loc8_ <= 0.5 || !a[0])
+      {
+        param1.y = param3;
+        param1.x = param2;
+      }
     }
 
     public static function getDistance(param1:Object, param2:Object):int

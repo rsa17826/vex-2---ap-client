@@ -48,6 +48,20 @@ package
         {
           this.nullCheckpoints();
           gotoAndStop(2);
+          var _loc2_a:Object = null;
+          var _loc3_a:* = undefined;
+          var _loc1_a:int = 0;
+          var cps = ExternalInterface.call("checkpointSize");
+          while (_loc1_a < this.animation.numChildren)
+          {
+            _loc2_a = this.animation.getChildAt(_loc1_a);
+            _loc3_a = new Point(_loc2_a.x, _loc2_a.y);
+            this.lettersArray.push(_loc3_a);
+            _loc2_a.alpha = 0;
+            _loc2_a.x = 40;
+            _loc2_a.y = 20;
+            _loc1_a++;
+          }
           this.scanLetters();
           this.player.checkPoint.x = x;
           this.player.checkPoint.y = y - 40;
@@ -68,7 +82,7 @@ package
           {
             _loc2_ = this.animation.getChildAt(_loc1_);
             _loc3_ = this.lettersArray[_loc1_];
-            additionalMaths.easeToPoint(_loc2_, _loc3_.x, _loc3_.y, _loc1_ + 2);
+            additionalMaths.easeToPoint(_loc2_, _loc3_.x, _loc3_.y, _loc1_ + 2, true);
             _loc2_.alpha += 0.1;
             if (_loc1_ == this.animation.numChildren - 1 && _loc2_.x == Math.round(_loc3_.x) && _loc2_.y == Math.round(_loc3_.y))
             {
