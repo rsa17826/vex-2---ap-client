@@ -1064,6 +1064,10 @@ package
       {
         _loc2_.text = "your soulmate died.";
       }
+      else if (param1 == 20)
+      {
+        _loc2_.text = "touched a checkpoint.";
+      }
       if (param1 != 19)
         ExternalInterface.call("sendDeathLink", _loc2_.text);
     }
@@ -2488,7 +2492,14 @@ package
           _loc3_[2] = _loc3_[3];
           this.unlockAchievement(param1);
           var map = {
-              "17": "stage3 - achievement:-1:LEVEL 3 NO CHECKPOINTS",
+              "17": "stage3 - achievement:17:VEXIPHOBIAX3",
+              "17": "stage1 - achievement:-1:VEXIPHOBIAX1",
+              "17": "stage2 - achievement:-1:VEXIPHOBIAX2",
+              "17": "stage5 - achievement:-1:VEXIPHOBIAX5",
+              "17": "stage6 - achievement:-1:VEXIPHOBIAX6",
+              "17": "stage7 - achievement:-1:VEXIPHOBIAX7",
+              "17": "stage8 - achievement:-1:VEXIPHOBIAX8",
+              "17": "stage10 - achievement:-1:VEXIPHOBIAX10",
 
               "1": "stage0 - achievement:1:TUTORIAL",
               "2": "stage1 - achievement:2:ACT 1",
@@ -2544,7 +2555,6 @@ package
         if (this.level.currentFrame == 5 && this.player.checkpointsReached == 0)
         {
           this.incAchievement(17);
-          // ExternalInterface.call("newItem", "stage3 - achievement:-1:LEVEL 3 NO CHECKPOINTS");
         }
       }
       if (this.deaths == 0)

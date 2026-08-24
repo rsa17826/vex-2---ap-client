@@ -3,6 +3,7 @@ package
   import flash.display.MovieClip;
   import flash.events.Event;
   import flash.geom.Point;
+  import flash.external.ExternalInterface;
 
   [Embed(source="/_assets/assets.swf", symbol="symbol1610")]
   public class checkpoint extends MovieClip
@@ -35,6 +36,11 @@ package
       this.player = MovieClip(parent).player;
       if (this.hitTestObject(this.player))
       {
+        if (ExternalInterface.call("dontWantCheckpoints"))
+        {
+          this.player.kill(20);
+          return;
+        }
         if (currentFrame == 1)
         {
           this.nullCheckpoints();

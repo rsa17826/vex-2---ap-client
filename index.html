@@ -33,9 +33,7 @@
     <script src="indexeddbProxy.js"></script>
     <div id="game" style="width: 800px; height: 600px"></div>
     <div id="movesList">
-      <div class="list">
-        <div id="moves"></div>
-      </div>
+      <div id="moves"></div>
     </div>
     <script>
       window.moves = []
@@ -294,6 +292,8 @@
         data.lastReceivedItem = window.lastReceivedItem
         data.moves = window.moves
         data.checksInFlight = window.checksInFlight
+        data.dontWantCheckpoints =
+          saveData[getSaveFileId()].dontWantCheckpoints
         window.beatStages = []
         for (var [k, v] of Object.entries(data.actTimes)) {
           if (v > 0) {
@@ -357,6 +357,7 @@
         for (var k of Object.keys(globalOpts)) {
           saveData.globalOpts[k] = data[k]
         }
+        renderMovesList()
       }
       function killPlayer() {
         if (ap.slotData.death_link) player.deathLinkIncoming()
@@ -500,7 +501,11 @@
       ]
 
       const container = document.getElementById("moves")
-
+      function dontWantCheckpoints() {
+        return window.saveData ?
+            (saveData[getSaveFileId()].dontWantCheckpoints ?? false)
+          : false
+      }
       function renderMovesList() {
         container.innerHTML = ""
         allMoves.forEach((m, i) => {
@@ -512,6 +517,27 @@
             `
           container.appendChild(el)
         })
+        const el = document.createElement("div")
+        el.style.pointerEvents = "auto"
+        el.className =
+          "move" + (dontWantCheckpoints() ? " obtained" : "")
+        el.innerHTML = `
+          <div class="name">dontWantCheckpoints</div>
+          <div class="check">✓</div>
+          `
+        el.onclick = (e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          e.stopImmediatePropagation()
+          if (window.saveData && saveData[getSaveFileId()])
+            saveData[getSaveFileId()].dontWantCheckpoints =
+              !saveData[getSaveFileId()].dontWantCheckpoints
+          renderMovesList()
+        }
+        container.appendChild(
+          newelem("hr", { color: "black", margin: "2px" }),
+        )
+        container.appendChild(el)
       }
       renderMovesList()
       window.onReceivedItems.push(renderMovesList)
