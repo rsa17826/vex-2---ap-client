@@ -2490,7 +2490,7 @@ package
         if (_loc3_[2] >= _loc3_[3])
         {
           _loc3_[2] = _loc3_[3];
-          this.unlockAchievement(param1 > 30 ? 30 : param1);
+          this.unlockAchievement(param1);
           var map = {
               "31": "stage1 - achievement:-1:VEXIPHOBIAX1",
               "32": "stage2 - achievement:-1:VEXIPHOBIAX2",
@@ -2571,7 +2571,7 @@ package
           else if (this.level.currentFrame == 12)
             this.incAchievement(38);
           else
-            ExternalInterface.call("apWarn", "@yellow!WARNING@! beat level with 0 cps - this.level.currentFrame", this.level.currentFrame);
+            ExternalInterface.call("apError", "@yellow!WARNING@! beat level with 0 cps - this.level.currentFrame", this.level.currentFrame);
         }
       }
       if (this.deaths == 0)
@@ -2582,7 +2582,6 @@ package
 
     private function unlockAchievement(param1:int):void
     {
-      // TODO
       var _loc2_:Array = achievementsLog["achievement" + param1];
       trace("Achievement " + param1 + " unlocked! - create window");
       var _loc3_:* = new achievementUnlocked();
