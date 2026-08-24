@@ -2490,16 +2490,16 @@ package
         if (_loc3_[2] >= _loc3_[3])
         {
           _loc3_[2] = _loc3_[3];
-          this.unlockAchievement(param1);
+          this.unlockAchievement(param1 > 30 ? 30 : param1);
           var map = {
-              "17": "stage3 - achievement:17:VEXIPHOBIAX3",
-              "17": "stage1 - achievement:-1:VEXIPHOBIAX1",
-              "17": "stage2 - achievement:-1:VEXIPHOBIAX2",
-              "17": "stage5 - achievement:-1:VEXIPHOBIAX5",
-              "17": "stage6 - achievement:-1:VEXIPHOBIAX6",
-              "17": "stage7 - achievement:-1:VEXIPHOBIAX7",
-              "17": "stage8 - achievement:-1:VEXIPHOBIAX8",
-              "17": "stage10 - achievement:-1:VEXIPHOBIAX10",
+              "31": "stage1 - achievement:-1:VEXIPHOBIAX1",
+              "32": "stage2 - achievement:-1:VEXIPHOBIAX2",
+              "33": "stage3 - achievement:17:VEXIPHOBIAX3",
+              "34": "stage5 - achievement:-1:VEXIPHOBIAX5",
+              "35": "stage6 - achievement:-1:VEXIPHOBIAX6",
+              "36": "stage7 - achievement:-1:VEXIPHOBIAX7",
+              "37": "stage8 - achievement:-1:VEXIPHOBIAX8",
+              "38": "stage10 - achievement:-1:VEXIPHOBIAX10",
 
               "1": "stage0 - achievement:1:TUTORIAL",
               "2": "stage1 - achievement:2:ACT 1",
@@ -2554,7 +2554,7 @@ package
         this.incAchievement(this.level.currentFrame - 1);
         if (this.level.currentFrame == 5 && this.player.checkpointsReached == 0)
         {
-          this.incAchievement(17);
+          this.incAchievement(33);
         }
       }
       if (this.deaths == 0)
@@ -2575,7 +2575,7 @@ package
       addChild(_loc3_);
       this.findColourChangeTransition(_loc3_.bgColours);
       // NOTE show correct icon when unlocking custom achievement
-      if (param1 == 17)
+      if (param1 > 30)
       {
         param1 = 12;
       }
