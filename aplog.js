@@ -319,10 +319,17 @@ function apSendSayFromInput() {
       },
     },
     debug: {
-      desc: "enable debug/chear mode w/a/s/d moves one screen that dir\nrclick on game sets player to that position\ndbclick on map tps player to that screen",
+      desc: "enable debug/chear mode - enables clicktp and pressing 'g' to win level",
       args: [["on", "true/false"]],
       func(on) {
         localStorage.debug = ["1", "true"].includes(on)
+      },
+    },
+    debug: {
+      desc: "die upon contact with checkpoint instead of collecting it",
+      args: [["on", "true/false"]],
+      func(on) {
+        window.dontWantCheckpointsEnabled = ["1", "true"].includes(on)
       },
     },
     dontAutoSendCompleteEvent: {
