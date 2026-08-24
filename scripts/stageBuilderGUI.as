@@ -874,7 +874,7 @@ package
     {
       var _loc3_:Object = null;
       var _loc1_:Array = [];
-      _loc1_.push(this.itemsAdded[0].x, this.itemsAdded[0].y, this.itemsAdded[1].x, this.itemsAdded[1].y);
+      _loc1_.push("px", this.itemsAdded[0].x, "py", this.itemsAdded[0].y, "goalx", this.itemsAdded[1].x, "goaly", this.itemsAdded[1].y);
       var _loc2_:int = 2;
       while (_loc2_ < this.itemsAdded.length)
       {
@@ -898,6 +898,7 @@ package
         }
         _loc2_++;
       }
+      _loc1_.push("\n");
       if (this.attachmentsOn)
       {
         _loc1_.push(1);
