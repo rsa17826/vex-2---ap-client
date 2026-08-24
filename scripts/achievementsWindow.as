@@ -351,24 +351,10 @@ package
 
     private function createAchievement(param1:Array, param2:int = 1):void
     {
-      if (param2 == 26 || param2 == 19 || param2 == 18)
+      if (param2 == 26 || param2 == 19 || param2 == 18 || param2 == 17)
       {
         return;
       }
-      // if (param2 == 17)
-      // {
-      //   param1 = ['VexiphobiaX3', 'Complete act 3 without touching any checkpoints.',
-      //       // current
-      //       param1[2]
-      //       ,
-      //       // max
-      //       1,
-      //       // y location 0/1/2
-      //       2,
-      //       // ??
-      //       1];
-      //   param2 = 12;
-      // }
       ExternalInterface.call("log", "createAchievement", param1, param2);
       var _loc5_:* = undefined;
       var _loc3_:* = "achievement" + (param2 > 30 ? 12 : param2) + "Button";

@@ -62,14 +62,14 @@ package
     public static var achievement29:Array = ["Keylogger", "Hold two or more keys at the same time.", 0, 1, 2, 2, 11, 12];
 
     public static var achievement30:Array = ["Microwave", "Visit the Microwave Games facebook page. Click here.", 0, 1, 2, 2];
-    public static var achievement31:Array = ["VexiphobiaX1", "Complete act 1 without touching any checkpoints.", 0, 1, 2, 1];
-    public static var achievement32:Array = ["VexiphobiaX2", "Complete act 2 without touching any checkpoints.", 0, 1, 2, 1];
-    public static var achievement33:Array = ["VexiphobiaX3", "Complete act 3 without touching any checkpoints.", 0, 1, 2, 1];
-    public static var achievement34:Array = ["VexiphobiaX5", "Complete act 5 without touching any checkpoints.", 0, 1, 2, 1];
-    public static var achievement35:Array = ["VexiphobiaX6", "Complete act 6 without touching any checkpoints.", 0, 1, 2, 1];
-    public static var achievement36:Array = ["VexiphobiaX7", "Complete act 7 without touching any checkpoints.", 0, 1, 2, 1];
-    public static var achievement37:Array = ["VexiphobiaX8", "Complete act 8 without touching any checkpoints.", 0, 1, 2, 1];
-    public static var achievement38:Array = ["VexiphobiaX10", "Complete act 10 without touching any checkpoints.", 0, 1, 2, 1];
+    public static var achievement31:Array = ["VexiphobiaX1", "Complete act 1 without touching any checkpoints.", 0, 1, 2, 3];
+    public static var achievement32:Array = ["VexiphobiaX2", "Complete act 2 without touching any checkpoints.", 0, 1, 2, 4];
+    public static var achievement33:Array = ["VexiphobiaX3", "Complete act 3 without touching any checkpoints.", 0, 1, 2, 5];
+    public static var achievement34:Array = ["VexiphobiaX5", "Complete act 5 without touching any checkpoints.", 0, 1, 2, 7];
+    public static var achievement35:Array = ["VexiphobiaX6", "Complete act 6 without touching any checkpoints.", 0, 1, 2, 8];
+    public static var achievement36:Array = ["VexiphobiaX7", "Complete act 7 without touching any checkpoints.", 0, 1, 2, 9];
+    public static var achievement37:Array = ["VexiphobiaX8", "Complete act 8 without touching any checkpoints.", 0, 1, 2, 10];
+    public static var achievement38:Array = ["VexiphobiaX10", "Complete act 10 without touching any checkpoints.", 0, 1, 2, 12];
 
     public function achievementsLog()
     {
