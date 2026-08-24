@@ -3313,6 +3313,7 @@ package
       {
         _loc2_ = ["x", "y", "width"];
       }
+      return ["x", "y", "width", "height", "rotation"];
       return _loc2_;
     }
 
