@@ -914,7 +914,7 @@ package
       {
         _loc1_.push("\nsnapOn", 0);
       }
-      _loc1_.push("\nthis.guideLines", this.guideLines, "\n");
+      _loc1_.push("\nguideLines", this.guideLines, "\n");
       return _loc1_;
     }
 
