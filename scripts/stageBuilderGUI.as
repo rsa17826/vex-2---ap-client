@@ -901,28 +901,21 @@ package
       _loc1_.push("\n");
       if (this.attachmentsOn)
       {
-        _loc1_.push(1);
+        _loc1_.push("attachmentsOn", 1);
       }
       else
       {
-        _loc1_.push(0);
+        _loc1_.push("attachmentsOn", 0);
       }
       if (this.snapOn)
       {
-        _loc1_.push(1);
+        _loc1_.push("snapOn", 1);
       }
       else
       {
-        _loc1_.push(0);
+        _loc1_.push("snapOn", 0);
       }
-      if (this.snapOn)
-      {
-        _loc1_.push(this.guideLines);
-      }
-      else
-      {
-        _loc1_.push(0);
-      }
+      _loc1_.push("this.guideLines", this.guideLines);
       return _loc1_;
     }
 
