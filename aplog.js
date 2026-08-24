@@ -332,6 +332,14 @@ function apSendSayFromInput() {
         window.dontWantCheckpointsEnabled = ["1", "true"].includes(on)
       },
     },
+    dc: {
+      alias: ["disconnect"],
+      desc: "disconnect from archipelago",
+      args: [],
+      func() {
+        location.search = ""
+      },
+    },
     pmax: {
       desc: "pmax",
       args: [],
