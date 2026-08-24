@@ -24,8 +24,11 @@ package
       super();
       addFrameScript(0, this.frame1);
       addEventListener(Event.ADDED_TO_STAGE, this.pushArray);
-      // NOTE fixes hitboxes on first level load to be same as after first reset
-      this.reset();
+      var cps = ExternalInterface.call("checkpointSize");
+      if (cps == "small")
+      {
+        this.scanLetters();
+      }
     }
 
     public function update():void
@@ -159,14 +162,18 @@ package
       var _loc2_:Object = null;
       var _loc3_:* = undefined;
       var _loc1_:int = 0;
+      var cps = ExternalInterface.call("checkpointSize");
       while (_loc1_ < this.animation.numChildren)
       {
         _loc2_ = this.animation.getChildAt(_loc1_);
         _loc3_ = new Point(_loc2_.x, _loc2_.y);
         this.lettersArray.push(_loc3_);
         _loc2_.alpha = 0;
-        _loc2_.x = 40;
-        _loc2_.y = 20;
+        if (cps == "small" || cps == "default")
+        {
+          _loc2_.x = 40;
+          _loc2_.y = 20;
+        }
         _loc1_++;
       }
     }

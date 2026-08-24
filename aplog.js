@@ -332,6 +332,14 @@ function apSendSayFromInput() {
         window.dontWantCheckpointsEnabled = ["1", "true"].includes(on)
       },
     },
+    checkpointSize: {
+      alias: ["cps"],
+      desc: "changes the size of the checkpoint hitboxes\n    by default hitboxes are large first entrance to every stage and small after every reset of any stage\n    default keeps it this way\n    large and small force it to be consistently large/small every time\n    large only takes affect upon reentering a level",
+      args: [["size", "small/default/large"]],
+      func(size = "default") {
+        window.cps = size
+      },
+    },
     dc: {
       alias: ["disconnect"],
       desc: "disconnect from archipelago",

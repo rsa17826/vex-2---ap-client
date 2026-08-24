@@ -519,6 +519,10 @@
       }
       renderMovesList()
       window.onReceivedItems.push(renderMovesList)
+      window.cps ??= "default"
+      function checkpointSize() {
+        return window.cps
+      }
     </script>
   </body>
 </html>
