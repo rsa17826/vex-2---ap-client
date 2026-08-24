@@ -325,12 +325,17 @@ function apSendSayFromInput() {
         localStorage.debug = ["1", "true"].includes(on)
       },
     },
-    debug: {
+    dontWantCheckpoints: {
       desc: "die upon contact with checkpoint instead of collecting it",
       args: [["on", "true/false"]],
       func(on) {
         window.dontWantCheckpointsEnabled = ["1", "true"].includes(on)
       },
+    },
+    pmax: {
+      desc: "pmax",
+      args: [],
+      func: window.pmax,
     },
     dontAutoSendCompleteEvent: {
       desc: "if enabled doesn't send the complete event when the goal is completed",
