@@ -519,6 +519,10 @@
       }
       renderMovesList()
       window.onReceivedItems.push(renderMovesList)
+      // TODO make reset on non perfect
+      // TODO make reset on cp not death
+      // TODO show levels left of moves
+      // TODO didn't want to live in same world as checkpoint
       window.cps ??= "default"
       function checkpointSize() {
         return window.cps
