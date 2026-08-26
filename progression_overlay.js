@@ -17,6 +17,17 @@ function requiresSatisfied(requires, owned) {
   )
 }
 
+// Returns every OR-group (each an AND-list of tokens) that is currently
+// satisfied by `owned`, rather than just a single yes/no. Used so the UI
+// can show *all* the alternative paths that already unlock a check, not
+// just the fact that at least one exists.
+function satisfiedGroups(requires, owned) {
+  if (requires.length === 0) return []
+  return requires.filter((group) =>
+    group.every((tok) => owned.has(tok)),
+  )
+}
+
 // Every receive token is checked as its own AP location, named
 // "<room> - <token>" (matches the convention used by newItem() elsewhere).
 function locationIdFor(room, token) {
@@ -135,12 +146,14 @@ function render() {
   // Build the list of not-yet-checked, currently-satisfiable receive tokens.
   const rows = []
   PROG.forEach((node) => {
-    if (!requiresSatisfied(node.requires, owned)) return
+    const groups = satisfiedGroups(node.requires, owned)
+    if (node.requires.length > 0 && groups.length === 0) return
     node.receive.forEach((token) => {
       if (kindOf(token) == "flag") return
       if (!isChecked(node.room, token)) {
-        if (node.room != "hub" && !owned.has(`level:${node.room}`)) return
-        rows.push({ room: node.room, token })
+        if (node.room != "hub" && !owned.has(`level:${node.room}`))
+          return
+        rows.push({ room: node.room, token, groups })
       }
     })
   })
@@ -197,7 +210,7 @@ function render() {
   const list = newelem("div", {
     style: { display: "flex", flexDirection: "column", gap: "8px" },
   })
-  rows.forEach(({ room, token }) => {
+  rows.forEach(({ room, token, groups }) => {
     const card = newelem("div", {
       style: {
         border: "1px solid #10b98155",
@@ -205,12 +218,20 @@ function render() {
         borderRadius: "8px",
         padding: "8px 10px",
         display: "flex",
+        flexDirection: "column",
+        gap: "6px",
+      },
+    })
+
+    const header = newelem("div", {
+      style: {
+        display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
         gap: "8px",
       },
     })
-    card.appendChild(
+    header.appendChild(
       newelem(
         "span",
         {
@@ -227,7 +248,51 @@ function render() {
         [room],
       ),
     )
-    card.appendChild(chip(token))
+    header.appendChild(chip(token))
+    card.appendChild(header)
+
+    // Show every OR-group that currently satisfies this node's requires,
+    // not just that "some" group does. Each group's tokens are AND'd
+    // together; groups themselves are alternatives, joined by "OR".
+    if (groups.length > 0) {
+      const viaWrap = newelem("div", {
+        style: {
+          display: "flex",
+          flexDirection: "column",
+          gap: "4px",
+          paddingTop: "4px",
+          borderTop: "1px solid #ffffff14",
+        },
+      })
+      groups.forEach((group, idx) => {
+        const groupRow = newelem("div", {
+          style: {
+            display: "flex",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "2px",
+          },
+        })
+        groupRow.appendChild(
+          newelem(
+            "span",
+            {
+              style: {
+                fontSize: "10px",
+                color: "#6b7280",
+                marginRight: "4px",
+                flexShrink: "0",
+              },
+            },
+            [idx === 0 ? "via:" : "or:"],
+          ),
+        )
+        group.forEach((tok) => groupRow.appendChild(chip(tok)))
+        viaWrap.appendChild(groupRow)
+      })
+      card.appendChild(viaWrap)
+    }
+
     list.appendChild(card)
   })
   root.appendChild(list)
