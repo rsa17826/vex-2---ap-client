@@ -275,6 +275,7 @@
           ...defaultSaveData,
         }
         window.moves = saveData[getSaveFileId()]?.moves
+        window.cps = saveData[getSaveFileId()]?.cps
         renderMovesList()
         return {
           ...defaultSaveData,
@@ -294,6 +295,7 @@
         data.lastReceivedItem = window.lastReceivedItem
         data.moves = window.moves
         data.checksInFlight = window.checksInFlight
+        data.cps = window.cps
         window.beatStages = []
         for (var [k, v] of Object.entries(data.actTimes)) {
           if (v > 0) {
