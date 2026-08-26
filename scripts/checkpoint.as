@@ -39,7 +39,7 @@ package
       this.player = MovieClip(parent).player;
       if (this.hitTestObject(this.player))
       {
-        if (ExternalInterface.call("dontWantCheckpoints"))
+        if (ExternalInterface.call("doIHateCheckpoints"))
         {
           this.player.kill(20);
           return;

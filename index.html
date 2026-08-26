@@ -501,9 +501,9 @@
       ]
 
       const container = document.getElementById("moves")
-      window.dontWantCheckpointsEnabled = false
-      function dontWantCheckpoints() {
-        return window.dontWantCheckpointsEnabled
+      window.iHateCheckpoints ??= false
+      function doIHateCheckpoints() {
+        return window.iHateCheckpoints
       }
       function renderMovesList() {
         container.replaceChildren(
@@ -546,6 +546,10 @@
             ]),
           ]),
         )
+      }
+      window.iRequirePerfection ??= false
+      function doIRequirePerfection() {
+        return window.iRequirePerfection
       }
       renderMovesList()
       window.onReceivedItems.push(renderMovesList)

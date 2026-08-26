@@ -325,11 +325,20 @@ function apSendSayFromInput() {
         localStorage.debug = ["1", "true"].includes(on)
       },
     },
-    dontWantCheckpoints: {
+    iHateCheckpoints: {
+      alias: ["nocp"],
       desc: "die upon contact with checkpoint instead of collecting it",
       args: [["on", "true/false"]],
-      func(on) {
-        window.dontWantCheckpointsEnabled = ["1", "true"].includes(on)
+      func(on = "1") {
+        window.iHateCheckpoints = ["1", "true"].includes(on)
+      },
+    },
+    iRequirePerfection: {
+      alias: ["nodie", "perfect", "perfection"],
+      desc: "reset level when dying",
+      args: [["on", "true/false"]],
+      func(on = "1") {
+        window.iRequirePerfection = ["1", "true"].includes(on)
       },
     },
     checkpointSize: {

@@ -2305,7 +2305,15 @@ package
         _loc2_++;
       }
       this.main.incDeath(param1);
-      this.respawn();
+      // if (ExternalInterface.call("doIRequirePerfection") || (ExternalInterface.call("doIHateCheckpoints") && param1 == 20))
+      if (ExternalInterface.call("doIRequirePerfection") || ExternalInterface.call("doIHateCheckpoints"))
+      {
+        this.reset();
+      }
+      else
+      {
+        this.respawn();
+      }
     }
 
     public function respawn(param1:Boolean = false):void
