@@ -2305,7 +2305,6 @@ package
         _loc2_++;
       }
       this.main.incDeath(param1);
-      // if (ExternalInterface.call("doIRequirePerfection") || (ExternalInterface.call("doIHateCheckpoints") && param1 == 20))
       if (ExternalInterface.call("doIRequirePerfection") || ExternalInterface.call("doIHateCheckpoints"))
       {
         this.reset();
