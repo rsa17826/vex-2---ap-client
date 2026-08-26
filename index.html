@@ -506,16 +506,47 @@
         return window.dontWantCheckpointsEnabled
       }
       function renderMovesList() {
-        container.innerHTML = ""
-        allMoves.forEach((m, i) => {
-          const el = document.createElement("div")
-          el.className = "move" + (canUseMove(m) ? " obtained" : "")
-          el.innerHTML = `
-            <div class="name">${owo(m)}</div>
-            <div class="check">✓</div>
-            `
-          container.appendChild(el)
-        })
+        container.replaceChildren(
+          newelem("div", { class: "h" }, [
+            newelem("div", { class: "v" }, [
+              new Array(11)
+                .fill()
+                .map((e, i) => `level ${i}`)
+                .map((e, i) =>
+                  newelem(
+                    "div",
+                    {
+                      class: [
+                        "move",
+                        unlockedActs.has(i) ? "obtained" : null,
+                      ],
+                    },
+                    [
+                      newelem("div", { class: "name" }, [owo(e)]),
+                      newelem("div", { class: "check" }, ["✓"]),
+                    ],
+                  ),
+                ),
+            ]),
+            newelem("div", { class: "v" }, [
+              allMoves.map((e) =>
+                newelem(
+                  "div",
+                  {
+                    class: [
+                      "move",
+                      canUseMove(e) ? "obtained" : null,
+                    ],
+                  },
+                  [
+                    newelem("div", { class: "name" }, [owo(e)]),
+                    newelem("div", { class: "check" }, ["✓"]),
+                  ],
+                ),
+              ),
+            ]),
+          ]),
+        )
       }
       renderMovesList()
       window.onReceivedItems.push(renderMovesList)
@@ -523,7 +554,7 @@
       // TODO make reset on cp not death
       // TODO show what set of moves lets you get the thing in tab
       // TODO show levels left of moves
-      // TODO didn't want to live in same world as checkpoint
+      // NOTE didn't want to live in same world as checkpoint - is to long to be the death message
       window.cps ??= "default"
       function checkpointSize() {
         return window.cps

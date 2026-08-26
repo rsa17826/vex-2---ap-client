@@ -260,6 +260,14 @@ button {
   padding: 0px 0px;
   pointer-events: none;
   max-width: 360px;
+  .h {
+    display: flex;
+    flex-direction: row;
+  }
+  .v {
+    display: flex;
+    flex-direction: column-reverse;
+  }
   .move {
     padding-left: 4px;
     display: flex;
