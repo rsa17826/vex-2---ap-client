@@ -509,24 +509,23 @@
         container.replaceChildren(
           newelem("div", { class: "h" }, [
             newelem("div", { class: "v" }, [
-              new Array(11)
-                .fill()
-                .map((e, i) => `level ${i}`)
-                .map((e, i) =>
-                  newelem(
-                    "div",
-                    {
-                      class: [
-                        "move",
-                        unlockedActs.has(i) ? "obtained" : null,
-                      ],
-                    },
-                    [
-                      newelem("div", { class: "name" }, [owo(e)]),
-                      newelem("div", { class: "check" }, ["✓"]),
+              new Array(11).fill().map((_, i) =>
+                newelem(
+                  "div",
+                  {
+                    class: [
+                      "move",
+                      unlockedActs.has(i) ? "obtained" : null,
                     ],
-                  ),
+                  },
+                  [
+                    newelem("div", { class: "name" }, [
+                      owo(`level ${i}`),
+                    ]),
+                    newelem("div", { class: "check" }, ["✓"]),
+                  ],
                 ),
+              ),
             ]),
             newelem("div", { class: "v" }, [
               allMoves.map((e) =>
