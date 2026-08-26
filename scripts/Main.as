@@ -1066,6 +1066,7 @@ package
       }
       else if (param1 == 20)
       {
+        // NOTE didn't want to live in same world as checkpoint - is to long to be the death message
         _loc2_.text = "touched a checkpoint.";
       }
       if (param1 != 19)
