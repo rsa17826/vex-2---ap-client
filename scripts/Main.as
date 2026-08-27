@@ -1117,17 +1117,17 @@ package
           this.seconds -= 60;
           ++this.minutes;
         }
-        if (this.autoReset)
+      }
+      if (this.autoReset)
+      {
+        if (this.level.currentFrame != 13)
         {
-          if (this.level.currentFrame != 13)
+          if (this.savedTimes[this.act] > 0)
           {
-            if (this.savedTimes[this.act] > 0)
+            if (this.seconds + this.minutes * 60 + (this.milliseconds / 100) >= this.savedTimes[this.act])
             {
-              if (this.savedTimes[this.act] < this.seconds + this.minutes * 60 + (this.milliseconds / 100))
-              {
-                this.player.reset();
-                return;
-              }
+              this.player.reset();
+              return;
             }
           }
         }
