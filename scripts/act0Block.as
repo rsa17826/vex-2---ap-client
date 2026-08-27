@@ -1,5 +1,6 @@
 package
 {
+  import flash.text.TextFormat;
   import flash.display.MovieClip;
   import flash.text.TextField;
   import flash.external.ExternalInterface;
@@ -28,51 +29,52 @@ package
 
     private var playerOn:Boolean = false;
 
-private var locked:Boolean = true;
+    private var locked:Boolean = true;
 
-private function getLocked():void
-{
-  main = MovieClip(root);
-  if (ExternalInterface.available)
-  {
-    // Let JS call back into this instance to push lock-state changes
-    try
+    private function getLocked():void
     {
-      ExternalInterface.addCallback("setActLocked_" + (this.type==0?0:this.type-1), this.onLockedChanged);
+      main = MovieClip(root);
+      if (ExternalInterface.available)
+      {
+        // Let JS call back into this instance to push lock-state changes
+        try
+        {
+          ExternalInterface.addCallback("setActLocked_" + (this.type == 0 ? 0 : this.type - 1), this.onLockedChanged);
+        }
+        catch (e:Error)
+        {
+          // callback name already registered elsewhere, ignore
+        }
+      }
+
+      if (ExternalInterface.call("isActUnlocked", (this.type == 0 ? 0 : this.type - 1)))
+      {
+        this.locked = false;
+        this.displayTimes();
+      }
+      else
+      {
+        this.locked = true;
+        gotoAndStop(2);
+      }
     }
-    catch (e:Error)
+
+    // Called from JS: document.getElementById("swfid").setActLocked_3(false)
+    private function onLockedChanged(isLocked:Boolean):void
     {
-      // callback name already registered elsewhere, ignore
+      if (isLocked == this.locked)
+        return;
+      this.locked = isLocked;
+      if (this.locked)
+      {
+        gotoAndStop(2);
+      }
+      else
+      {
+        gotoAndStop(1);
+        this.displayTimes();
+      }
     }
-  }
-
-  if (ExternalInterface.call("isActUnlocked", (this.type==0?0:this.type-1)))
-  {
-    this.locked = false;
-    this.displayTimes();
-  }
-  else
-  {
-    this.locked = true;
-    gotoAndStop(2);
-  }
-}
-
-// Called from JS: document.getElementById("swfid").setActLocked_3(false)
-private function onLockedChanged(isLocked:Boolean):void
-{
-  if (isLocked == this.locked) return;
-  this.locked = isLocked;
-  if (this.locked)
-  {
-    gotoAndStop(2);
-  }
-  else
-  {
-    gotoAndStop(1);
-    this.displayTimes();
-  }
-}
 
     public function act0Block()
     {
@@ -212,7 +214,7 @@ private function onLockedChanged(isLocked:Boolean):void
             }
             main.fadingIn = false;
             // NOTE fixes cp counting acheivs not working when first entering a level so dont have to reset after first entering now
-            main.player.checkpointsReached = 0
+            main.player.checkpointsReached = 0;
           }
         }
       }
@@ -268,9 +270,13 @@ private function onLockedChanged(isLocked:Boolean):void
 
     private function displayTimes():void
     {
-      var _loc1_:int = int(main.savedTimes[this.type]);
-      this.timeText.text = main.displayTime(_loc1_);
+      var _loc1_:Number = Number(main.savedTimes[this.type]);
+      this.timeText.text = main.displayTime(_loc1_, true);
+      var myFormat:TextFormat = new TextFormat();
+      myFormat.size = 12;
+      this.timeText.setTextFormat(myFormat);
       var _loc2_:Array = rankTimes["act" + this.type + "Ranks"];
+      this.rankText.y -= 6;
       if (_loc1_ <= _loc2_[0])
       {
         if (main.savedDeaths[this.type] == 0)
@@ -408,11 +414,13 @@ private function onLockedChanged(isLocked:Boolean):void
         _loc2_ = this.timeline.yourTime;
         _loc3_++;
       }
-      var _loc4_:int = int(main.savedTimes[this.type]);
+      var _loc4_:Number = Number(main.savedTimes[this.type]);
+      ExternalInterface.call("log", "asdadsads", _loc4_);
       var _loc5_:Array = rankTimes["act" + this.type + "Ranks"];
-      this.timeline.goldTime.gold.text = "Gold: " + main.displayTime(_loc5_[0]);
-      this.timeline.silverTime.silver.text = "Silver: " + main.displayTime(_loc5_[1]);
-      this.timeline.bronzeTime.bronze.text = "Bronze: " + main.displayTime(_loc5_[2]);
+
+      this.timeline.goldTime.gold.text = "Gold: " + main.displayTime(_loc5_[0], true);
+      this.timeline.silverTime.silver.text = "Silver: " + main.displayTime(_loc5_[1], true);
+      this.timeline.bronzeTime.bronze.text = "Bronze: " + main.displayTime(_loc5_[2], true);
       if (_loc4_ == 0)
       {
         this.timeline.removeChild(this.timeline.yourTime);
@@ -422,7 +430,7 @@ private function onLockedChanged(isLocked:Boolean):void
       }
       else
       {
-        this.timeline.yourTime.yourTime.text = "Your time: " + main.displayTime(_loc4_);
+        this.timeline.yourTime.yourTime.text = "Your time: " + main.displayTime(_loc4_, true);
         if (_loc4_ <= _loc5_[0])
         {
           this.timeline.bronzeTime.y = -66;
@@ -445,6 +453,12 @@ private function onLockedChanged(isLocked:Boolean):void
           this.timeline.goldTime.y = -216;
         }
       }
+      var myFormat:TextFormat = new TextFormat();
+      myFormat.size = 8;
+      this.timeline.yourTime.yourTime.setTextFormat(myFormat);
+      this.timeline.goldTime.gold.setTextFormat(myFormat);
+      this.timeline.silverTime.silver.setTextFormat(myFormat);
+      this.timeline.bronzeTime.bronze.setTextFormat(myFormat);
     }
 
     internal function frame1():*

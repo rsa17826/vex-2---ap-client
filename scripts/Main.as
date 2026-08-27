@@ -811,7 +811,7 @@ package
       this.level.totalJumps.text = "Total Jumps: " + this.stats[6];
       this.level.totalLevers.text = "Levers Pulled: " + this.stats[7];
       this.level.totalCheckpoints.text = "Checkpoints: " + this.stats[8];
-      this.level.totalTime.text = "Time Played: " + this.stats[11] + ":" + this.displayTime(this.stats[9] + this.stats[10] * 60);
+      this.level.totalTime.text = "Time Played: " + this.stats[11] + ":" + this.displayTime(this.stats[9] + this.stats[10] * 60, true);
     }
 
     public function incDeath(param1:int = 0):void
@@ -1110,11 +1110,11 @@ package
       this.milliseconds += param1;
       if (int(this.milliseconds) >= 100)
       {
-        this.milliseconds = 0;
+        this.milliseconds -= 100;
         ++this.seconds;
         if (this.seconds >= 60)
         {
-          this.seconds = 0;
+          this.seconds -= 60;
           ++this.minutes;
         }
         if (this.autoReset)
@@ -1123,7 +1123,7 @@ package
           {
             if (this.savedTimes[this.act] > 0)
             {
-              if (this.savedTimes[this.act] < this.seconds + this.minutes * 60)
+              if (this.savedTimes[this.act] < this.seconds + this.minutes * 60 + (this.milliseconds / 100))
               {
                 this.player.reset();
                 return;
@@ -1142,7 +1142,7 @@ package
         _loc2_ = String(this.milliseconds);
       }
       this.smallTime.text = String(":" + _loc2_);
-      this.mainTime.text = this.displayTime(this.seconds + this.minutes * 60);
+      this.mainTime.text = this.displayTime(this.seconds + this.minutes * 60 + (this.milliseconds / 100), true);
       if (this.level.currentFrame != 13)
       {
         _loc6_ = this.minutes * 60 + this.seconds + this.milliseconds * 0.01;
@@ -1222,10 +1222,19 @@ package
       }
     }
 
-    public function displayTime(param1:int = 0):String
+    public function displayTime(param1:Number = 0.0, ...showdec):String
     {
+      // ExternalInterface.call("log", "displayTime received:", param1);
       var _loc2_:String = null;
       var _loc3_:String = null;
+      var _loc4_:String = null;
+      var dec = String(param1).split(".")[1] || '0';
+      var val;
+      while (dec.length < 3)
+      {
+        dec += '0';
+      }
+      param1 = int(param1);
       if (param1 >= 60)
       {
         _loc2_ = String((param1 - param1 % 60) / 60);
@@ -1234,18 +1243,18 @@ package
         {
           _loc3_ = "0" + _loc3_;
         }
-        if (int(_loc2_) < 10)
-        {
-          return String("0" + _loc2_ + ":" + _loc3_);
-        }
-        return String(_loc2_ + ":" + _loc3_);
+        val = String((int(_loc2_) < 10 ? "0" : '') + int(_loc2_) + ":" + _loc3_ + '.' + dec);
       }
-      _loc3_ = String(param1 % 60);
-      if (param1 % 60 < 10)
+      if (!val)
       {
-        _loc3_ = "0" + _loc3_;
+        _loc3_ = String(param1 % 60);
+        if (param1 % 60 < 10)
+        {
+          _loc3_ = "0" + _loc3_;
+        }
+        val = String("00:" + _loc3_ + '.' + dec);
       }
-      return String("00:" + _loc3_);
+      return showdec[0] ? val : val.split(".")[0];
     }
 
     private function checkTransitionDone():void
@@ -1671,7 +1680,7 @@ package
         _loc1_ = String(this.milliseconds);
       }
       this.smallTime.text = String(":" + _loc1_);
-      this.mainTime.text = this.displayTime(this.seconds + this.minutes * 60);
+      this.mainTime.text = this.displayTime(this.seconds + this.minutes * 60 + (this.milliseconds / 100), true);
       if (this.level.currentFrame < 13)
       {
         if (!this.guiText)
@@ -1688,7 +1697,7 @@ package
           }
         }
         _loc2_ = this.guiText.rankOn;
-        _loc3_ = this.displayTime(this.actTimes[0]);
+        _loc3_ = this.displayTime(this.actTimes[0], true);
         _loc2_.text = "Perfect - " + _loc3_;
         _loc2_.textColor = 8847359;
         this.rankTimeBar.scaleX = 1;
@@ -1706,28 +1715,16 @@ package
       this.checkRankAchievements(new Array(this.savedTimes[param1], this.savedDeaths[param1]), this.minutes * 60 + this.seconds, this.deaths, rankTimes["act" + this.act + "Ranks"]);
       if (this.savedTimes[param1] > 0)
       {
-        if (this.minutes * 60 + this.seconds < this.savedTimes[param1])
+        if (this.minutes * 60 + this.seconds + (this.milliseconds / 100) < this.savedTimes[param1])
         {
-          this.savedTimes[param1] = this.minutes * 60 + this.seconds;
+          this.savedTimes[param1] = this.minutes * 60 + this.seconds + (this.milliseconds / 100);
           this.savedDeaths[param1] = this.deaths;
         }
       }
       else
       {
-        this.savedTimes[param1] = this.minutes * 60 + this.seconds;
+        this.savedTimes[param1] = this.minutes * 60 + this.seconds + (this.milliseconds / 100);
         this.savedDeaths[param1] = this.deaths;
-        if (this.kongregate)
-        {
-          this.submitKongLevels(param1);
-        }
-      }
-      if (this.kongregate)
-      {
-        this.submitKong(this.minutes * 60 + this.seconds, param1);
-        if (param1 == 11)
-        {
-          this.kongregate.stats.submit("GameComplete", 1);
-        }
       }
     }
 
