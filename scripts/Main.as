@@ -1142,7 +1142,7 @@ package
         _loc2_ = String(this.milliseconds);
       }
       this.smallTime.text = String(":" + _loc2_);
-      this.mainTime.text = this.displayTime(this.seconds + this.minutes * 60 + (this.milliseconds / 100), true);
+      this.mainTime.text = this.displayTime(this.seconds + this.minutes * 60 + (this.milliseconds / 100));
       if (this.level.currentFrame != 13)
       {
         _loc6_ = this.minutes * 60 + this.seconds + this.milliseconds * 0.01;
@@ -1680,7 +1680,7 @@ package
         _loc1_ = String(this.milliseconds);
       }
       this.smallTime.text = String(":" + _loc1_);
-      this.mainTime.text = this.displayTime(this.seconds + this.minutes * 60 + (this.milliseconds / 100), true);
+      this.mainTime.text = this.displayTime(this.seconds + this.minutes * 60 + (this.milliseconds / 100));
       if (this.level.currentFrame < 13)
       {
         if (!this.guiText)
