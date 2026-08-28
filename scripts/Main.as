@@ -2799,7 +2799,7 @@ package
 
     public function fm(e, i, arr):Boolean
     {
-      return int(e) == e;
+      return String(e).match(/^-?\d+$/) != null;
     }
     private function renderStage():void
     {

@@ -1,5 +1,6 @@
 package
 {
+  import flash.external.ExternalInterface;
   import flash.display.MovieClip;
   import flash.display.Shape;
   import flash.events.Event;
@@ -681,193 +682,193 @@ package
       }
     }
 
-    private function findItemCode(param1:Object):int
+    private function findItemCode(param1:Object):Array
     {
       if (param1 is sbBasicBlock)
       {
         if (param1 is sbFallingBlock)
         {
-          return 3;
+          return ["FallingBlock", 3];
         }
         if (param1 is sbBounceBlock)
         {
-          return 8;
+          return ["BounceBlock", 8];
         }
         if (param1 is sbVerticalDownBlock)
         {
-          return 9;
+          return ["VerticalDownBlock", 9];
         }
         if (param1 is sbVerticalUpBlock)
         {
-          return 10;
+          return ["VerticalUpBlock", 10];
         }
         if (param1 is sbHorizontalBlock)
         {
-          return 11;
+          return ["HorizontalBlock", 11];
         }
         if (param1 is sbIceBlock)
         {
-          return 13;
+          return ["IceBlock", 13];
         }
         if (param1 is sbLockBlock)
         {
-          return 14;
+          return ["LockBlock", 14];
         }
         if (param1 is sbPushBlock)
         {
-          return 15;
+          return ["PushBlock", 15];
         }
         if (param1 is sbEnlargingBlock)
         {
-          return 16;
+          return ["EnlargingBlock", 16];
         }
         if (param1 is sbSolarBlock)
         {
-          return 17;
+          return ["SolarBlock", 17];
         }
         if (param1 is sbInvisBlock)
         {
-          return 18;
+          return ["InvisBlock", 18];
         }
         if (param1 is sbSwimmingPool)
         {
-          return 4;
+          return ["SwimmingPool", 4];
         }
         if (param1 is sbMicrowave)
         {
-          return 42;
+          return ["Microwave", 42];
         }
         if (param1 is sbWiredBlock)
         {
-          return 45;
+          return ["WiredBlock", 45];
         }
-        return 0;
+        return ["BasicBlock", 0];
       }
       if (param1 is sbLeftSlope)
       {
         if (param1 is sbRightSlope)
         {
-          return 2;
+          return ["RightSlope", 2];
         }
-        return 1;
+        return ["LeftSlope", 1];
       }
       if (param1 is sbCheckpoint)
       {
-        return 5;
+        return ["Checkpoint", 5];
       }
       if (param1 is sbSpike)
       {
         if (param1 is sbSpikex10)
         {
-          return 7;
+          return ["Spikex10", 7];
         }
         if (param1 is sbSurpriseSpike)
         {
-          return 19;
+          return ["SurpriseSpike", 19];
         }
         if (param1 is sbClosingSpikes)
         {
-          return 25;
+          return ["ClosingSpikes", 25];
         }
         if (param1 is sbRotatingBuzzsaw)
         {
-          return 27;
+          return ["RotatingBuzzsaw", 27];
         }
         if (param1 is sbBreatheBlaster)
         {
-          return 31;
+          return ["BreatheBlaster", 31];
         }
         if (param1 is sbSmWindBlaster)
         {
-          return 32;
+          return ["SmWindBlaster", 32];
         }
         if (param1 is sbWindBlaster)
         {
-          return 33;
+          return ["WindBlaster", 33];
         }
-        return 6;
+        return ["Spike", 6];
       }
       if (param1 is sbPendulum)
       {
-        return 12;
+        return ["Pendulum", 12];
       }
       if (param1 is sbBuzzsaw)
       {
         if (param1 is sbBouncingBuzzsaw)
         {
-          return 24;
+          return ["BouncingBuzzsaw", 24];
         }
         if (param1 is sbEnlargingBuzzsaw)
         {
-          return 43;
+          return ["EnlargingBuzzsaw", 43];
         }
-        return 20;
+        return ["Buzzsaw", 20];
       }
       if (param1 is sbShurikanSpawner)
       {
-        return 21;
+        return ["ShurikanSpawner", 21];
       }
       if (param1 is sbQuadrant)
       {
-        return 22;
+        return ["Quadrant", 22];
       }
       if (param1 is sbScythe)
       {
-        return 23;
+        return ["Scythe", 23];
       }
       if (param1 is sbLaser)
       {
-        return 26;
+        return ["Laser", 26];
       }
       if (param1 is sbGravityDownLever)
       {
-        return 41;
+        return ["GravityDownLever", 41];
       }
       if (param1 is sbGravityUpLever)
       {
-        return 28;
+        return ["GravityUpLever", 28];
       }
       if (param1 is sbSpeedUpLever)
       {
-        return 38;
+        return ["SpeedUpLever", 38];
       }
       if (param1 is sbPole)
       {
-        return 29;
+        return ["Pole", 29];
       }
       if (param1 is sbCannon)
       {
-        return 30;
+        return ["Cannon", 30];
       }
       if (param1 is sbTeleporter)
       {
-        return 34;
+        return ["Teleporter", 34];
       }
       if (param1 is sbTeleporterReceiver)
       {
-        return 35;
+        return ["TeleporterReceiver", 35];
       }
       if (param1 is sbKey)
       {
-        return 36;
+        return ["Key", 36];
       }
       if (param1 is sbLightSwitch)
       {
-        return 39;
+        return ["LightSwitch", 39];
       }
       if (param1 is sbPulley)
       {
-        return 40;
+        return ["Pulley", 40];
       }
       if (param1 is sbClassicLaser)
       {
-        return 44;
+        return ["ClassicLaser", 44];
       }
       if (param1 is sbPoleQuadrant)
       {
-        return 46;
+        return ["PoleQuadrant", 46];
       }
-      return 0;
+      return ["BasicBlock", 0];
     }
 
     public function createCode():Array
@@ -879,7 +880,8 @@ package
       while (_loc2_ < this.itemsAdded.length)
       {
         _loc3_ = this.itemsAdded[_loc2_];
-        _loc1_.push("\nid", this.findItemCode(_loc3_));
+        var a = this.findItemCode(_loc3_);
+        _loc1_.push("\nid", a[0], a[1]);
         _loc1_.push("x", _loc3_.x, "y", _loc3_.y);
         var _savedRotation:Number = _loc3_.rotation;
         _loc3_.rotation = 0;
