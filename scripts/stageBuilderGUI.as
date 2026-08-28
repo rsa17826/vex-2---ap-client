@@ -580,7 +580,9 @@ package
       }
       else if (param1.currentTarget == this.saveButton)
       {
+        ExternalInterface.call("log", this.createCode());
         this.saveStage();
+        ExternalInterface.call("log", this.createCode());
       }
       else if (param1.currentTarget == this.quitButton)
       {

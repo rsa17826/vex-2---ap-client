@@ -2799,7 +2799,7 @@ package
 
     public function fm(e, i, arr):Boolean
     {
-      return String(e).match(/^-?\d+$/) != null;
+      return String(e).match(/^\s*-?(\d+(\.?\d+)?|\.\d+)\s*$/) != null;
     }
     private function renderStage():void
     {
@@ -2968,6 +2968,8 @@ package
             break;
           case 46:
             _loc3_ = new poleQuadrant();
+          default:
+            ExternalInterface.call("log", int(this.localMap[_loc2_]), _loc2_, "int(this.localMap[_loc2_])");
         }
         _loc4_ = 0;
         while (_loc4_ < _loc1_.length)
@@ -3191,6 +3193,7 @@ package
 
     public function getSCParameters(param1:int = 0):Array
     {
+      return ["x", "y", "width", "height", "rotation"];
       var _loc2_:Array = [];
       if (param1 == 0)
       {
@@ -3320,7 +3323,6 @@ package
       {
         _loc2_ = ["x", "y", "width"];
       }
-      return ["x", "y", "width", "height", "rotation"];
       return _loc2_;
     }
 
