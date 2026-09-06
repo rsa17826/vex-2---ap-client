@@ -491,6 +491,7 @@ class ArchipelagoClient {
    * @param {string} cause - human-readable death message, e.g. "Alex fell into lava"
    */
   sendDeathLink(coloredCause) {
+    if (!this.slotData.death_link) return
     warn(coloredCause, "cause")
     if (!this.deathLinkEnabled) return
 
@@ -543,6 +544,7 @@ class ArchipelagoClient {
     )
 
     if (source === this.playerName) return
+    if (!this.slotData.death_link) return
     killPlayer()
   }
   /**
