@@ -6,30 +6,11 @@ package
   import flash.filters.DropShadowFilter;
   import flash.ui.Keyboard;
   import flash.events.KeyboardEvent;
-    import flash.external.ExternalInterface;
+  import flash.external.ExternalInterface;
 
   [Embed(source="/_assets/assets.swf", symbol="symbol378")]
   public class lightSwitch extends MovieClip
   {
-    private function setupKeyListener():void
-    {
-      if (!gKeyListenerAdded && stage)
-      {
-        gKeyListenerAdded = true;
-        stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
-      }
-    }
-
-    private static var lKeyJustPressed:Boolean = false;
-    private function onKeyDown(param1:KeyboardEvent):void
-    {
-      if (!ExternalInterface.call("debugModeEnabled")){return}
-      if (param1.keyCode == Keyboard.L)
-      {
-        lKeyJustPressed = true;
-      }
-    }
-    private static var gKeyListenerAdded:Boolean = false;
     public var main:MovieClip;
 
     public var arrayIndex:int;
@@ -49,9 +30,8 @@ package
     public function update():void
     {
       var _loc1_:int = 0;
-      if (this.hitTestObject(this.main.level.player) || lKeyJustPressed)
+      if (this.hitTestObject(this.main.level.player) && ExternalInterface.call("canUseMove", "lightswitch"))
       {
-        lKeyJustPressed = false;
         if (this.main.dark == null)
         {
           this.main.playSound("nightVision", false);
@@ -61,7 +41,7 @@ package
           // TODO
           this.main.addChild(this.main.dark);
           _loc1_ = this.main.getChildIndex(this.main.level) + 1;
-          this.main.setChildIndex(this.main.dark,_loc1_);
+          this.main.setChildIndex(this.main.dark, _loc1_);
           this.toggle.gotoAndStop(2);
         }
       }

@@ -45,18 +45,7 @@
       }
       window.owo ??= (e) => e
       function pmax() {
-        window.moves = [
-          "move:bounce",
-          "move:cannon",
-          "move:kick",
-          "move:lever",
-          "move:polejump",
-          "move:portal",
-          "move:pulley",
-          "move:slide",
-          "move:swim",
-          "move:walljump",
-        ]
+        window.moves = [...allMoves]
         for (var i in new Array(11).fill(1)) {
           player[`setActLocked_${i}`]?.(false)
           unlockedActs.add(Number(i))
@@ -65,6 +54,8 @@
       }
       window.moves ??= []
       const itemList = {
+        "move:key": () => window.moves.push("key"),
+        "move:lightswitch": () => window.moves.push("lightswitch"),
         "move:bounce": () => window.moves.push("bounce"),
         "move:cannon": () => window.moves.push("cannon"),
         "move:kick": () => window.moves.push("kick"),
@@ -501,6 +492,8 @@
         "slide",
         "swim",
         "walljump",
+        "key",
+        "lightswitch",
       ]
 
       const container = document.getElementById("moves")
